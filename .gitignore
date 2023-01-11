@@ -32,6 +32,7 @@
 
 # Ignore environment variables
 .env
+.env.example
 
 # Ignore simplecov output
 /coverage/*
