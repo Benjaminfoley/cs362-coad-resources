@@ -1,4 +1,4 @@
-#This class is used for Organizing the records that are in the database. 
+# An ApplicationRecord subclass modeling the application record for specific help organizations.
 class Organization < ApplicationRecord
 
   attr_accessor :agreement_one, :agreement_two, :agreement_three, :agreement_four, :agreement_five, :agreement_six, :agreement_seven, :agreement_eight
