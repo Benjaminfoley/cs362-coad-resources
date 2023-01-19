@@ -1,4 +1,4 @@
-#The purpose of this class is to check if the name is correct, and if it is, then it will be saved to the database.
+# An ApplicationRecord subclass that keeps track of tickets and organizations according to category.
 class ResourceCategory < ApplicationRecord
 
   has_and_belongs_to_many :organizations

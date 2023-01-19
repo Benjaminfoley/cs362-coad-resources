@@ -1,4 +1,4 @@
-# This class is used for having specified names, linked to the region that the tickets are in.
+# An ApplicationRecord subclass modeling the ticket records by region.
 class Region < ApplicationRecord
 
   has_many :tickets

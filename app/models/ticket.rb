@@ -1,4 +1,4 @@
-#The purpose of the ticket class is to tcheck if the name, phone, region_id, and resource_category_id are correct, and if they are, then it will be saved to the database.
+# An ApplicationRecord subclass that keeps track of each help ticket filed by users.
 class Ticket < ApplicationRecord
 
   belongs_to :region
