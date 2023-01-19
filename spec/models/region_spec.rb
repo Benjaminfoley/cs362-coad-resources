@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe Region, type: :model do
-  ruboit 'exists' do
+  it 'exists' do
     Region.new
   end
 
