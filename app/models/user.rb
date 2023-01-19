@@ -1,3 +1,5 @@
+#The purpose of the User class is to email and password are set. The password is limited to a minimum of 7 characters.
+#This is then saved to the database. 
 class User < ApplicationRecord
 
   enum role: [:admin, :organization]

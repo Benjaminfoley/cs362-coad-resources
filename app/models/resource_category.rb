@@ -1,3 +1,4 @@
+#The purpose of this class is to check if the name is correct, and if it is, then it will be saved to the database.
 class ResourceCategory < ApplicationRecord
 
   has_and_belongs_to_many :organizations
