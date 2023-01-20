@@ -57,6 +57,10 @@ RSpec.describe Organization, type: :model do
     expect(organization).to respond_to(:users)
   end
 
+  it 'has a tickets attribute' do
+    expect(organization).to respond_to(:tickets)
+  end
+
   it 'has a string representation that is its name' do
     name = 'Past Control'
     result = organization.to_s
