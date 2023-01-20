@@ -77,6 +77,10 @@ RSpec.describe Organization, type: :model do
     expect(organization).to respond_to(:phone)
   end
 
+  it 'has a primary_name attribute' do
+    expect(organization).to respond_to(:primary_name)
+  end
+
   it 'has a string representation that is its name' do
     name = 'Past Control'
     result = organization.to_s
