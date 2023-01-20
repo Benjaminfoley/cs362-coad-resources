@@ -5,7 +5,11 @@ require 'rails_helper'
 RSpec.describe ResourceCategory, type: :model do
   let(:resource_category) {ResourceCategory.new}
 
-  it 'has a name' do
+  it 'has an organizations attribute' do
+    expect(resource_category).to respond_to(:organizations)
+  end
+
+  it 'has a name attribute' do
     expect(resource_category).to respond_to(:name)
   end
 
