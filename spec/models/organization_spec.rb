@@ -9,9 +9,14 @@ RSpec.describe Organization, type: :model do
     expect(organization).to respond_to(:name)
   end
 
-  it 'has an agrrement one' do
+  it 'has an agreement one' do
     expect(organization).to respond_to(:agreement_one)
   end
+
+  it 'has an agreement two' do
+    expect(organization).to respond_to(:agreement_two)
+  end
+
 
   it 'has a string representation that is its name' do
     name = 'Past Control'
