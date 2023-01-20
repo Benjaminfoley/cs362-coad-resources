@@ -53,6 +53,10 @@ RSpec.describe Organization, type: :model do
     expect(organization).to respond_to(:set_default_status)
   end
 
+  it 'has a users attribute' do
+    expect(organization).to respond_to(:users)
+  end
+
   it 'has a string representation that is its name' do
     name = 'Past Control'
     result = organization.to_s
