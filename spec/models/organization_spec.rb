@@ -109,9 +109,9 @@ RSpec.describe Organization, type: :model do
     expect(organization).to validate_presence_of(:email)
   end
 
-  # it 'should validate the presence of name' do
-  #   expect(organization).to validate_presence_of(:name)
-  # end
+  it 'should validate the presence of name' do
+    expect(organization).to validate_presence_of(:name)
+  end
 
   # it 'should validate the presence of phone' do
   #   expect(organization).to validate_presence_of(:phone)
