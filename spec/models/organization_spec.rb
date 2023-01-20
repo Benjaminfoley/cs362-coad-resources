@@ -54,6 +54,8 @@ RSpec.describe Organization, type: :model do
     expect(organization).to respond_to(:set_default_status)
   end
 
+  # Double check that attributes below this line are actually attributes.
+  # Double check that they should be tested in this way. 
   it 'has a users attribute' do
     expect(organization).to respond_to(:users)
   end
