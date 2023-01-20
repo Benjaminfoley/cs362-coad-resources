@@ -13,6 +13,10 @@ RSpec.describe User, type: :model do
     expect(user).to respond_to(:role)
   end
 
+  describe 'relations' do
+    it { should belong_to(:organization) }
+  end
+
   it 'has a string representation that is its email' do
     email = 'test@domain.com'
     result = user.to_s
