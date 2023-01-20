@@ -89,6 +89,10 @@ RSpec.describe Organization, type: :model do
     expect(organization).to respond_to(:secondary_phone)
   end
 
+  it 'has a validates_presence_of attribute' do
+    expect(organization).to respond_to(:validates_presence_of)
+  end
+
   it 'has a string representation that is its name' do
     name = 'Past Control'
     result = organization.to_s
