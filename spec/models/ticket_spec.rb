@@ -9,6 +9,10 @@ RSpec.describe Ticket, type: :model do
     expect(ticket).to respond_to(:region)
   end
 
+  it 'has a resource_category attribute' do
+    expect(ticket).to respond_to(:resource_category)
+  end
+
   it 'has a name attribute' do
     expect(ticket).to respond_to(:name)
   end
