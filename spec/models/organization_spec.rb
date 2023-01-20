@@ -100,6 +100,8 @@ RSpec.describe Organization, type: :model do
     it { should have_and_belong_to_many(:resource_categories) }
   end
 
+  # Code below this line is part of Goal 3. OOPS!
+  # Continue working on it next week.
   describe 'should validate the presence of' do
     it { should validate_presence_of(:email) }
     it { should validate_presence_of(:phone) }
