@@ -9,7 +9,7 @@ RSpec.describe ResourceCategory, type: :model do
     expect(resource_category).to respond_to(:organizations)
   end
 
-  it 'has an tickets attribute' do
+  it 'has a tickets attribute' do
     expect(resource_category).to respond_to(:tickets)
   end
 
@@ -19,6 +19,10 @@ RSpec.describe ResourceCategory, type: :model do
 
   it 'has an validates_presence_of attribute' do
     expect(resource_category).to respond_to(:validates_presence_of)
+  end
+
+  it 'has an validates_length_of attribute' do
+    expect(resource_category).to respond_to(:validates_length_of)
   end
 
   it 'has a string representation that is its name' do
