@@ -73,6 +73,10 @@ RSpec.describe Organization, type: :model do
     expect(organization).to respond_to(:name)
   end
 
+  it 'has a phone attribute' do
+    expect(organization).to respond_to(:phone)
+  end
+
   it 'has a string representation that is its name' do
     name = 'Past Control'
     result = organization.to_s
