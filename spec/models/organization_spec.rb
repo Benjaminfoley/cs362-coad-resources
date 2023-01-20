@@ -89,14 +89,6 @@ RSpec.describe Organization, type: :model do
     expect(organization).to respond_to(:secondary_phone)
   end
 
-  it 'has a validates_presence_of attribute' do
-    expect(organization).to respond_to(:validates_presence_of)
-  end
-
-  it 'has a validates_length_of attribute' do
-    expect(organization).to respond_to(:validates_length_of)
-  end
-
   it 'has a description attribute' do
     expect(organization).to respond_to(:description)
   end
@@ -112,6 +104,38 @@ RSpec.describe Organization, type: :model do
   it 'should have and belong to many resource_categories' do
     expect(organization).to have_and_belong_to_many(:resource_categories)
   end
+
+  it 'should validate the presence of email' do
+    expect(organization).to validate_presence_of(:email)
+  end
+
+  # it 'should validate the presence of name' do
+  #   expect(organization).to validate_presence_of(:name)
+  # end
+
+  # it 'should validate the presence of phone' do
+  #   expect(organization).to validate_presence_of(:phone)
+  # end
+
+  # it 'should validate the presence of status' do
+  #   expect(organization).to validate_presence_of(:status)
+  # end
+  
+  # it 'should validate the presence of primary_name' do
+  #   expect(organization).to validate_presence_of(:primary_name)
+  # end
+  
+  # it 'should validate the presence of secondary_name' do
+  #   expect(organization).to validate_presence_of(:secondary_name)
+  # end
+  
+  # it 'should validate the presence of secondary_phone' do
+  #   expect(organization).to validate_presence_of(:secondary_phone)
+  # end
+
+  # it 'has a validates_length_of attribute' do
+  #   expect(organization).to validate_presence_of(:validates_length_of)
+  # end
 
   it 'has a string representation that is its name' do
     name = 'Past Control'
