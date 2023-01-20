@@ -109,6 +109,10 @@ RSpec.describe Organization, type: :model do
     expect(organization).to have_many(:tickets)
   end
 
+  it 'should have and belong to many resource_categories' do
+    expect(organization).to have_and_belong_to_many(:resource_categories)
+  end
+
   it 'has a string representation that is its name' do
     name = 'Past Control'
     result = organization.to_s
