@@ -65,8 +65,12 @@ RSpec.describe Organization, type: :model do
     expect(organization).to respond_to(:resource_categories)
   end
 
-  it 'has a email attribute' do
+  it 'has an email attribute' do
     expect(organization).to respond_to(:email)
+  end
+
+  it 'has a name attribute' do
+    expect(organization).to respond_to(:name)
   end
 
   it 'has a string representation that is its name' do
