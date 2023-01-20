@@ -94,17 +94,10 @@ RSpec.describe Organization, type: :model do
     expect(organization).to respond_to(:description)
   end
 
-  # Relations
-  it 'should have many users' do
-    expect(organization).to have_many(:users)
-  end
-
-  it 'should have many tickets' do
-    expect(organization).to have_many(:tickets)
-  end
-
-  it 'should have and belong to many resource_categories' do
-    expect(organization).to have_and_belong_to_many(:resource_categories)
+  describe 'relations' do 
+    it { should have_many(:users) }
+    it { should have_many(:tickets) }
+    it { should have_and_belong_to_many(:resource_categories) }
   end
 
   describe 'should validate the presence of' do
