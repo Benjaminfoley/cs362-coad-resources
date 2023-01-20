@@ -13,6 +13,10 @@ RSpec.describe Ticket, type: :model do
     expect(ticket).to respond_to(:resource_category)
   end
 
+  it 'has a validates_presence_of attribute' do
+    expect(ticket).to respond_to(:validates_presence_of)
+  end
+
   it 'has a name attribute' do
     expect(ticket).to respond_to(:name)
   end
