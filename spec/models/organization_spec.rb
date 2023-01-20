@@ -5,6 +5,7 @@ require 'rails_helper'
 RSpec.describe Organization, type: :model do
   let(:organization) { Organization.new}
 
+  # Attributes
   it 'has a name' do
     expect(organization).to respond_to(:name)
   end
@@ -93,6 +94,7 @@ RSpec.describe Organization, type: :model do
     expect(organization).to respond_to(:description)
   end
 
+  # Relations
   it 'should have many users' do
     expect(organization).to have_many(:users)
   end
@@ -105,6 +107,7 @@ RSpec.describe Organization, type: :model do
     expect(organization).to have_and_belong_to_many(:resource_categories)
   end
 
+  # validates_presence_of :email, :name, :phone, :status, :primary_name, :secondary_name, :secondary_phone
   it 'should validate the presence of email' do
     expect(organization).to validate_presence_of(:email)
   end
@@ -133,13 +136,21 @@ RSpec.describe Organization, type: :model do
     expect(organization).to validate_presence_of(:secondary_phone)
   end
 
-  it 'should validate the length of email is at least 1' do
-    expect(organization).to validate_length_of(:email).is_at_least(1)
+  describe 'validate the length of email' do
+    it { should validate_length_of(:email).is_at_least(1) }
+    it { should validate_length_of(:email).is_at_most(255) }
   end
+  
+  # validates :email, format: { with: VALID_EMAIL_REGEX }
 
-  it 'should validate the length of email is at most 255' do
-    expect(organization).to validate_length_of(:email).is_at_most(255)
-  end
+  # validates_uniqueness_of :email, case_sensitive: false
+  # it 'should validate the uniqueness of email' do
+  #   expect(organization).to validate_uniqueness_of(:email).scoped_to()
+  # end
+
+  # validates_length_of :name, minimum: 1, maximum: 255, on: :create
+  # validates_uniqueness_of :name, case_sensitive: false
+  # validates_length_of :description, maximum: 1020, on: :create
 
   it 'has a string representation that is its name' do
     name = 'Past Control'
