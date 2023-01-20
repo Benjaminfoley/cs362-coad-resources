@@ -107,40 +107,20 @@ RSpec.describe Organization, type: :model do
     expect(organization).to have_and_belong_to_many(:resource_categories)
   end
 
-  # validates_presence_of :email, :name, :phone, :status, :primary_name, :secondary_name, :secondary_phone
-  it 'should validate the presence of email' do
-    expect(organization).to validate_presence_of(:email)
-  end
-
-  it 'should validate the presence of name' do
-    expect(organization).to validate_presence_of(:name)
-  end
-
-  it 'should validate the presence of phone' do
-    expect(organization).to validate_presence_of(:phone)
-  end
-
-  it 'should validate the presence of status' do
-    expect(organization).to validate_presence_of(:status)
-  end
-  
-  it 'should validate the presence of primary_name' do
-    expect(organization).to validate_presence_of(:primary_name)
-  end
-  
-  it 'should validate the presence of secondary_name' do
-    expect(organization).to validate_presence_of(:secondary_name)
-  end
-  
-  it 'should validate the presence of secondary_phone' do
-    expect(organization).to validate_presence_of(:secondary_phone)
+  describe 'should validate the presence of' do
+    it { should validate_presence_of(:email) }
+    it { should validate_presence_of(:phone) }
+    it { should validate_presence_of(:status) }
+    it { should validate_presence_of(:primary_name) }
+    it { should validate_presence_of(:secondary_name) }
+    it { should validate_presence_of(:secondary_phone) }
   end
 
   describe 'validate the length of email' do
     it { should validate_length_of(:email).is_at_least(1) }
     it { should validate_length_of(:email).is_at_most(255) }
   end
-  
+
   # validates :email, format: { with: VALID_EMAIL_REGEX }
 
   # validates_uniqueness_of :email, case_sensitive: false
