@@ -133,9 +133,9 @@ RSpec.describe Organization, type: :model do
     expect(organization).to validate_presence_of(:secondary_phone)
   end
 
-  # it 'has a validates_length_of attribute' do
-  #   expect(organization).to validate_presence_of(:validates_length_of)
-  # end
+  it 'should validate the length of email is at least 1' do
+    expect(organization).to validate_length_of(:email).is_at_least(1)
+  end
 
   it 'has a string representation that is its name' do
     name = 'Past Control'
