@@ -29,6 +29,10 @@ RSpec.describe Ticket, type: :model do
     expect(ticket).to respond_to(:phone)
   end
 
+  it 'has a region_id attribute' do
+    expect(ticket).to respond_to(:region_id)
+  end
+
   it 'has a string representation that is its name' do
     name = 'Mt. Hood'
     result = ticket.to_s
