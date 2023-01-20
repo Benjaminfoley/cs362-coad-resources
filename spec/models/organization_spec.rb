@@ -41,6 +41,10 @@ RSpec.describe Organization, type: :model do
     expect(organization).to respond_to(:agreement_eight)
   end
 
+  it 'has a status attribute' do
+    expect(organization).to respond_to(:status)
+  end
+
   it 'has a string representation that is its name' do
     name = 'Past Control'
     result = organization.to_s
