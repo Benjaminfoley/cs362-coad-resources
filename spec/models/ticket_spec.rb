@@ -5,6 +5,8 @@ require 'rails_helper'
 RSpec.describe Ticket, type: :model do
   let(:ticket) { Ticket.new }
 
+  # Double check that all these attributes are actually attributes
+  # and that they are being tested correctly.
   it 'has a region attribute' do
     expect(ticket).to respond_to(:region)
   end
@@ -43,6 +45,12 @@ RSpec.describe Ticket, type: :model do
 
   it 'has a closed attribute' do
     expect(ticket).to respond_to(:closed)
+  end
+
+  describe 'relations' do
+    it { should belong_to(:region) }
+    it { should belong_to(:resource_category) }
+    it { should belong_to(:organization) }  # the .optional method is apparently for Rails 5+ only
   end
 
   it 'has a string representation that is its name' do
