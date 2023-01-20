@@ -45,6 +45,10 @@ RSpec.describe Organization, type: :model do
     expect(organization).to respond_to(:status)
   end
 
+  it 'has a transportation attribute' do
+    expect(organization).to respond_to(:transportation)
+  end
+
   it 'has a string representation that is its name' do
     name = 'Past Control'
     result = organization.to_s
