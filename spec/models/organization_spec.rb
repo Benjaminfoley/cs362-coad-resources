@@ -121,9 +121,9 @@ RSpec.describe Organization, type: :model do
     expect(organization).to validate_presence_of(:status)
   end
   
-  # it 'should validate the presence of primary_name' do
-  #   expect(organization).to validate_presence_of(:primary_name)
-  # end
+  it 'should validate the presence of primary_name' do
+    expect(organization).to validate_presence_of(:primary_name)
+  end
   
   # it 'should validate the presence of secondary_name' do
   #   expect(organization).to validate_presence_of(:secondary_name)
