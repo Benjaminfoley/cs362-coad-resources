@@ -9,8 +9,14 @@ RSpec.describe Region, type: :model do
     expect(region).to respond_to(:tickets)
   end
 
+  # Double check that attributes below this line are actually attributes.
+  # Double check that they should be tested in this way. 
   it 'has a name attribute' do
     expect(region).to respond_to(:name)
+  end
+
+  describe 'relations' do
+    it { should have_many(:tickets) }
   end
 
   it 'has a validates_presence_of attribute' do
