@@ -137,6 +137,10 @@ RSpec.describe Organization, type: :model do
     expect(organization).to validate_length_of(:email).is_at_least(1)
   end
 
+  it 'should validate the length of email is at most 255' do
+    expect(organization).to validate_length_of(:email).is_at_most(255)
+  end
+
   it 'has a string representation that is its name' do
     name = 'Past Control'
     result = organization.to_s
