@@ -61,6 +61,10 @@ RSpec.describe Organization, type: :model do
     expect(organization).to respond_to(:tickets)
   end
 
+  it 'has a resource_categories attribute' do
+    expect(organization).to respond_to(:resource_categories)
+  end
+
   it 'has a string representation that is its name' do
     name = 'Past Control'
     result = organization.to_s
