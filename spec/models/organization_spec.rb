@@ -101,6 +101,10 @@ RSpec.describe Organization, type: :model do
     expect(organization).to respond_to(:description)
   end
 
+  describe 'associations' do
+    it { should have_many(:users) }
+  end
+
   it 'has a string representation that is its name' do
     name = 'Past Control'
     result = organization.to_s
