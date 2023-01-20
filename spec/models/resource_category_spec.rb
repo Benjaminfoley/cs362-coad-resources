@@ -5,6 +5,8 @@ require 'rails_helper'
 RSpec.describe ResourceCategory, type: :model do
   let(:resource_category) {ResourceCategory.new}
 
+  # Double check that all these attributes are actually attributes
+  # and that they are being tested correctly.
   it 'has an organizations attribute' do
     expect(resource_category).to respond_to(:organizations)
   end
@@ -27,6 +29,11 @@ RSpec.describe ResourceCategory, type: :model do
 
   it 'has an active attribute' do
     expect(resource_category).to respond_to(:active)
+  end
+
+  describe 'relations' do
+    it { should have_and_belong_to_many(:organizations) }
+    it { should have_many(:tickets) }
   end
 
   it 'has a string representation that is its name' do
