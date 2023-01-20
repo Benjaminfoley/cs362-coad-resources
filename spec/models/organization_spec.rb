@@ -105,6 +105,10 @@ RSpec.describe Organization, type: :model do
     expect(organization).to have_many(:users)
   end
 
+  it 'should have many tickets' do
+    expect(organization).to have_many(:tickets)
+  end
+
   it 'has a string representation that is its name' do
     name = 'Past Control'
     result = organization.to_s
