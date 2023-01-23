@@ -58,14 +58,17 @@ RSpec.describe Organization, type: :model do
   # Double check that they should be tested in this way. 
   it 'has a users attribute' do
     expect(organization).to respond_to(:users)
+  #wondering if instead of Users as a respond to it should be Organization ID from users table.
   end
 
   it 'has a tickets attribute' do
     expect(organization).to respond_to(:tickets)
+    #wondering if instead of tickets as a respond to it should be Organization ID from tickets table.
   end
 
   it 'has a resource_categories attribute' do
     expect(organization).to respond_to(:resource_categories)
+    #wondering if instead of rosource_categories as a respond to it should be ID from rosource_categories table.
   end
 
   it 'has an email attribute' do
