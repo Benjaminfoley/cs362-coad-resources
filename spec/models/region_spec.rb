@@ -17,6 +17,7 @@ RSpec.describe Region, type: :model do
 
   describe 'relations' do
     it { should have_many(:tickets) }
+    #wondering if instead of tickets as a respond to it should be ID from region id table.
   end
 
   it 'has a validates_presence_of attribute' do
