@@ -15,6 +15,7 @@ RSpec.describe User, type: :model do
 
   describe 'relations' do
     it { should belong_to(:organization) }
+    #I think instead of organizations we want organization_id from organizations table.
   end
 
   it 'has a string representation that is its email' do

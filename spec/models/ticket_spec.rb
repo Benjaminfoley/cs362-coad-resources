@@ -49,8 +49,11 @@ RSpec.describe Ticket, type: :model do
 
   describe 'relations' do
     it { should belong_to(:region) }
+    #possible change to id from region table
     it { should belong_to(:resource_category) }
+    #possible change to id from resource_category table
     it { should belong_to(:organization) }  # the .optional method is apparently for Rails 5+ only
+    #possible change to id from organization table
   end
 
   it 'has a string representation that is its name' do

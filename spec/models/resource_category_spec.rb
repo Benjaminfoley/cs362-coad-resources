@@ -33,7 +33,9 @@ RSpec.describe ResourceCategory, type: :model do
 
   describe 'relations' do
     it { should have_and_belong_to_many(:organizations) }
+    #I think instead of organizations we want resource_category_id from organizations table.
     it { should have_many(:tickets) }
+    #I think instead of tickets we want resource_category_id from tickets table.
   end
 
   it 'has a string representation that is its name' do
