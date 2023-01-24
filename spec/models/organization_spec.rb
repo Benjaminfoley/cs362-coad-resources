@@ -105,8 +105,8 @@ RSpec.describe Organization, type: :model do
     it { should have_and_belong_to_many(:resource_categories) }
   end
 
-  # Code below this line is part of Goal 3. OOPS!
-  # Continue working on it next week.
+
+  #3.1 validating presence
   describe 'should validate the presence of' do
     it { should validate_presence_of(:email) }
     it { should validate_presence_of(:phone) }
@@ -116,10 +116,6 @@ RSpec.describe Organization, type: :model do
     it { should validate_presence_of(:secondary_phone) }
   end
 
-  # describe 'validate the length of email' do
-  #   it { should validate_length_of(:email).is_at_least(1) }
-  #   it { should validate_length_of(:email).is_at_most(255) }
-  # end
   #3.1 validate email
   describe 'validates email' do
     it { should validate (:email) }
@@ -129,6 +125,13 @@ RSpec.describe Organization, type: :model do
     it{should validate_length_of(:email).is_at_least(1).is_at_most(255)}
     it{should validate_length_of(:name).is_at_least(1).is_at_most(255)}
     it{should validate_length_of(:description).is_at_most(1020)}
+  end
+
+  #3.1 validating uniqueness
+  describe 'valicate uniquness of ' do 
+    it{should validate_uniqueness_of(:email).is_case_sensitive(unique)}
+    it{should validate_uniqueness_of(:name).is_case_sensitive(unique)}
+  end
 
 
 
