@@ -116,10 +116,21 @@ RSpec.describe Organization, type: :model do
     it { should validate_presence_of(:secondary_phone) }
   end
 
-  describe 'validate the length of email' do
-    it { should validate_length_of(:email).is_at_least(1) }
-    it { should validate_length_of(:email).is_at_most(255) }
+  # describe 'validate the length of email' do
+  #   it { should validate_length_of(:email).is_at_least(1) }
+  #   it { should validate_length_of(:email).is_at_most(255) }
+  # end
+  #3.1 validate email
+  describe 'validates email' do
+    it { should validate (:email) }
   end
+  #3.1 validating length of
+  describe 'validate length of' do
+    it{should validate_length_of(:email).is_at_least(1).is_at_most(255)}
+    it{should validate_length_of(:name).is_at_least(1).is_at_most(255)}
+    it{should validate_length_of(:description).is_at_most(1020)}
+
+
 
   # validates :email, format: { with: VALID_EMAIL_REGEX }
 
