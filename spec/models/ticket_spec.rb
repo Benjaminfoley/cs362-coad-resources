@@ -52,7 +52,7 @@ RSpec.describe Ticket, type: :model do
     #possible change to id from region table
     it { should belong_to(:resource_category) }
     #possible change to id from resource_category table
-    it { should belong_to(:organization) }  # the .optional method is apparently for Rails 5+ only
+    it { should belong_to(:organization).optional }
     #possible change to id from organization table
   end
 

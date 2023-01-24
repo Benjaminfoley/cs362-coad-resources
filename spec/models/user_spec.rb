@@ -14,7 +14,7 @@ RSpec.describe User, type: :model do
   end
 
   describe 'relations' do
-    it { should belong_to(:organization) }
+    it { should belong_to(:organization).optional }
     #I think instead of organizations we want organization_id from organizations table.
   end
 
