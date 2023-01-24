@@ -61,3 +61,24 @@ RSpec.describe Ticket, type: :model do
     result = ticket.to_s
   end
 end
+
+#3.1 validating presence of attributes
+describe 'should validate_presence_of'do
+  it { should validate_presence_of(:name) }
+  it { should validate_presence_of(:phone) }
+  it { should validate_presence_of(:region_id) }
+  it { should validate_presence_of(:resource_category_id) }
+end
+
+#3.1 validating length of attributes
+describe 'should validate_length_of'do
+  it { should validate_length_of(:name).is_at_least(1).is_at_most(255) }
+  it { should validate_length_of(:description).is_at_most(1020) }
+end
+
+#3.1 validating 
+describe 'should validate' do
+  it { should validate(:phone).phony_plausible }
+end
+
+
