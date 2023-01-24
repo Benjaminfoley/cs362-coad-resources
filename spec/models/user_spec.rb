@@ -18,6 +18,16 @@ RSpec.describe User, type: :model do
     #I think instead of organizations we want organization_id from organizations table.
   end
 
+  describe 'should validate_presence_of'do
+    it { should validate_presence_of(:email)}
+    it { should validate_presence_of(:password)}
+  end
+
+  describe 'should validate_length_of'do
+    it { should validate_length_of(:email).is_at_least(1).is_at_most(255) }
+    it { should validate_length_of(:password).is_at_least(7).is_at_most(255) }
+  end
+
   it 'has a string representation that is its email' do
     email = 'test@domain.com'
     result = user.to_s
