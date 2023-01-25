@@ -128,14 +128,11 @@ RSpec.describe Organization, type: :model do
     it{should validate_length_of(:description).is_at_most(1020)}
   end
 
-  #3.1 validating uniqueness ---Not working---
-  # describe 'validate uniqueness of' do
-  # validates_uniqueness_of :email, case_sensitive: false
-  # # describe 'valicate uniquness of ' do
-  # #   it {should validates_uniqueness_of(:email, case_sensitive: false)}
-  #   # validates :name, uniqueness: {case_sensitive: false}
-  #   # validates :name, uniqueness: {case_sensitive: :false}
-  # end
+  #3.1 validating uniqueness 
+  describe 'validate uniqueness of' do
+    it{should validate_uniqueness_of(:email).case_insensitive}
+    it{should validate_uniqueness_of(:name).case_insensitive}
+  end
 
 
 
