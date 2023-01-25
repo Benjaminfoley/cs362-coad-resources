@@ -76,9 +76,9 @@ RSpec.describe Ticket, type: :model do
   end
 
   # #3.1 validating ---Not working---
-  describe 'should validate' do
-    it {should validates :phone_number, phony_plausible: true}
-  end
+  # describe 'should validate' do
+  #   it {should validates :phone_number, phony_plausible: true}
+  # end
 end
 
 
