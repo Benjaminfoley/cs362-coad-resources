@@ -32,6 +32,10 @@ RSpec.describe User, type: :model do
   describe 'should validate_uniqueness_of'do
     it { should validate_uniqueness_of(:email).case_insensitive }
   end
+  #------Does NOT WORK
+  # describe 'should validate_format_of'do
+  #   it {should validate_format_of(:email).with(VALID_EMAIL_REGEX)}
+  # end
 
 
   it 'has a string representation that is its email' do
