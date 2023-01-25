@@ -18,6 +18,7 @@ RSpec.describe User, type: :model do
     #I think instead of organizations we want organization_id from organizations table.
   end
 
+  #3.1 Validations
   describe 'should validate_presence_of'do
     it { should validate_presence_of(:email)}
     it { should validate_presence_of(:password)}
@@ -27,6 +28,11 @@ RSpec.describe User, type: :model do
     it { should validate_length_of(:email).is_at_least(1).is_at_most(255) }
     it { should validate_length_of(:password).is_at_least(7).is_at_most(255) }
   end
+
+  describe 'should validate_uniqueness_of'do
+    it { should validate_uniqueness_of(:email).case_insensitive }
+  end
+
 
   it 'has a string representation that is its email' do
     email = 'test@domain.com'
