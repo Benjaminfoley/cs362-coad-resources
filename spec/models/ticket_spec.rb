@@ -75,10 +75,10 @@ RSpec.describe Ticket, type: :model do
     it { should validate_length_of(:description).is_at_most(1020) }
   end
 
-  # #3.1 validating 
-  # describe 'should validate' do
-  #   it { should validate(:phone).phony_plausible() }
-  # end
+  # #3.1 validating ---Not working---
+  describe 'should validate' do
+    it {should validates :phone_number, phony_plausible: true}
+  end
 end
 
 
