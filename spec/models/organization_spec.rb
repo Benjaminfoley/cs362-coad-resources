@@ -164,4 +164,3 @@ RSpec.describe Organization, type: :model do
     expect(organization).to respond_to(:to_s)
   end
 end
-# Are you sure you can't see my changes, Ben?
