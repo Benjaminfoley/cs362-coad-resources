@@ -3,23 +3,25 @@
 require 'rails_helper'
 
 RSpec.describe Organization, type: :model do
-  let(:organization) { Organization.new( 
-    name: pending_organization,
-    email: "#{pending_organization.split(" ").join(".")}@testing.com",
-    phone: "541-398-3298",
-    liability_insurance: true,
-    primary_name: 'Primary Name',
-    secondary_name: 'Secondary Name',
-    secondary_phone: '555-555-5555',
-    title: 'Title',
-    transportation: :yes,
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
-                  et dolore magna aliqua. Quam adipiscing vitae proin sagittis nisl rhoncus. Nunc faucibus a pellentesque
-                  sit amet porttitor eget dolor morbi. Eu non diam phasellus vestibulum lorem sed risus ultricies tristique.
-                  Eu facilisis sed odio morbi quis commodo odio aenean sed. Aliquam purus sit amet luctus venenatis lectus magna.",
-    status: 1
-  )  
-  }
+  let(:organization) { Organization.new }
+
+  # let(:organization) { Organization.new( 
+  #   name: pending_organization,
+  #   email: "#{pending_organization.split(" ").join(".")}@testing.com",
+  #   phone: "541-398-3298",
+  #   liability_insurance: true,
+  #   primary_name: 'Primary Name',
+  #   secondary_name: 'Secondary Name',
+  #   secondary_phone: '555-555-5555',
+  #   title: 'Title',
+  #   transportation: :yes,
+  #   description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
+  #                 et dolore magna aliqua. Quam adipiscing vitae proin sagittis nisl rhoncus. Nunc faucibus a pellentesque
+  #                 sit amet porttitor eget dolor morbi. Eu non diam phasellus vestibulum lorem sed risus ultricies tristique.
+  #                 Eu facilisis sed odio morbi quis commodo odio aenean sed. Aliquam purus sit amet luctus venenatis lectus magna.",
+  #   status: 1
+  # )  
+  # }
 
   # Attributes
   it 'has a name' do
@@ -129,8 +131,13 @@ RSpec.describe Organization, type: :model do
   end
 
   # 3.1 validate email ---Not working---
-  describe 'validates email' do
-    it{should expect(:organization,:email) to_match(Organization::VALID_EMAIL_REGEX)}
+  # describe 'validates email' do
+  #   it{should expect(:organization,:email) to_match(Organization::VALID_EMAIL_REGEX)}
+  # end
+
+  describe 'validates email value' do
+    it { should allow_value('example@domain.com').for(:email) }
+    it { should_not allow_value('examample@domain').for(:email) }
   end
 
   # 3.1 validating length of
