@@ -150,6 +150,7 @@ RSpec.describe Organization, type: :model do
     name = 'Past Control'
     result = organization.to_s
   end
+  
   # 3.2 Test member Functions
   it 'should respond' do
     expect(organization).to respond_to(:approve)
