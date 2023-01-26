@@ -115,9 +115,17 @@ RSpec.describe Organization, type: :model do
   # 3.1 validate email
   describe 'validates email format' do
     it { should allow_value('example@domain.com').for(:email) }
+    it { should allow_value('EXAMPLE@DOMAIN.COM').for(:email) }
+    it { should allow_value('.example@domain.com').for(:email) }
+    it { should allow_value('_example@doman.com').for(:email) }
+    it { should allow_value('123_example@doman.com').for(:email) }
+    it { should allow_value('ex.ample@doman.com').for(:email) }
+    it { should allow_value('exa-mpl.e@doman.com').for(:email) }
+    it { should allow_value('exa.mpl.e@doman.com').for(:email) }
+    it { should allow_value('exa_mpl_e@doman.com').for(:email) }
     it { should_not allow_value('examample@domain').for(:email) }
     it { should_not allow_value('@domain.com').for(:email) }
-    # it { should_not allow_value('').for(:email) }
+    it { should_not allow_value('example.domain.com').for(:email) }
   end
 
   # 3.1 validating length of
