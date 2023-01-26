@@ -45,5 +45,14 @@ RSpec.describe Region, type: :model do
   describe 'validates_uniqueness_of' do
     it { should validate_uniqueness_of(:name).case_insensitive }
   end
+  # 3.3
+  describe 'verify unspecified()' do
+    it{
+      Region.unspecified
+      expect(Region.find_by_name('Unspecified')).to_not be_nil
+      expect(Region.find_by_name('')).to be_nil
+    }
+    
+  end
 
 end
