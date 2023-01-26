@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe Organization, type: :model do
-  let(:organization) { Organization.new}
+  let(:organization) { Organization.new }
 
   # Attributes
   it 'has a name' do
@@ -55,20 +55,17 @@ RSpec.describe Organization, type: :model do
   end
 
   # Double check that attributes below this line are actually attributes.
-  # Double check that they should be tested in this way. 
+  # Double check that they should be tested in this way.
   it 'has a users attribute' do
     expect(organization).to respond_to(:users)
-  #wondering if instead of Users as a respond to it should be Organization ID from users table.
   end
 
   it 'has a tickets attribute' do
     expect(organization).to respond_to(:tickets)
-    #wondering if instead of tickets as a respond to it should be Organization ID from tickets table.
   end
 
   it 'has a resource_categories attribute' do
     expect(organization).to respond_to(:resource_categories)
-    #wondering if instead of rosource_categories as a respond to it should be ID from rosource_categories table.
   end
 
   it 'has an email attribute' do
@@ -99,14 +96,13 @@ RSpec.describe Organization, type: :model do
     expect(organization).to respond_to(:description)
   end
 
-  describe 'relations' do 
+  describe 'relations' do
     it { should have_many(:users) }
     it { should have_many(:tickets) }
     it { should have_and_belong_to_many(:resource_categories) }
   end
 
-
-  #3.1 validating presence
+  # 3.1 validating presence
   describe 'should validate the presence of' do
     it { should validate_presence_of(:email) }
     it { should validate_presence_of(:phone) }
@@ -116,25 +112,23 @@ RSpec.describe Organization, type: :model do
     it { should validate_presence_of(:secondary_phone) }
   end
 
-  #3.1 validate email ---Not working---
+  # 3.1 validate email ---Not working---
   # describe 'validates email' do
   #   it{should validate_format_of(:email), with: => VALID_EMAIL_REGEX }
   # end
 
-  #3.1 validating length of
+  # 3.1 validating length of
   describe 'validate length of' do
-    it{should validate_length_of(:email).is_at_least(1).is_at_most(255)}
-    it{should validate_length_of(:name).is_at_least(1).is_at_most(255)}
-    it{should validate_length_of(:description).is_at_most(1020)}
+    it { should validate_length_of(:email).is_at_least(1).is_at_most(255) }
+    it { should validate_length_of(:name).is_at_least(1).is_at_most(255) }
+    it { should validate_length_of(:description).is_at_most(1020) }
   end
 
-  #3.1 validating uniqueness 
+  # 3.1 validating uniqueness
   describe 'validate uniqueness of' do
-    it{should validate_uniqueness_of(:email).case_insensitive}
-    it{should validate_uniqueness_of(:name).case_insensitive}
+    it { should validate_uniqueness_of(:email).case_insensitive }
+    it { should validate_uniqueness_of(:name).case_insensitive }
   end
-
-
 
   # validates :email, format: { with: VALID_EMAIL_REGEX }
 
