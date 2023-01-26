@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe Organization, type: :model do
-  let(:organization) { Organization.new(:email = 
+  let(:organization) { Organization.new( 
     name: pending_organization,
     email: "#{pending_organization.split(" ").join(".")}@testing.com",
     phone: "541-398-3298",
@@ -130,7 +130,7 @@ RSpec.describe Organization, type: :model do
 
   # 3.1 validate email ---Not working---
   describe 'validates email' do
-    it{should validate_format_of(:email), with: => VALID_EMAIL_REGEX }
+    it{should expect(:organization,:email) to_match(Organization::VALID_EMAIL_REGEX)}
   end
 
   # 3.1 validating length of
