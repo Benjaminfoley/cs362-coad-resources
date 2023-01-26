@@ -130,17 +130,6 @@ RSpec.describe Organization, type: :model do
     it { should validate_uniqueness_of(:name).case_insensitive }
   end
 
-  # validates :email, format: { with: VALID_EMAIL_REGEX }
-
-  # validates_uniqueness_of :email, case_sensitive: false
-  # it 'should validate the uniqueness of email' do
-  #   expect(organization).to validate_uniqueness_of(:email).scoped_to()
-  # end
-
-  # validates_length_of :name, minimum: 1, maximum: 255, on: :create
-  # validates_uniqueness_of :name, case_sensitive: false
-  # validates_length_of :description, maximum: 1020, on: :create
-
   it 'has a string representation that is its name' do
     name = 'Past Control'
     result = organization.to_s
