@@ -4,6 +4,8 @@ require 'rails_helper'
 
 RSpec.describe ResourceCategory, type: :model do
   let(:resource_category) { ResourceCategory.new }
+  # let(:active1) {ResourceCategory.new}
+  # let(:active2) {ResourceCategory.new}
 
   # Attributes.
   # Double check that attributes below this line are actually attributes.
@@ -84,4 +86,10 @@ RSpec.describe ResourceCategory, type: :model do
   end
 
   # 3.4 Scope Methods
+  describe 'has a scope method to check for active records' do
+    let(:active1) {ResourceCategory.new(id: 1, name: 'Name1', active: true)}
+    let(:active2) {ResourceCategory.new(id: 2, name: 'Name2', active: true)}
+    active_records = ResourceCategory.active
+    it { expect(active_records).to match(ResourceCategory.where(active: true)) }
+  end
 end
