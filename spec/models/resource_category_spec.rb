@@ -58,7 +58,7 @@ RSpec.describe ResourceCategory, type: :model do
     it { should validate_uniqueness_of(:name).case_insensitive }
   end
 
-  # 3.3
+  # 3.3 Methods
   describe 'verify unspecified()' do
     it {
       ResourceCategory.unspecified
@@ -75,5 +75,12 @@ RSpec.describe ResourceCategory, type: :model do
   it 'can deactivate' do
     resource_category.deactivate
     expect(resource_category.active).to eq(false)
+  end
+
+  it 'can check active status' do
+    resource_category.activate
+    expect(resource_category.inactive?).to eq(false)
+    resource_category.deactivate
+    expect(resource_category.inactive?).to eq(true)
   end
 end
