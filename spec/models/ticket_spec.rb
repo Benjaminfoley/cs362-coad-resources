@@ -95,13 +95,11 @@ RSpec.describe Ticket, type: :model do
   it 'returns captured?' do
     ticket1 = Ticket.new(closed: true)
     expect(ticket.captured?).to be false
-    # ticket2 = Ticket.new(closed: false)
-    # expect(ticket2.captured?).to be true
   end
 
   it 'returns to_s' do
     ticket = Ticket.new(region_id: 'Ticket ')
-    expect(ticket.to_s).to eq 'Ticket '
+    expect(ticket.to_s).to eq('Ticket ')
   end
 
   # 3.4 Scope
