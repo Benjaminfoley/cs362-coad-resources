@@ -51,7 +51,7 @@ RSpec.describe Region, type: :model do
   describe 'to_s returns region.name' do
     it {
       expect(region.to_s).to eq(region.name)
-      region.name = "test"
+      region.name = 'test'
       expect(region.to_s).to eq('test')
       expect(region.to_s).to_not be_nil
     }

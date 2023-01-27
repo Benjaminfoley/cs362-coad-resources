@@ -159,7 +159,7 @@ RSpec.describe Organization, type: :model do
   it 'can reject a status' do
     organization.reject
     expect(organization.status).to eq('rejected')
-    end
+  end
 
   it 'has a to-string method' do
     string = organization.to_s

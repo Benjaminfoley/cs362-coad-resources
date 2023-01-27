@@ -58,7 +58,7 @@ RSpec.describe ResourceCategory, type: :model do
     it { should validate_uniqueness_of(:name).case_insensitive }
   end
 
-  # 3.3 Methods
+  # 3.2 Methods
   describe 'verify unspecified()' do
     it {
       ResourceCategory.unspecified
