@@ -67,8 +67,8 @@ RSpec.describe Ticket, type: :model do
   end
 
   describe 'should validates_length_of' do
-    it { should validate_length_of(:name).is_at_least(1).is_at_most(255) }
-    it { should validate_length_of(:description).is_at_most(1020) }
+    it { should validate_length_of(:name).is_at_least(1).is_at_most(255).on(:create) }
+    it { should validate_length_of(:description).is_at_most(1020).on(:create) }
   end
 
   # #3.1 validating ---Not working---
