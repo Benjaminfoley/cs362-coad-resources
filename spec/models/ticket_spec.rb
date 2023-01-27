@@ -128,8 +128,12 @@ RSpec.describe Ticket, type: :model do
     expect(Ticket.open).to match(Ticket.where(closed: false, organization_id: nil))
   end
   # scope :closed, -> () { where closed: true }
-  it 'can query for closed tickets', :skip do
-    
+  it 'can query for closed tickets' do
+    ticket1 =  Ticket.new(name: 'Ticket1', closed: true)
+    ticket2 =  Ticket.new(name: 'Ticket2', closed: true)
+    ticket3 =  Ticket.new(name: 'Ticket3', closed: true)
+    # expect(Ticket.closed).to match([ticket1, ticket2, ticket3])
+    expect(Ticket.closed).to match(Ticket.where(closed: true))
   end
   # scope :all_organization, -> () { where(closed: false).where.not(organization_id: nil) }
   it 'can query for all organizations', :skip do
