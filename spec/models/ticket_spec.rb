@@ -121,7 +121,11 @@ RSpec.describe Ticket, type: :model do
 
   # scope :open, -> () { where closed: false, organization_id: nil }
   it 'can query for open tickets' do
-    pending "not implemented yet"
+    ticket1 =  Ticket.new(name: 'Ticket1', closed: false)
+    ticket2 =  Ticket.new(name: 'Ticket2', closed: false)
+    ticket3 =  Ticket.new(name: 'Ticket3', closed: false)
+    # expect(Ticket.open).to match([ticket1, ticket2, ticket3])
+    expect(Ticket.open).to match(Ticket.where(closed: false, organization_id: nil))
   end
   # scope :closed, -> () { where closed: true }
   it 'can query for closed tickets', :skip do
