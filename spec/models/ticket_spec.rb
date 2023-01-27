@@ -71,7 +71,16 @@ RSpec.describe Ticket, type: :model do
     it { should validate_length_of(:description).is_at_most(1020).on(:create) }
   end
 
-  describe 'validates a phone number' do
-    it { should allow_value('+15413983298').for(:phone)}
+  describe 'validates phone number is of US contry code' do
+    it { should allow_value('+15413983298').for(:phone) }
+    it { should allow_value('+15 413 983 298').for(:phone) }
+    it { should allow_value('15413983298').for(:phone) }
+    it { should allow_value('1-541-398-3298').for(:phone) }
+    it { should allow_value('1 (541) 398-3298').for(:phone) }
+    it { should allow_value('1 541 398 3298').for(:phone) }
+    it { should_not allow_value('(541) 398-3298').for(:phone) }
+    it { should_not allow_value('541-398-3298').for(:phone) }
+    it { should_not allow_value('398-3298').for(:phone) }
+    it { should_not allow_value('+44 888 888 888').for(:phone) }
   end
 end
