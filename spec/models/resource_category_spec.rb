@@ -85,7 +85,7 @@ RSpec.describe ResourceCategory, type: :model do
     }
   end
 
-  # 3.4 Scope Methods
+  # 3.4 Scope Methods -- These can be more efficient by using .create instead of .new
   describe 'has a scope method to check for active records' do
     let(:active1) {ResourceCategory.new(id: 1, name: 'Name1', active: true)}
     let(:active2) {ResourceCategory.new(id: 2, name: 'Name2', active: true)}
@@ -109,10 +109,18 @@ RSpec.describe ResourceCategory, type: :model do
     expect(ResourceCategory.active).to eq([active1, active2])
   end
 
+  it 'can query for active categories' do
+    active1 = ResourceCategory.new(id: 1, name: 'Name1', active: false)
+    active2 = ResourceCategory.new(id: 2, name: 'Name2', active: false)
+    active1.activate  # with this in here are we testing for more than on thing? probably!
+    active2.activate  # Should we just initialize active to true?
+    expect(ResourceCategory.active).to eq([active1, active2])
+  end
+
   it 'can query for inactive categories' do
     inactive1 = ResourceCategory.new(id: 1, name: 'Name1', active: true)
     inactive2 = ResourceCategory.new(id: 2, name: 'Name2', active: true)
-    inactive1.deactivate  # with this in here are we testing for more than on thing?
+    inactive1.deactivate  # with this in here are we testing for more than on thing? probably!
     inactive2.deactivate  # Should we just initialize active to false?
     expect(ResourceCategory.inactive).to eq([inactive1, inactive2])
   end

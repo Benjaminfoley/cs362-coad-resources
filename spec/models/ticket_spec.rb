@@ -87,8 +87,9 @@ RSpec.describe Ticket, type: :model do
   end
 
   it 'returns captured?' do
-    ticket1 = Ticket.new(closed: true)
+    # need to create an Organization object and add it to the database useing .create() or .save!
     expect(ticket.captured?).to be false
+    
   end
 
   # to_s method returns "Ticket #{id}" but id is not defined
@@ -105,6 +106,7 @@ RSpec.describe Ticket, type: :model do
   # 3.4 Scope Methods
   # scope :open, -> () { where closed: false, organization_id: nil }
   it 'can query for open tickets' do
+    # pending "Matches an empty array, not [ticket1, ticket2, ticket3]"
     ticket1 =  Ticket.new(name: 'Ticket1', closed: false)
     ticket2 =  Ticket.new(name: 'Ticket2', closed: false)
     ticket3 =  Ticket.new(name: 'Ticket3', closed: false)
@@ -113,11 +115,18 @@ RSpec.describe Ticket, type: :model do
   end
   # scope :closed, -> () { where closed: true }
   it 'can query for closed tickets' do
-    ticket1 =  Ticket.new(name: 'Ticket1', closed: true)
-    ticket2 =  Ticket.new(name: 'Ticket2', closed: true)
-    ticket3 =  Ticket.new(name: 'Ticket3', closed: true)
-    # expect(Ticket.closed).to match([ticket1, ticket2, ticket3])
-    expect(Ticket.closed).to match([])
+    # pending "Matches an empty array, not [ticket1, ticket2, ticket3]"
+    # Need to create and add Region to db
+    # Need to create and add Resource category to db
+    # Need to associated these with tickets (via id)
+    # Phone also can't be blank
+    region = Region.create!(name: 'Region1')
+    resource_category = ResourceCategory.create!(name: "RC1")
+    ticket1 =  Ticket.create!(name: 'Ticket1', closed: true, region: region, resource_category: resource_category, phone: "1800-222-2222")
+    ticket2 =  Ticket.create!(name: 'Ticket2', closed: true, region: region, resource_category: resource_category, phone: "1800-222-2222")
+    ticket3 =  Ticket.create!(name: 'Ticket3', closed: true, region: region, resource_category: resource_category, phone: "1800-222-2222")
+    expect(Ticket.closed).to match([ticket1, ticket2, ticket3])
+    # expect(Ticket.closed).to match([])
     expect(Ticket.closed).to match(Ticket.where(closed: true))
   end
   # scope :all_organization, -> () { where(closed: false).where.not(organization_id: nil) }
