@@ -151,10 +151,10 @@ RSpec.describe Organization, type: :model do
     expect(organization.status).to eq('submitted')
   end
 
-  # it 'can approve status' do
-  #   organization.approve
-  #   expect(organization.status).to eq('approved')
-  # end
+  it 'can approve status' do
+    organization.approve
+    expect(organization.status).to eq('approved')
+  end
 
   it 'has a reject method' do
     expect(organization).to respond_to(:reject)
