@@ -82,4 +82,6 @@ RSpec.describe ResourceCategory, type: :model do
       expect(ResourceCategory.find_by_name('')).to be_nil
     }
   end
+
+  # 3.4 Scope Methods
 end

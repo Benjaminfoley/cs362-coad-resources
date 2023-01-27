@@ -59,4 +59,9 @@ RSpec.describe Region, type: :model do
       expect(Region.find_by_name('')).to be_nil
     }
   end
+
+  # 3.4 Scope Methods -- There are none
+  it 'has no scope functions' do
+    :skip
+  end
 end

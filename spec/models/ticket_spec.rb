@@ -97,9 +97,12 @@ RSpec.describe Ticket, type: :model do
     expect(ticket.to_s).to eq('Ticket ')
   end
 
-  # 3.3 Static Functions
+  # 3.3 Static Functions -- There are none
+  it 'has no static functions' do
+    :skip
+  end
 
-  # 3.4 Scope
+  # 3.4 Scope Methods
   it 'not sure if testing scopes right' do
     $i = 0
     while $i < 10

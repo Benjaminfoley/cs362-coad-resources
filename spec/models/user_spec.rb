@@ -58,6 +58,13 @@ RSpec.describe User, type: :model do
     expect(user.to_s).to be user.email
   end
 
-  # 3.3 Static Functions
+  # 3.3 Static Functions -- There are none
+  it 'has no static functions' do
+    :skip
+  end
 
+  # 3.4 Test Scope methods --There are none
+  it 'has no scope functions' do
+    :skip
+  end
 end

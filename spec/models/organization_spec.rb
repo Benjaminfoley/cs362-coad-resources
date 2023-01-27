@@ -160,5 +160,13 @@ RSpec.describe Organization, type: :model do
     expect(string).to be organization.name
   end
 
-  #3.3 Static Functions
+  # 3.3 Static Functions -- There are none
+  it 'has no static functions' do
+    :skip
+  end
+
+  # 3.4 Test Scope methods --There are none
+  it 'has no scope functions' do
+    :skip
+  end
 end
