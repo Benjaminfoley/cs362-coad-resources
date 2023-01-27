@@ -19,17 +19,17 @@ RSpec.describe User, type: :model do
   end
 
   # 3.1 Validations
-  describe 'should validate_presence_of' do
+  describe 'validates the presence of' do
     it { should validate_presence_of(:email) }
     it { should validate_presence_of(:password) }
   end
 
-  describe 'should validate_length_of' do
+  describe 'validates the length of' do
     it { should validate_length_of(:email).is_at_least(1).is_at_most(255) }
     it { should validate_length_of(:password).is_at_least(7).is_at_most(255) }
   end
 
-  describe 'should validate_uniqueness_of' do
+  describe 'validates the uniqueness of' do
     it { should validate_uniqueness_of(:email).case_insensitive }
   end
   #------Does NOT WORK
@@ -37,6 +37,7 @@ RSpec.describe User, type: :model do
   #   it {should validate_format_of(:email).with(VALID_EMAIL_REGEX)}
   # end
 
+  # Is this a legacy test and should it be here?
   it 'has a string representation that is its email' do
     email = 'test@domain.com'
     result = user.to_s
