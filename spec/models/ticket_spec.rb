@@ -59,20 +59,20 @@ RSpec.describe Ticket, type: :model do
   end
 
   # 3.1 Validations
-  describe 'should validate the presence of' do
+  describe 'validates the presence of' do
     it { should validate_presence_of(:name) }
     it { should validate_presence_of(:phone) }
     it { should validate_presence_of(:region_id) }
     it { should validate_presence_of(:resource_category_id) }
   end
 
-  describe 'should validates_length_of' do
+  describe 'validates the length of' do
     it { should validate_length_of(:name).is_at_least(1).is_at_most(255).on(:create) }
     it { should validate_length_of(:description).is_at_most(1020).on(:create) }
   end
 
   # #3.1 validating ---Not working---
-  # describe 'should validate' do
+  # describe 'validates a phone number' do
   #   it {should validates :phone_number, phony_plausible: true}
   # end
 end

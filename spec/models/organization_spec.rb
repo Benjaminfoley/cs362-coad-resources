@@ -131,14 +131,14 @@ RSpec.describe Organization, type: :model do
   end
 
   # 3.1 validating length of
-  describe 'validate length of' do
+  describe 'validates length of' do
     it { should validate_length_of(:email).is_at_least(1).is_at_most(255) }
     it { should validate_length_of(:name).is_at_least(1).is_at_most(255) }
     it { should validate_length_of(:description).is_at_most(1020) }
   end
 
   # 3.1 validating uniqueness
-  describe 'validate uniqueness of' do
+  describe 'validates uniqueness of' do
     it { should validate_uniqueness_of(:email).case_insensitive }
     it { should validate_uniqueness_of(:name).case_insensitive }
   end
@@ -149,15 +149,15 @@ RSpec.describe Organization, type: :model do
   end
 
   # 3.2 Test member Functions
-  it 'should respond' do
+  it 'has an approval method' do
     expect(organization).to respond_to(:approve)
   end
 
-  it 'should respond' do
+  it 'has a reject method' do
     expect(organization).to respond_to(:reject)
   end
 
-  it 'should respond' do
+  it 'has a to-string method' do
     expect(organization).to respond_to(:to_s)
   end
 end
