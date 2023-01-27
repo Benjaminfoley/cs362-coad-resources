@@ -114,10 +114,8 @@ RSpec.describe ResourceCategory, type: :model do
   end
 
   it 'can query for inactive categories' do
-    inactive1 = ResourceCategory.new(id: 1, name: 'Name1', active: true)
-    inactive2 = ResourceCategory.new(id: 2, name: 'Name2', active: true)
-    inactive1.deactivate  # with this in here are we testing for more than on thing? probably!
-    inactive2.deactivate  # Should we just initialize active to false?
+    inactive1 = ResourceCategory.create!(name: 'Name1', active: false)
+    inactive2 = ResourceCategory.create!(name: 'Name2', active: false)
     expect(ResourceCategory.inactive).to eq([inactive1, inactive2])
   end
 end
