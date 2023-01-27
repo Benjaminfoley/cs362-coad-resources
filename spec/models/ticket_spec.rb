@@ -118,4 +118,14 @@ RSpec.describe Ticket, type: :model do
     expect(Ticket.open).to_not match(Ticket.closed)
     expect(Ticket.closed).to match(Ticket.where(closed: true))
   end
+
+  # scope :open, -> () { where closed: false, organization_id: nil }
+  # it 'has '
+  # scope :closed, -> () { where closed: true }
+  # scope :all_organization, -> () { where(closed: false).where.not(organization_id: nil) }
+  # scope :organization, -> (organization_id) { where(organization_id: organization_id, closed: false) }
+  # scope :closed_organization, -> (organization_id) { where(organization_id: organization_id, closed: true) }
+  # scope :region, -> (region_id) { where(region_id: region_id) }
+  # scope :resource_category, -> (resource_category_id) { where(resource_category_id: resource_category_id) }
+
 end

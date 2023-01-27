@@ -99,4 +99,21 @@ RSpec.describe ResourceCategory, type: :model do
     inactive_records = ResourceCategory.inactive
     it { expect(inactive_records).to match(ResourceCategory.where(active: false)) }
   end
+
+  # 3.4 Scope Mothods - Alternative tests
+  it 'has an active scope method' do
+    active1 = ResourceCategory.new(id: 1, name: 'Name1', active: false)
+    active2 = ResourceCategory.new(id: 2, name: 'Name2', active: false)
+    active1.activate
+    active2.activate
+    expect(ResourceCategory.active).to eq([active1, active2])
+  end
+
+  it 'has an inactive scope method' do
+    inactive1 = ResourceCategory.new(id: 1, name: 'Name1', active: true)
+    inactive2 = ResourceCategory.new(id: 2, name: 'Name2', active: true)
+    inactive1.deactivate
+    inactive2.deactivate
+    expect(ResourceCategory.inactive).to eq([inactive1, inactive2])
+  end
 end
