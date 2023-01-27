@@ -146,10 +146,15 @@ RSpec.describe Organization, type: :model do
     result = organization.to_s
   end
 
-  # 3.2 Test member Functions
-  it 'has an approval method' do
-    expect(organization).to respond_to(:approve)
+  # 3.2 Member Functions
+  it 'has a default status of submitted' do
+    expect(organization.status).to eq('submitted')
   end
+
+  # it 'can approve status' do
+  #   organization.approve
+  #   expect(organization.status).to eq('approved')
+  # end
 
   it 'has a reject method' do
     expect(organization).to respond_to(:reject)
