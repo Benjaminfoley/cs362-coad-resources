@@ -83,4 +83,12 @@ RSpec.describe Ticket, type: :model do
     it { should_not allow_value('398-3298').for(:phone) }
     it { should_not allow_value('+44 888 888 888').for(:phone) }
   end
+
+  #3.2 open? method
+  it 'returns open' do
+    ticket = Ticket.new(closed: false)
+    expect(ticket.open?).to be true
+  end
+
+
 end
