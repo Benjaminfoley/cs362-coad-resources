@@ -58,21 +58,7 @@ RSpec.describe ResourceCategory, type: :model do
     it { should validate_uniqueness_of(:name).case_insensitive }
   end
 
-  # 3.2 def_s
-  it 'has a to-string method' do
-    string = resource_category.to_s
-    expect(string).to eq(resource_category.name)
-  end
-
   # 3.2 Methods
-  describe 'verify unspecified()' do
-    it {
-      ResourceCategory.unspecified
-      expect(ResourceCategory.find_by_name('Unspecified')).to_not be_nil
-      expect(ResourceCategory.find_by_name('')).to be_nil
-    }
-  end
-
   it 'can activate' do
     resource_category.activate
     expect(resource_category.active).to eq(true)
@@ -92,5 +78,14 @@ RSpec.describe ResourceCategory, type: :model do
 
   it 'has a to-string method' do
     expect(resource_category.to_s).to eq(resource_category.name)
+  end
+
+  # 3.2 Static Methods
+  describe 'verify unspecified()' do
+    it {
+      ResourceCategory.unspecified
+      expect(ResourceCategory.find_by_name('Unspecified')).to_not be_nil
+      expect(ResourceCategory.find_by_name('')).to be_nil
+    }
   end
 end
