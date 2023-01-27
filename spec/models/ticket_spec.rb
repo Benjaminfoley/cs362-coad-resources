@@ -49,28 +49,28 @@ RSpec.describe Ticket, type: :model do
 
   describe 'relations' do
     it { should belong_to(:region) }
-    #possible change to id from region table
+    # possible change to id from region table
     it { should belong_to(:resource_category) }
-    #possible change to id from resource_category table
+    # possible change to id from resource_category table
     it { should belong_to(:organization).optional }
-    #possible change to id from organization table
+    # possible change to id from organization table
   end
 
+  # Is this a legacy test and does it need to be here?
   it 'has a string representation that is its name' do
     name = 'Mt. Hood'
     result = ticket.to_s
   end
 
-  #3.1 validating presence of attributes
-  describe 'should validate the presence of'do
+  # 3.1 Validations
+  describe 'should validate the presence of' do
     it { should validate_presence_of(:name) }
     it { should validate_presence_of(:phone) }
     it { should validate_presence_of(:region_id) }
     it { should validate_presence_of(:resource_category_id) }
   end
 
-  #3.1 validating length of attributes
-  describe 'should validates_length_of'do
+  describe 'should validates_length_of' do
     it { should validate_length_of(:name).is_at_least(1).is_at_most(255) }
     it { should validate_length_of(:description).is_at_most(1020) }
   end
@@ -80,5 +80,3 @@ RSpec.describe Ticket, type: :model do
   #   it {should validates :phone_number, phony_plausible: true}
   # end
 end
-
-

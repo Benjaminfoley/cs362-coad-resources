@@ -38,6 +38,7 @@ RSpec.describe ResourceCategory, type: :model do
     # I think instead of tickets we want resource_category_id from tickets table.
   end
 
+  # Is this a legacy test and does it need to be here?
   it 'has a string representation that is its name' do
     name = 'Camping'
     result = resource_category.to_s
