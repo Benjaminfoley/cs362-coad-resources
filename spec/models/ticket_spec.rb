@@ -120,12 +120,31 @@ RSpec.describe Ticket, type: :model do
   end
 
   # scope :open, -> () { where closed: false, organization_id: nil }
-  # it 'has '
+  it 'can query for open tickets' do
+    pending "not implemented yet"
+  end
   # scope :closed, -> () { where closed: true }
+  it 'can query for closed tickets', :skip do
+    
+  end
   # scope :all_organization, -> () { where(closed: false).where.not(organization_id: nil) }
+  it 'can query for all organizations', :skip do
+    
+  end
   # scope :organization, -> (organization_id) { where(organization_id: organization_id, closed: false) }
+  it 'can query for an open organization by id', :skip do
+    
+  end
   # scope :closed_organization, -> (organization_id) { where(organization_id: organization_id, closed: true) }
+  it 'can query for a closed organization by id', :skip do
+    
+  end
   # scope :region, -> (region_id) { where(region_id: region_id) }
+  it 'can query for a region by id', :skip do
+    
+  end
   # scope :resource_category, -> (resource_category_id) { where(resource_category_id: resource_category_id) }
-
+  it 'can query for a resource category by id', :skip do
+    
+  end
 end
