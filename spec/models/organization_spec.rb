@@ -162,6 +162,7 @@ RSpec.describe Organization, type: :model do
     end
 
   it 'has a to-string method' do
-    expect(organization).to respond_to(:to_s)
+    string = organization.to_s
+    expect(string).to eq(organization.name)
   end
 end
