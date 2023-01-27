@@ -66,4 +66,9 @@ RSpec.describe ResourceCategory, type: :model do
       expect(ResourceCategory.find_by_name('')).to be_nil
     }
   end
+
+  it 'can activate' do
+    resource_category.activate
+    expect(resource_category.active).to eq(true)
+  end
 end
