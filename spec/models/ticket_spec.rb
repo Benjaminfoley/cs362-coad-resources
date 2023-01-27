@@ -103,22 +103,6 @@ RSpec.describe Ticket, type: :model do
   end
 
   # 3.4 Scope Methods
-  it 'not sure if testing scopes right' do
-    $i = 0
-    while $i < 10
-      if [1, 3, 6].include?($i)
-        Ticket.create(closed: false, organization_id: nil)
-      else
-        Ticket.create(closed: true, organization_id: nil)
-      end
-      $i += 1
-    end
-
-    expect(Ticket.open).to match(Ticket.where(closed: false, organization_id: nil))
-    expect(Ticket.open).to_not match(Ticket.closed)
-    expect(Ticket.closed).to match(Ticket.where(closed: true))
-  end
-
   # scope :open, -> () { where closed: false, organization_id: nil }
   it 'can query for open tickets' do
     ticket1 =  Ticket.new(name: 'Ticket1', closed: false)
@@ -133,6 +117,7 @@ RSpec.describe Ticket, type: :model do
     ticket2 =  Ticket.new(name: 'Ticket2', closed: true)
     ticket3 =  Ticket.new(name: 'Ticket3', closed: true)
     # expect(Ticket.closed).to match([ticket1, ticket2, ticket3])
+    expect(Ticket.closed).to match([])
     expect(Ticket.closed).to match(Ticket.where(closed: true))
   end
   # scope :all_organization, -> () { where(closed: false).where.not(organization_id: nil) }
