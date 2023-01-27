@@ -6,6 +6,8 @@ RSpec.describe Organization, type: :model do
   let(:organization) { Organization.new }
 
   # Attributes
+  # Double check that attributes below this line are actually attributes.
+  # Double check that they should be tested in this way.
   it 'has a name' do
     expect(organization).to respond_to(:name)
   end
@@ -111,7 +113,7 @@ RSpec.describe Organization, type: :model do
     it { should validate_presence_of(:secondary_name) }
     it { should validate_presence_of(:secondary_phone) }
   end
-  
+
   # 3.1 validate email
   describe 'validates email format' do
     it { should allow_value('example@domain.com').for(:email) }
@@ -145,7 +147,7 @@ RSpec.describe Organization, type: :model do
     name = 'Past Control'
     result = organization.to_s
   end
-  
+
   # 3.2 Test member Functions
   it 'should respond' do
     expect(organization).to respond_to(:approve)

@@ -5,6 +5,7 @@ require 'rails_helper'
 RSpec.describe Region, type: :model do
   let(:region) { Region.new }
 
+  # Attributes
   it 'has a tickets attribute' do
     expect(region).to respond_to(:tickets)
   end

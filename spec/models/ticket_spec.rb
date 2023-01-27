@@ -5,8 +5,7 @@ require 'rails_helper'
 RSpec.describe Ticket, type: :model do
   let(:ticket) { Ticket.new }
 
-  # Double check that all these attributes are actually attributes
-  # and that they are being tested correctly.
+  # Attributes
   it 'has a region attribute' do
     expect(ticket).to respond_to(:region)
   end
@@ -49,11 +48,8 @@ RSpec.describe Ticket, type: :model do
 
   describe 'relations' do
     it { should belong_to(:region) }
-    # possible change to id from region table
     it { should belong_to(:resource_category) }
-    # possible change to id from resource_category table
     it { should belong_to(:organization).optional }
-    # possible change to id from organization table
   end
 
   # Is this a legacy test and does it need to be here?

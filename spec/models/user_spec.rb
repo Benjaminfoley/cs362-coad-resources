@@ -4,7 +4,7 @@ require 'rails_helper'
 
 RSpec.describe User, type: :model do
   let(:user) { User.new }
-  
+
   it 'has an email attribute' do
     expect(user).to respond_to(:email)
   end
@@ -15,28 +15,27 @@ RSpec.describe User, type: :model do
 
   describe 'relations' do
     it { should belong_to(:organization).optional }
-    #I think instead of organizations we want organization_id from organizations table.
+    # I think instead of organizations we want organization_id from organizations table.
   end
 
-  #3.1 Validations
-  describe 'should validate_presence_of'do
-    it { should validate_presence_of(:email)}
-    it { should validate_presence_of(:password)}
+  # 3.1 Validations
+  describe 'should validate_presence_of' do
+    it { should validate_presence_of(:email) }
+    it { should validate_presence_of(:password) }
   end
 
-  describe 'should validate_length_of'do
+  describe 'should validate_length_of' do
     it { should validate_length_of(:email).is_at_least(1).is_at_most(255) }
     it { should validate_length_of(:password).is_at_least(7).is_at_most(255) }
   end
 
-  describe 'should validate_uniqueness_of'do
+  describe 'should validate_uniqueness_of' do
     it { should validate_uniqueness_of(:email).case_insensitive }
   end
   #------Does NOT WORK
   # describe 'should validate_format_of'do
   #   it {should validate_format_of(:email).with(VALID_EMAIL_REGEX)}
   # end
-
 
   it 'has a string representation that is its email' do
     email = 'test@domain.com'
