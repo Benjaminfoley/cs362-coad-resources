@@ -83,4 +83,8 @@ RSpec.describe ResourceCategory, type: :model do
     resource_category.deactivate
     expect(resource_category.inactive?).to eq(true)
   end
+
+  it 'has a to-string method' do
+    expect(resource_category.to_s).to eq(resource_category.name)
+  end
 end
