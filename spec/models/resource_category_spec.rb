@@ -36,9 +36,7 @@ RSpec.describe ResourceCategory, type: :model do
 
   describe 'relations' do
     it { should have_and_belong_to_many(:organizations) }
-    # I think instead of organizations we want resource_category_id from organizations table.
     it { should have_many(:tickets) }
-    # I think instead of tickets we want resource_category_id from tickets table.
   end
 
   # 3.1 Validations
@@ -102,10 +100,8 @@ RSpec.describe ResourceCategory, type: :model do
 
   # 3.4 Scope Mothods - Alternative tests
   it 'can query for active categories' do
-    active1 = ResourceCategory.new(id: 1, name: 'Name1', active: false)
-    active2 = ResourceCategory.new(id: 2, name: 'Name2', active: false)
-    active1.activate  # with this in here are we testing for more than on thing?
-    active2.activate  # Should we just initialize active to true?
+    active1 = ResourceCategory.create!(name: 'Name1', active: true)
+    active2 = ResourceCategory.create!(name: 'Name2', active: true)
     expect(ResourceCategory.active).to eq([active1, active2])
   end
 
