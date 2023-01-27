@@ -140,12 +140,6 @@ RSpec.describe Organization, type: :model do
     it { should validate_uniqueness_of(:name).case_insensitive }
   end
 
-  # Is this a legacy test and should it be here?
-  it 'has a string representation that is its name' do
-    name = 'Past Control'
-    result = organization.to_s
-  end
-
   # 3.2 Member Functions
   it 'has a default status of submitted' do
     expect(organization.status).to eq('submitted')

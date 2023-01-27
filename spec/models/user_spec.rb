@@ -60,9 +60,4 @@ RSpec.describe User, type: :model do
 
   # 3.3 Static Functions
 
-  # Is this a legacy test and should it be here?
-  it 'has a string representation that is its email' do
-    email = 'test@domain.com'
-    result = user.to_s
-  end
 end

@@ -28,12 +28,6 @@ RSpec.describe Region, type: :model do
     expect(region).to respond_to(:validates_length_of)
   end
 
-  # Is this a legacy test and does it need to be here?
-  it 'has a string representation that is its name' do
-    name = 'Mt. Hood'
-    result = region.to_s
-  end
-
   # 3.1 Validations
   describe 'validates the presence of a name' do
     it { should validate_presence_of(:name) }

@@ -52,12 +52,6 @@ RSpec.describe Ticket, type: :model do
     it { should belong_to(:organization).optional }
   end
 
-  # Is this a legacy test and does it need to be here?
-  it 'has a string representation that is its name' do
-    name = 'Mt. Hood'
-    result = ticket.to_s
-  end
-
   # 3.1 Validations
   describe 'validates the presence of' do
     it { should validate_presence_of(:name) }
