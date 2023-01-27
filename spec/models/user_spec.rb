@@ -32,10 +32,21 @@ RSpec.describe User, type: :model do
   describe 'validates the uniqueness of' do
     it { should validate_uniqueness_of(:email).case_insensitive }
   end
-  #------Does NOT WORK
-  # describe 'should validate_format_of'do
-  #   it {should validate_format_of(:email).with(VALID_EMAIL_REGEX)}
-  # end
+
+  describe 'validates email format' do
+    it { should allow_value('example@domain.com').for(:email) }
+    it { should allow_value('EXAMPLE@DOMAIN.COM').for(:email) }
+    it { should allow_value('.example@domain.com').for(:email) }
+    it { should allow_value('_example@doman.com').for(:email) }
+    it { should allow_value('123_example@doman.com').for(:email) }
+    it { should allow_value('ex.ample@doman.com').for(:email) }
+    it { should allow_value('exa-mpl.e@doman.com').for(:email) }
+    it { should allow_value('exa.mpl.e@doman.com').for(:email) }
+    it { should allow_value('exa_mpl_e@doman.com').for(:email) }
+    it { should_not allow_value('examample@domain').for(:email) }
+    it { should_not allow_value('@domain.com').for(:email) }
+    it { should_not allow_value('example.domain.com').for(:email) }
+  end
 
   # Is this a legacy test and should it be here?
   it 'has a string representation that is its email' do
