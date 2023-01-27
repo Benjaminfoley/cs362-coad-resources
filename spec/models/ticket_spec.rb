@@ -100,4 +100,20 @@ RSpec.describe Ticket, type: :model do
     expect(ticket.to_s).to eq 'Ticket '
   end
 
+  # 3.4
+  it 'not sure if testing scopes right' do
+    $i = 0
+    while $i < 10 do
+      if [1,3,6].include?($i)
+        Ticket.create(closed: false, organization_id: nil)
+      else
+        Ticket.create(closed: true, organization_id: nil)
+      end
+      $i += 1
+    end
+
+    expect(Ticket.open).to match(Ticket.where(closed: false, organization_id: nil))
+    expect(Ticket.open).to_not match(Ticket.closed)
+    expect(Ticket.closed).to match(Ticket.where(closed: true))
+  end
 end
