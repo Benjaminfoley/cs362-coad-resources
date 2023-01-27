@@ -53,4 +53,15 @@ RSpec.describe User, type: :model do
     email = 'test@domain.com'
     result = user.to_s
   end
+
+  # 3.2 set default role
+  it 'sets a default role' do
+    expect(user.role).to eq("organization")
+  end
+
+  #3.2 to_s
+  it 'returns the email' do
+    user.email = 'example@domain.com'
+    expect(user.to_s).to eq(user.email)
+  end
 end
