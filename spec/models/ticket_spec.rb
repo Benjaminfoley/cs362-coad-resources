@@ -85,15 +85,18 @@ RSpec.describe Ticket, type: :model do
     it { should_not allow_value('+44 888 888 888').for(:phone) }
   end
 
-  # 3.2 method Testing
-  it 'returns open' do
-    ticket = Ticket.new(closed: false)
+  # 3.2 Methods
+  it 'can check the open status' do
     expect(ticket.open?).to be true
+    ticket = Ticket.new(closed: true)
+    expect(ticket.open?).to be false
   end
 
   it 'returns captured?' do
-    ticket = Ticket.new(closed: true)
+    ticket1 = Ticket.new(closed: true)
     expect(ticket.captured?).to be false
+    # ticket2 = Ticket.new(closed: false)
+    # expect(ticket2.captured?).to be true
   end
 
   it 'returns to_s' do
@@ -101,7 +104,7 @@ RSpec.describe Ticket, type: :model do
     expect(ticket.to_s).to eq 'Ticket '
   end
 
-  # 3.4
+  # 3.4 Scope
   it 'not sure if testing scopes right' do
     $i = 0
     while $i < 10

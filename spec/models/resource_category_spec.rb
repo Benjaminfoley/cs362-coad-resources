@@ -61,23 +61,23 @@ RSpec.describe ResourceCategory, type: :model do
   # 3.2 Methods
   it 'can activate' do
     resource_category.activate
-    expect(resource_category.active).to eq(true)
+    expect(resource_category.active).to be true
   end
 
   it 'can deactivate' do
     resource_category.deactivate
-    expect(resource_category.active).to eq(false)
+    expect(resource_category.active).to be false
   end
 
   it 'can check active status' do
     resource_category.activate
-    expect(resource_category.inactive?).to eq(false)
+    expect(resource_category.inactive?).to be false
     resource_category.deactivate
-    expect(resource_category.inactive?).to eq(true)
+    expect(resource_category.inactive?).to be true
   end
 
   it 'has a to-string method' do
-    expect(resource_category.to_s).to eq(resource_category.name)
+    expect(resource_category.to_s).to be resource_category.name
   end
 
   # 3.2 Static Methods
