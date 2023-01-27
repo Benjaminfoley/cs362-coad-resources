@@ -35,20 +35,20 @@ RSpec.describe Region, type: :model do
   end
 
   # 3.1 Validations
-  describe 'validates_presence_of' do
+  describe 'validates the presence of a name' do
     it { should validate_presence_of(:name) }
   end
 
-  describe 'validates_length_of' do
+  describe 'validates the length of a name' do
     it { should validate_length_of(:name).is_at_least(1).is_at_most(255) }
   end
 
-  describe 'validates_uniqueness_of' do
+  describe 'validates the uniqueness of a name' do
     it { should validate_uniqueness_of(:name).case_insensitive }
   end
 
   # 3.3
-  describe 'verify unspecified()' do
+  describe 'has an unspecified method' do
     it {
       Region.unspecified
       expect(Region.find_by_name('Unspecified')).to_not be_nil

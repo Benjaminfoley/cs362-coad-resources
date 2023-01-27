@@ -104,8 +104,8 @@ RSpec.describe Organization, type: :model do
     it { should have_and_belong_to_many(:resource_categories) }
   end
 
-  # 3.1 validating presence
-  describe 'should validate the presence of' do
+  # 3.1 Validations
+  describe 'validates the presence of' do
     it { should validate_presence_of(:email) }
     it { should validate_presence_of(:phone) }
     it { should validate_presence_of(:status) }
@@ -114,7 +114,6 @@ RSpec.describe Organization, type: :model do
     it { should validate_presence_of(:secondary_phone) }
   end
 
-  # 3.1 validate email
   describe 'validates email format' do
     it { should allow_value('example@domain.com').for(:email) }
     it { should allow_value('EXAMPLE@DOMAIN.COM').for(:email) }
@@ -130,19 +129,18 @@ RSpec.describe Organization, type: :model do
     it { should_not allow_value('example.domain.com').for(:email) }
   end
 
-  # 3.1 validating length of
   describe 'validates length of' do
     it { should validate_length_of(:email).is_at_least(1).is_at_most(255) }
     it { should validate_length_of(:name).is_at_least(1).is_at_most(255) }
     it { should validate_length_of(:description).is_at_most(1020) }
   end
 
-  # 3.1 validating uniqueness
   describe 'validates uniqueness of' do
     it { should validate_uniqueness_of(:email).case_insensitive }
     it { should validate_uniqueness_of(:name).case_insensitive }
   end
 
+  # Is this a legacy test and should it be here?
   it 'has a string representation that is its name' do
     name = 'Past Control'
     result = organization.to_s
