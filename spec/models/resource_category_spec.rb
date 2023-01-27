@@ -58,6 +58,12 @@ RSpec.describe ResourceCategory, type: :model do
     it { should validate_uniqueness_of(:name).case_insensitive }
   end
 
+  # 3.2 def_s
+  it 'has a to-string method' do
+    string = resource_category.to_s
+    expect(string).to eq(resource_category.name)
+  end
+
   # 3.3 Methods
   describe 'verify unspecified()' do
     it {
