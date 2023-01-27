@@ -163,6 +163,6 @@ RSpec.describe Organization, type: :model do
 
   it 'has a to-string method' do
     string = organization.to_s
-    expect(string).to eq(organization.name)
+    expect(string).to be organization.name
   end
 end

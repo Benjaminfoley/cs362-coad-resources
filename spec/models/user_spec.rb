@@ -62,6 +62,6 @@ RSpec.describe User, type: :model do
   # 3.2 to_s
   it 'returns the email' do
     user.email = 'example@domain.com'
-    expect(user.to_s).to eq(user.email)
+    expect(user.to_s).to be user.email
   end
 end
