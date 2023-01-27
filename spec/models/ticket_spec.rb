@@ -71,8 +71,7 @@ RSpec.describe Ticket, type: :model do
     it { should validate_length_of(:description).is_at_most(1020).on(:create) }
   end
 
-  # #3.1 validating ---Not working---
-  # describe 'validates a phone number' do
-  #   it {should validates :phone_number, phony_plausible: true}
-  # end
+  describe 'validates a phone number' do
+    it { should allow_value('+15413983298').for(:phone)}
+  end
 end
