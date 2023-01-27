@@ -58,7 +58,7 @@ RSpec.describe ResourceCategory, type: :model do
     it { should validate_uniqueness_of(:name).case_insensitive }
   end
 
-  # 3.2 Methods
+  # 3.2 Member Functions
   it 'can activate' do
     resource_category.activate
     expect(resource_category.active).to be true
@@ -80,7 +80,7 @@ RSpec.describe ResourceCategory, type: :model do
     expect(resource_category.to_s).to be resource_category.name
   end
 
-  # 3.2 Static Methods
+  # 3.3 Static Functions
   describe 'verify unspecified()' do
     it {
       ResourceCategory.unspecified

@@ -165,4 +165,6 @@ RSpec.describe Organization, type: :model do
     string = organization.to_s
     expect(string).to be organization.name
   end
+
+  #3.3 Static Functions
 end

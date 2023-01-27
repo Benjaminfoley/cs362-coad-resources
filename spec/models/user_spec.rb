@@ -48,20 +48,21 @@ RSpec.describe User, type: :model do
     it { should_not allow_value('example.domain.com').for(:email) }
   end
 
-  # Is this a legacy test and should it be here?
-  it 'has a string representation that is its email' do
-    email = 'test@domain.com'
-    result = user.to_s
-  end
-
-  # 3.2 set default role
+  # 3.2 Member Functions
   it 'sets a default role' do
     expect(user.role).to eq('organization')
   end
 
-  # 3.2 to_s
   it 'returns the email' do
     user.email = 'example@domain.com'
     expect(user.to_s).to be user.email
+  end
+
+  # 3.3 Static Functions
+
+  # Is this a legacy test and should it be here?
+  it 'has a string representation that is its email' do
+    email = 'test@domain.com'
+    result = user.to_s
   end
 end

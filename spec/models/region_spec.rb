@@ -47,7 +47,7 @@ RSpec.describe Region, type: :model do
     it { should validate_uniqueness_of(:name).case_insensitive }
   end
 
-  # 3.2
+  # 3.2 Member Functions
   describe 'to_s returns region.name' do
     it {
       expect(region.to_s).to be region.name
@@ -57,7 +57,7 @@ RSpec.describe Region, type: :model do
     }
   end
 
-  # 3.3
+  # 3.3 Static Functions
   describe 'has an unspecified method' do
     it {
       Region.unspecified

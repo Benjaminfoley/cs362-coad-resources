@@ -85,7 +85,7 @@ RSpec.describe Ticket, type: :model do
     it { should_not allow_value('+44 888 888 888').for(:phone) }
   end
 
-  # 3.2 Methods
+  # 3.2 Functions
   it 'can check the open status' do
     expect(ticket.open?).to be true
     ticket = Ticket.new(closed: true)
@@ -97,10 +97,13 @@ RSpec.describe Ticket, type: :model do
     expect(ticket.captured?).to be false
   end
 
+  # to_s method returns "Ticket #{id}" but id is not defined
   it 'returns to_s' do
     ticket = Ticket.new(region_id: 'Ticket ')
     expect(ticket.to_s).to eq('Ticket ')
   end
+
+  # 3.3 Static Functions
 
   # 3.4 Scope
   it 'not sure if testing scopes right' do
