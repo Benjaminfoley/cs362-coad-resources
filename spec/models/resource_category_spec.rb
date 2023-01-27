@@ -92,4 +92,11 @@ RSpec.describe ResourceCategory, type: :model do
     active_records = ResourceCategory.active
     it { expect(active_records).to match(ResourceCategory.where(active: true)) }
   end
+
+  describe 'has a scope method to check for inactive records' do
+    let(:inactive1) {ResourceCategory.new(id: 1, name: 'Name1', active: false)}
+    let(:inactive2) {ResourceCategory.new(id: 2, name: 'Name2', active: false)}
+    inactive_records = ResourceCategory.inactive
+    it { expect(inactive_records).to match(ResourceCategory.where(active: false)) }
+  end
 end
