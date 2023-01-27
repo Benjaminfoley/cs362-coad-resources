@@ -75,11 +75,11 @@ RSpec.describe ResourceCategory, type: :model do
   end
 
   # 3.3 Static Functions
-  describe 'verify unspecified()' do
+  describe 'has an unspecified static method' do
     it {
+      expect(ResourceCategory.find_by_name('Unspecified')).to be_nil
       ResourceCategory.unspecified
       expect(ResourceCategory.find_by_name('Unspecified')).to_not be_nil
-      expect(ResourceCategory.find_by_name('')).to be_nil
     }
   end
 
