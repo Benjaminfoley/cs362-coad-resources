@@ -54,11 +54,11 @@ RSpec.describe Region, type: :model do
   # 3.3 Static Functions
   describe 'has an unspecified method' do
     it {
+      expect(Region.find_by_name('Unspecified')).to be_nil
       Region.unspecified
       expect(Region.find_by_name('Unspecified')).to_not be_nil
-      expect(Region.find_by_name('')).to be_nil
     }
-  end
+  end  
 
   # 3.4 Scope Methods -- There are none
   it 'has no scope functions' do
