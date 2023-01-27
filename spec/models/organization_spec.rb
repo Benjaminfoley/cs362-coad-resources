@@ -156,9 +156,10 @@ RSpec.describe Organization, type: :model do
     expect(organization.status).to eq('approved')
   end
 
-  it 'has a reject method' do
-    expect(organization).to respond_to(:reject)
-  end
+  it 'can reject a status' do
+    organization.reject
+    expect(organization.status).to eq('rejected')
+    end
 
   it 'has a to-string method' do
     expect(organization).to respond_to(:to_s)
