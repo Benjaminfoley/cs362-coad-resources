@@ -101,19 +101,19 @@ RSpec.describe ResourceCategory, type: :model do
   end
 
   # 3.4 Scope Mothods - Alternative tests
-  it 'has an active scope method' do
+  it 'can query for active categories' do
     active1 = ResourceCategory.new(id: 1, name: 'Name1', active: false)
     active2 = ResourceCategory.new(id: 2, name: 'Name2', active: false)
-    active1.activate
-    active2.activate
+    active1.activate  # with this in here are we testing for more than on thing?
+    active2.activate  # Should we just initialize active to true?
     expect(ResourceCategory.active).to eq([active1, active2])
   end
 
-  it 'has an inactive scope method' do
+  it 'can query for inactive categories' do
     inactive1 = ResourceCategory.new(id: 1, name: 'Name1', active: true)
     inactive2 = ResourceCategory.new(id: 2, name: 'Name2', active: true)
-    inactive1.deactivate
-    inactive2.deactivate
+    inactive1.deactivate  # with this in here are we testing for more than on thing?
+    inactive2.deactivate  # Should we just initialize active to false?
     expect(ResourceCategory.inactive).to eq([inactive1, inactive2])
   end
 end
