@@ -300,8 +300,7 @@ RSpec.describe Ticket, type: :model do
   end
 
   # scope :resource_category, -> (resource_category_id) { where(resource_category_id: resource_category_id) }
-  # STILL SKIPPING
-  it 'can query for a resource category by id', :skip do
+  it 'can query for a resource category by id' do
     
     region = Region.create!(name: 'Region1')
     resource_category = ResourceCategory.create!(name: "RC1", id: 1) 
