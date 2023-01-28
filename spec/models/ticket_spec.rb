@@ -88,7 +88,6 @@ RSpec.describe Ticket, type: :model do
 
   it 'checks if it is captured by an organization' do
     expect(ticket.captured?).to be false
-    # need to create an Organization object and add it to the database useing .create() or .save!
     organization = Organization.create!(
       name: 'Org',
       id: 1,
