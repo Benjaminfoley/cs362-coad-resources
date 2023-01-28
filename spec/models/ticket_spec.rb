@@ -248,7 +248,34 @@ RSpec.describe Ticket, type: :model do
 
   # scope :closed_organization, -> (organization_id) { where(organization_id: organization_id, closed: true) }
   it 'can query for a closed organization by id', :skip do
-    
+    region = Region.create!(name: 'Region1')
+    resource_category = ResourceCategory.create!(name: "RC1")
+    organization = Organization.create!(
+      name: "Org",
+      id: 1,
+      primary_name: "PrimaryName",
+      secondary_name: "SecondaryName",
+      phone: "1-800-222-2222",
+      secondary_phone: "1-555-555-55555",
+      email: "example@domain.com"
+    )    
+    ticket1 =  Ticket.create!(
+      name: 'Ticket1',
+      closed: true,
+      region: region,
+      resource_category: resource_category,
+      phone: "1800-222-2222",
+      organization_id: 1
+    )
+    ticket2 =  Ticket.create!(
+      name: 'Ticket2',
+      closed: true,
+      region: region,
+      resource_category: resource_category,
+      phone: "1800-222-2222",
+      organization_id: 1
+    )
+    expect(Ticket.organization(1)).to match([ticket1, ticket2])
   end
   # scope :region, -> (region_id) { where(region_id: region_id) }
   it 'can query for a region by id', :skip do
