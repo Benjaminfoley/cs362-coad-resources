@@ -278,8 +278,8 @@ RSpec.describe Ticket, type: :model do
     expect(Ticket.closed_organization(1)).to match([ticket1, ticket2])
   end
 
-  # scope :region, -> (region_id) { where(region_id: region_id) } -- STILL SKIPPING
-  it 'can query for a region by id', :skip do
+  # scope :region, -> (region_id) { where(region_id: region_id) }
+  it 'can query for a region by id' do
     region = Region.create!(name: 'Region1', id: 1)
     resource_category = ResourceCategory.create!(name: "RC1") 
     ticket1 =  Ticket.create!(
