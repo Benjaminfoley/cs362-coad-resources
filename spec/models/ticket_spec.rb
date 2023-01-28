@@ -90,19 +90,19 @@ RSpec.describe Ticket, type: :model do
     expect(ticket.captured?).to be false
     # need to create an Organization object and add it to the database useing .create() or .save!
     organization = Organization.create!(
-      name: "Org",
+      name: 'Org',
       id: 1,
-      primary_name: "PrimaryName",
-      secondary_name: "SecondaryName",
-      phone: "1-800-222-2222",
-      secondary_phone: "1-555-555-55555",
-      email: "example@domain.com"
+      primary_name: 'PrimaryName',
+      secondary_name: 'SecondaryName',
+      phone: '1-800-222-2222',
+      secondary_phone: '1-555-555-55555',
+      email: 'example@domain.com'
     )
     region = Region.create!(name: 'Region1')
-    resource_category = ResourceCategory.create!(name: "RC1")
+    resource_category = ResourceCategory.create!(name: 'RC1')
     ticket = Ticket.create!(
-      name: "TicketName",
-      phone: "1-888-888-8888",
+      name: 'TicketName',
+      phone: '1-888-888-8888',
       organization_id: 1,
       region: region,
       resource_category: resource_category
@@ -112,19 +112,19 @@ RSpec.describe Ticket, type: :model do
 
   it 'returns "Ticket #{id}" from to_s' do
     organization = Organization.create!(
-      name: "Org",
+      name: 'Org',
       id: 1,
-      primary_name: "PrimaryName",
-      secondary_name: "SecondaryName",
-      phone: "1-800-222-2222",
-      secondary_phone: "1-555-555-55555",
-      email: "example@domain.com"
+      primary_name: 'PrimaryName',
+      secondary_name: 'SecondaryName',
+      phone: '1-800-222-2222',
+      secondary_phone: '1-555-555-55555',
+      email: 'example@domain.com'
     )
     region = Region.create!(name: 'Region1')
-    resource_category = ResourceCategory.create!(name: "RC1")
+    resource_category = ResourceCategory.create!(name: 'RC1')
     ticket = Ticket.create!(
-      name: "TicketName",
-      phone: "1-888-888-8888",
+      name: 'TicketName',
+      phone: '1-888-888-8888',
       organization_id: 1,
       region: region,
       resource_category: resource_category
@@ -140,183 +140,175 @@ RSpec.describe Ticket, type: :model do
   end
 
   # 3.4 Scope Methods
-  # scope :open, -> () { where closed: false, organization_id: nil }
   it 'can query for open tickets' do
     region = Region.create!(name: 'Region1')
-    resource_category = ResourceCategory.create!(name: "RC1")
-    ticket1 =  Ticket.create!(
+    resource_category = ResourceCategory.create!(name: 'RC1')
+    ticket1 = Ticket.create!(
       name: 'Ticket1',
       closed: false,
       region: region,
       resource_category: resource_category,
-      phone: "1800-222-2222"
+      phone: '1800-222-2222'
     )
-    ticket2 =  Ticket.create!(
+    ticket2 = Ticket.create!(
       name: 'Ticket2',
       closed: false,
       region: region,
       resource_category: resource_category,
-      phone: "1800-222-2222"
+      phone: '1800-222-2222'
     )
     expect(Ticket.open).to match([ticket1, ticket2])
   end
 
-  # scope :closed, -> () { where closed: true }
   it 'can query for closed tickets' do
     region = Region.create!(name: 'Region1')
-    resource_category = ResourceCategory.create!(name: "RC1")
-    ticket1 =  Ticket.create!(
+    resource_category = ResourceCategory.create!(name: 'RC1')
+    ticket1 = Ticket.create!(
       name: 'Ticket1',
       closed: true,
       region: region,
       resource_category: resource_category,
-      phone: "1800-222-2222"
+      phone: '1800-222-2222'
     )
-    ticket2 =  Ticket.create!(
+    ticket2 = Ticket.create!(
       name: 'Ticket2',
       closed: true,
       region: region,
       resource_category: resource_category,
-      phone: "1800-222-2222"
+      phone: '1800-222-2222'
     )
     expect(Ticket.closed).to match([ticket1, ticket2])
   end
 
-  # scope :all_organization, -> () { where(closed: false).where.not(organization_id: nil) }
   it 'can query for all organizations' do
     region = Region.create!(name: 'Region1')
-    resource_category = ResourceCategory.create!(name: "RC1")
+    resource_category = ResourceCategory.create!(name: 'RC1')
     organization = Organization.create!(
-      name: "Org",
+      name: 'Org',
       id: 1,
-      primary_name: "PrimaryName",
-      secondary_name: "SecondaryName",
-      phone: "1-800-222-2222",
-      secondary_phone: "1-555-555-55555",
-      email: "example@domain.com"
-    )    
-    ticket1 =  Ticket.create!(
+      primary_name: 'PrimaryName',
+      secondary_name: 'SecondaryName',
+      phone: '1-800-222-2222',
+      secondary_phone: '1-555-555-55555',
+      email: 'example@domain.com'
+    )
+    ticket1 = Ticket.create!(
       name: 'Ticket1',
       closed: false,
       region: region,
       resource_category: resource_category,
-      phone: "1800-222-2222",
+      phone: '1800-222-2222',
       organization_id: 1
     )
-    ticket2 =  Ticket.create!(
+    ticket2 = Ticket.create!(
       name: 'Ticket2',
       closed: false,
       region: region,
       resource_category: resource_category,
-      phone: "1800-222-2222",
+      phone: '1800-222-2222',
       organization_id: 1
     )
     expect(Ticket.all_organization).to match([ticket1, ticket2])
   end
 
-  # scope :organization, -> (organization_id) { where(organization_id: organization_id, closed: false) }
   it 'can query for an open organization by id' do
     region = Region.create!(name: 'Region1')
-    resource_category = ResourceCategory.create!(name: "RC1")
+    resource_category = ResourceCategory.create!(name: 'RC1')
     organization = Organization.create!(
-      name: "Org",
+      name: 'Org',
       id: 1,
-      primary_name: "PrimaryName",
-      secondary_name: "SecondaryName",
-      phone: "1-800-222-2222",
-      secondary_phone: "1-555-555-55555",
-      email: "example@domain.com"
-    )    
-    ticket1 =  Ticket.create!(
+      primary_name: 'PrimaryName',
+      secondary_name: 'SecondaryName',
+      phone: '1-800-222-2222',
+      secondary_phone: '1-555-555-55555',
+      email: 'example@domain.com'
+    )
+    ticket1 = Ticket.create!(
       name: 'Ticket1',
       closed: false,
       region: region,
       resource_category: resource_category,
-      phone: "1800-222-2222",
+      phone: '1800-222-2222',
       organization_id: 1
     )
-    ticket2 =  Ticket.create!(
+    ticket2 = Ticket.create!(
       name: 'Ticket2',
       closed: false,
       region: region,
       resource_category: resource_category,
-      phone: "1800-222-2222",
+      phone: '1800-222-2222',
       organization_id: 1
     )
     expect(Ticket.organization(1)).to match([ticket1, ticket2])
   end
 
-  # scope :closed_organization, -> (organization_id) { where(organization_id: organization_id, closed: true) }
   it 'can query for a closed organization by id' do
     region = Region.create!(name: 'Region1')
-    resource_category = ResourceCategory.create!(name: "RC1")
+    resource_category = ResourceCategory.create!(name: 'RC1')
     organization = Organization.create!(
-      name: "Org",
+      name: 'Org',
       id: 1,
-      primary_name: "PrimaryName",
-      secondary_name: "SecondaryName",
-      phone: "1-800-222-2222",
-      secondary_phone: "1-555-555-55555",
-      email: "example@domain.com"
-    )    
-    ticket1 =  Ticket.create!(
+      primary_name: 'PrimaryName',
+      secondary_name: 'SecondaryName',
+      phone: '1-800-222-2222',
+      secondary_phone: '1-555-555-55555',
+      email: 'example@domain.com'
+    )
+    ticket1 = Ticket.create!(
       name: 'Ticket1',
       closed: true,
       region: region,
       resource_category: resource_category,
-      phone: "1800-222-2222",
+      phone: '1800-222-2222',
       organization_id: 1
     )
-    ticket2 =  Ticket.create!(
+    ticket2 = Ticket.create!(
       name: 'Ticket2',
       closed: true,
       region: region,
       resource_category: resource_category,
-      phone: "1800-222-2222",
+      phone: '1800-222-2222',
       organization_id: 1
     )
     expect(Ticket.closed_organization(1)).to match([ticket1, ticket2])
   end
 
-  # scope :region, -> (region_id) { where(region_id: region_id) }
   it 'can query for a region by id' do
     region = Region.create!(name: 'Region1', id: 1)
-    resource_category = ResourceCategory.create!(name: "RC1") 
-    ticket1 =  Ticket.create!(
+    resource_category = ResourceCategory.create!(name: 'RC1')
+    ticket1 = Ticket.create!(
       name: 'Ticket1',
       closed: true,
       region: region,
       resource_category: resource_category,
-      phone: "1800-222-2222"
+      phone: '1800-222-2222'
     )
-    ticket2 =  Ticket.create!(
+    ticket2 = Ticket.create!(
       name: 'Ticket2',
       closed: true,
       region: region,
       resource_category: resource_category,
-      phone: "1800-222-2222",
+      phone: '1800-222-2222'
     )
     expect(Ticket.region(1)).to match([ticket1, ticket2])
   end
 
-  # scope :resource_category, -> (resource_category_id) { where(resource_category_id: resource_category_id) }
   it 'can query for a resource category by id' do
-    
     region = Region.create!(name: 'Region1')
-    resource_category = ResourceCategory.create!(name: "RC1", id: 1) 
-    ticket1 =  Ticket.create!(
+    resource_category = ResourceCategory.create!(name: 'RC1', id: 1)
+    ticket1 = Ticket.create!(
       name: 'Ticket1',
       closed: true,
       region: region,
       resource_category: resource_category,
-      phone: "1800-222-2222"
+      phone: '1800-222-2222'
     )
-    ticket2 =  Ticket.create!(
+    ticket2 = Ticket.create!(
       name: 'Ticket2',
       closed: true,
       region: region,
       resource_category: resource_category,
-      phone: "1800-222-2222",
+      phone: '1800-222-2222'
     )
     expect(Ticket.resource_category(1)).to match([ticket1, ticket2])
   end
