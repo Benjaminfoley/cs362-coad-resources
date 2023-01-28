@@ -213,6 +213,7 @@ RSpec.describe Ticket, type: :model do
     )
     expect(Ticket.all_organization).to match([ticket1, ticket2])
   end
+  
   # scope :organization, -> (organization_id) { where(organization_id: organization_id, closed: false) }
   it 'can query for an open organization by id', :skip do
     

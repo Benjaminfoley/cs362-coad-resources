@@ -4,12 +4,8 @@ require 'rails_helper'
 
 RSpec.describe ResourceCategory, type: :model do
   let(:resource_category) { ResourceCategory.new }
-  # let(:active1) {ResourceCategory.new}
-  # let(:active2) {ResourceCategory.new}
 
   # Attributes.
-  # Double check that attributes below this line are actually attributes.
-  # Double check that they should be tested in this way.
   it 'has an organizations attribute' do
     expect(resource_category).to respond_to(:organizations)
   end
