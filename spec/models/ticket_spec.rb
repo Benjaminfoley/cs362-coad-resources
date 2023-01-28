@@ -183,8 +183,35 @@ RSpec.describe Ticket, type: :model do
   end
 
   # scope :all_organization, -> () { where(closed: false).where.not(organization_id: nil) }
-  it 'can query for all organizations', :skip do
-    
+  it 'can query for all organizations' do
+    region = Region.create!(name: 'Region1')
+    resource_category = ResourceCategory.create!(name: "RC1")
+    organization = Organization.create!(
+      name: "Org",
+      id: 1,
+      primary_name: "PrimaryName",
+      secondary_name: "SecondaryName",
+      phone: "1-800-222-2222",
+      secondary_phone: "1-555-555-55555",
+      email: "example@domain.com"
+    )    
+    ticket1 =  Ticket.create!(
+      name: 'Ticket1',
+      closed: false,
+      region: region,
+      resource_category: resource_category,
+      phone: "1800-222-2222",
+      organization_id: 1
+    )
+    ticket2 =  Ticket.create!(
+      name: 'Ticket2',
+      closed: false,
+      region: region,
+      resource_category: resource_category,
+      phone: "1800-222-2222",
+      organization_id: 1
+    )
+    expect(Ticket.all_organization).to match([ticket1, ticket2])
   end
   # scope :organization, -> (organization_id) { where(organization_id: organization_id, closed: false) }
   it 'can query for an open organization by id', :skip do
