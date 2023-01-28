@@ -275,10 +275,10 @@ RSpec.describe Ticket, type: :model do
       phone: "1800-222-2222",
       organization_id: 1
     )
-    expect(Ticket.organization(1)).to match([ticket1, ticket2])
+    expect(Ticket.closed_organization(1)).to match([ticket1, ticket2])
   end
 
-  # scope :region, -> (region_id) { where(region_id: region_id) }
+  # scope :region, -> (region_id) { where(region_id: region_id) } -- STILL SKIPPING
   it 'can query for a region by id', :skip do
     region = Region.create!(name: 'Region1', id: 1)
     resource_category = ResourceCategory.create!(name: "RC1") 
@@ -300,6 +300,7 @@ RSpec.describe Ticket, type: :model do
   end
 
   # scope :resource_category, -> (resource_category_id) { where(resource_category_id: resource_category_id) }
+  # STILL SKIPPING
   it 'can query for a resource category by id', :skip do
     
     region = Region.create!(name: 'Region1')
