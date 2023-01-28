@@ -86,13 +86,32 @@ RSpec.describe Ticket, type: :model do
     expect(ticket.open?).to be false
   end
 
-  it 'returns captured?' do
-    # need to create an Organization object and add it to the database useing .create() or .save!
+  it 'checks if it is captured by an organization' do
     expect(ticket.captured?).to be false
-    
+    # need to create an Organization object and add it to the database useing .create() or .save!
+    organization = Organization.create!(
+      name: "Org",
+      id: 1,
+      primary_name: "PrimaryName",
+      secondary_name: "SecondaryName",
+      phone: "1-800-222-2222",
+      secondary_phone: "1-555-555-55555",
+      email: "example@domain.com"
+    )
+    region = Region.create!(name: 'Region1')
+    resource_category = ResourceCategory.create!(name: "RC1")
+    ticket = Ticket.create!(
+      name: "TicketName",
+      phone: "1-888-888-8888",
+      organization_id: 1,
+      region: region,
+      resource_category: resource_category
+    )
+    expect(ticket.captured?).to be true
   end
 
   # to_s method returns "Ticket #{id}" but id is not defined
+  # use create! instead of new
   it 'returns to_s' do
     ticket = Ticket.new(region_id: 'Ticket ')
     expect(ticket.to_s).to eq('Ticket ')
