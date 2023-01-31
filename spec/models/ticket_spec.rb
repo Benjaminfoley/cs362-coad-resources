@@ -80,6 +80,16 @@ RSpec.describe Ticket, type: :model do
   end
 
   # 3.2 Functions
+  setup do
+    @rc1 = build(:resource_category, :name => "Resource category")
+    @r1 = build(:region, :name => "Region")
+    @t1 = build(:ticket, :name => "Ticket", :region => @r1, :resource_category => @rc1)
+  end
+
+  it '@t1 has name' do
+    expect(@t1.name).to eq("Ticket")
+  end
+
   it 'can check the open status' do
     expect(ticket.open?).to be true
     ticket = Ticket.new(closed: true)
