@@ -81,9 +81,10 @@ RSpec.describe Ticket, type: :model do
 
   # 3.2 Functions
   setup do
+    @o1 = build(:organization, :name => "Organization", :id => 1)
     @rc1 = build(:resource_category, :name => "Resource category")
     @r1 = build(:region, :name => "Region")
-    @t1 = build(:ticket, :name => "Ticket", :region => @r1, :resource_category => @rc1)
+    @t1 = build(:ticket, :name => "Ticket", :region => @r1, :resource_category => @rc1, :organization_id => 1)
   end
 
   it '@t1 has name' do
