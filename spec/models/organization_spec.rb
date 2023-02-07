@@ -169,4 +169,18 @@ RSpec.describe Organization, type: :model do
   it 'has no scope functions' do
     :skip
   end
+
+  # Goal 4 - factories
+  describe 'test the existence of factories' do
+    # let(:organization) { Factory_bot.build_stubbed(:organization) }
+    it 'tests the existence of the organization factory' do
+      # org = build_stubbed(:organization)
+      expect(org).to respond_to(:name)
+    end
+  end
+
+  setup do
+    # let(:organization) { Factory_bot.build_stubbed(:organization) }
+
+
 end
