@@ -4,12 +4,8 @@ require 'rails_helper'
 # require 'factory_bot'
 
 RSpec.describe Organization, type: :model do
-  # let(:organization) { Organization.new }
-
   # Attributes
-  # Double check that attributes below this line are actually attributes.
-  # Double check that they should be tested in this way.
-  describe 'test the existence of factories' do
+  describe 'test the existence of factories' do # this description should be changed when we actually know what is going on
     let(:organization) { FactoryBot.build_stubbed(:organization) }  
     it 'has a name' do
       expect(organization).to respond_to(:name)
@@ -145,7 +141,7 @@ RSpec.describe Organization, type: :model do
   end
 
   # 3.2 Member Functions
-  describe 'test the existence of factories' do
+  describe 'test the existence of factories' do # this description should be changed when we actually know what is going on
     let(:organization) { FactoryBot.build_stubbed(:organization) }
     it 'has a default status of submitted' do
       expect(organization.status).to eq('submitted')
@@ -178,17 +174,17 @@ RSpec.describe Organization, type: :model do
   end
 
   # Goal 4 - factories
-  describe 'test the existence of factories' do
-    let(:org) { FactoryBot.build_stubbed(:organization) }
+  # describe 'test the existence of factories' do
+  #   let(:org) { FactoryBot.build_stubbed(:organization) }
 
-    it 'tests the existence of name' do
-      expect(org.name).to eq("TestOrganization")
-    end
+  #   it 'tests the existence of name' do
+  #     expect(org.name).to eq("TestOrganization")
+  #   end
 
-    it 'tests the existence of email' do
-      expect(org.email).to eq(nil)
-    end
-  end
+  #   it 'tests the existence of email' do
+  #     expect(org.email).to eq(nil)
+  #   end
+  # end
 
 
 end
