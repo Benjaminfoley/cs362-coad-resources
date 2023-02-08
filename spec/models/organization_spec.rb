@@ -4,99 +4,102 @@ require 'rails_helper'
 # require 'factory_bot'
 
 RSpec.describe Organization, type: :model do
-  let(:organization) { Organization.new }
+  # let(:organization) { Organization.new }
 
   # Attributes
   # Double check that attributes below this line are actually attributes.
   # Double check that they should be tested in this way.
-  it 'has a name' do
-    expect(organization).to respond_to(:name)
-  end
+  describe 'test the existence of factories' do
+    let(:organization) { FactoryBot.build_stubbed(:organization) }  
+    it 'has a name' do
+      expect(organization).to respond_to(:name)
+    end
 
-  it 'has an agreement one' do
-    expect(organization).to respond_to(:agreement_one)
-  end
+    it 'has an agreement one' do
+      expect(organization).to respond_to(:agreement_one)
+    end
 
-  it 'has an agreement two' do
-    expect(organization).to respond_to(:agreement_two)
-  end
+    it 'has an agreement two' do
+      expect(organization).to respond_to(:agreement_two)
+    end
 
-  it 'has an agreement three' do
-    expect(organization).to respond_to(:agreement_three)
-  end
+    it 'has an agreement three' do
+      expect(organization).to respond_to(:agreement_three)
+    end
 
-  it 'has an agreement four' do
-    expect(organization).to respond_to(:agreement_four)
-  end
+    it 'has an agreement four' do
+      expect(organization).to respond_to(:agreement_four)
+    end
 
-  it 'has an agreement five' do
-    expect(organization).to respond_to(:agreement_five)
-  end
+    it 'has an agreement five' do
+      expect(organization).to respond_to(:agreement_five)
+    end
 
-  it 'has an agreement six' do
-    expect(organization).to respond_to(:agreement_six)
-  end
+    it 'has an agreement six' do
+      expect(organization).to respond_to(:agreement_six)
+    end
 
-  it 'has an agreement seven' do
-    expect(organization).to respond_to(:agreement_seven)
-  end
+    it 'has an agreement seven' do
+      expect(organization).to respond_to(:agreement_seven)
+    end
 
-  it 'has an agreement eight' do
-    expect(organization).to respond_to(:agreement_eight)
-  end
+    it 'has an agreement eight' do
+      expect(organization).to respond_to(:agreement_eight)
+    end
 
-  it 'has a status attribute' do
-    expect(organization).to respond_to(:status)
-  end
+    it 'has a status attribute' do
+      expect(organization).to respond_to(:status)
+    end
 
-  it 'has a transportation attribute' do
-    expect(organization).to respond_to(:transportation)
-  end
+    it 'has a transportation attribute' do
+      expect(organization).to respond_to(:transportation)
+    end
 
-  it 'has a set_default_status attribute' do
-    expect(organization).to respond_to(:set_default_status)
-  end
+    it 'has a set_default_status attribute' do
+      expect(organization).to respond_to(:set_default_status)
+    end
 
   # Double check that attributes below this line are actually attributes.
   # Double check that they should be tested in this way.
-  it 'has a users attribute' do
-    expect(organization).to respond_to(:users)
-  end
+    it 'has a users attribute' do
+      expect(organization).to respond_to(:users)
+    end
 
-  it 'has a tickets attribute' do
-    expect(organization).to respond_to(:tickets)
-  end
+    it 'has a tickets attribute' do
+      expect(organization).to respond_to(:tickets)
+    end
 
-  it 'has a resource_categories attribute' do
-    expect(organization).to respond_to(:resource_categories)
-  end
+    it 'has a resource_categories attribute' do
+      expect(organization).to respond_to(:resource_categories)
+    end
 
-  it 'has an email attribute' do
-    expect(organization).to respond_to(:email)
-  end
+    it 'has an email attribute' do
+      expect(organization).to respond_to(:email)
+    end
 
-  it 'has a name attribute' do
-    expect(organization).to respond_to(:name)
-  end
+    it 'has a name attribute' do
+      expect(organization).to respond_to(:name)
+    end
 
-  it 'has a phone attribute' do
-    expect(organization).to respond_to(:phone)
-  end
+    it 'has a phone attribute' do
+      expect(organization).to respond_to(:phone)
+    end
 
-  it 'has a primary_name attribute' do
-    expect(organization).to respond_to(:primary_name)
-  end
+    it 'has a primary_name attribute' do
+      expect(organization).to respond_to(:primary_name)
+    end
 
-  it 'has a secondary_name attribute' do
-    expect(organization).to respond_to(:secondary_name)
-  end
+    it 'has a secondary_name attribute' do
+      expect(organization).to respond_to(:secondary_name)
+    end
 
-  it 'has a secondary_phone attribute' do
-    expect(organization).to respond_to(:secondary_phone)
-  end
+    it 'has a secondary_phone attribute' do
+      expect(organization).to respond_to(:secondary_phone)
+    end
 
-  it 'has a description attribute' do
-    expect(organization).to respond_to(:description)
+    it 'has a description attribute' do
+      expect(organization).to respond_to(:description)
+    end
   end
 
   describe 'relations' do
@@ -142,42 +145,48 @@ RSpec.describe Organization, type: :model do
   end
 
   # 3.2 Member Functions
-  it 'has a default status of submitted' do
-    expect(organization.status).to eq('submitted')
-  end
+  describe 'test the existence of factories' do
+    let(:organization) { FactoryBot.build_stubbed(:organization) }
+    it 'has a default status of submitted' do
+      expect(organization.status).to eq('submitted')
+    end
 
-  it 'can approve status' do
-    organization.approve
-    expect(organization.status).to eq('approved')
-  end
+    it 'can approve status' do
+      organization.approve
+      expect(organization.status).to eq('approved')
+    end
 
-  it 'can reject a status' do
-    organization.reject
-    expect(organization.status).to eq('rejected')
-  end
+    it 'can reject a status' do
+      organization.reject
+      expect(organization.status).to eq('rejected')
+    end
 
-  it 'has a to-string method' do
-    string = organization.to_s
-    expect(string).to be organization.name
-  end
+    it 'has a to-string method' do
+      string = organization.to_s
+      expect(string).to be organization.name
+    end
 
-  # 3.3 Static Functions -- There are none
-  it 'has no static functions' do
-    :skip
-  end
+    # 3.3 Static Functions -- There are none
+    it 'has no static functions' do
+      :skip
+    end
 
-  # 3.4 Test Scope methods --There are none
-  it 'has no scope functions' do
-    :skip
+    # 3.4 Test Scope methods --There are none
+    it 'has no scope functions' do
+      :skip
+    end
   end
 
   # Goal 4 - factories
   describe 'test the existence of factories' do
-    let(:org) { build_stubbed(:organization) }
-    # org = build_stubbed(:organization)
-    it 'tests the existence of the organization factory' do
-      # org = build_stubbed(:organization)
+    let(:org) { FactoryBot.build_stubbed(:organization) }
+
+    it 'tests the existence of name' do
       expect(org.name).to eq("TestOrganization")
+    end
+
+    it 'tests the existence of email' do
+      expect(org.email).to eq(nil)
     end
   end
 
