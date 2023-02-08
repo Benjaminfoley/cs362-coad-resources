@@ -48,7 +48,14 @@ RSpec.describe User, type: :model do
     it { should_not allow_value('example.domain.com').for(:email) }
   end
 
-  # 3.2 Member Functions
+  
+# describe 'test for factoeries' do
+#     let(:user) { FactoryBot.build_stubbed(:user) }
+#     it 'has a valid factory' do
+#       expect(user).to be_valid
+#     end
+#   end
+
   it 'sets a default role' do
     expect(user.role).to eq('organization')
   end
