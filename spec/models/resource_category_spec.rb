@@ -3,7 +3,6 @@
 require 'rails_helper'
 
 RSpec.describe ResourceCategory, type: :model do
-  # let(:resource_category) { ResourceCategory.new }
   describe 'Test attributes using factory' do
     let(:resource_category) { FactoryBot.build_stubbed(:resource_category) }
     # Attributes.
@@ -84,16 +83,18 @@ RSpec.describe ResourceCategory, type: :model do
     }
   end
 
-  # 3.4 Scope Mothods - Alternative tests
-  it 'can query for active categories' do
-    active1 = ResourceCategory.create!(name: 'Name1', active: true)
-    active2 = ResourceCategory.create!(name: 'Name2', active: true)
-    expect(ResourceCategory.active).to eq([active1, active2])
-  end
+  # 3.4 Scope Methods
+  describe 'Test scope methods using factory' do
+    # By nature of these methods, they must touch the database and therefore use create
+    let(:active_resource_category) { FactoryBot.create(:resource_category, active: true) }
+    let(:inactive_resource_category) { FactoryBot.create(:resource_category, active: false) }
 
-  it 'can query for inactive categories' do
-    inactive1 = ResourceCategory.create!(name: 'Name1', active: false)
-    inactive2 = ResourceCategory.create!(name: 'Name2', active: false)
-    expect(ResourceCategory.inactive).to eq([inactive1, inactive2])
+    it 'can query for active categories' do
+      expect(ResourceCategory.active).to eq([active_resource_category])
+    end
+
+    it 'can query for inactive categories' do
+      expect(ResourceCategory.inactive).to eq([inactive_resource_category])
+    end
   end
 end
