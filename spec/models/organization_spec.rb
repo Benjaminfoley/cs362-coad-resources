@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'rails_helper'
+# require 'factory_bot'
 
 RSpec.describe Organization, type: :model do
   let(:organization) { Organization.new }
@@ -172,15 +173,13 @@ RSpec.describe Organization, type: :model do
 
   # Goal 4 - factories
   describe 'test the existence of factories' do
-    # let(:organization) { Factory_bot.build_stubbed(:organization) }
+    let(:org) { build_stubbed(:organization) }
+    # org = build_stubbed(:organization)
     it 'tests the existence of the organization factory' do
       # org = build_stubbed(:organization)
-      expect(org).to respond_to(:name)
+      expect(org.name).to eq("TestOrganization")
     end
   end
-
-  setup do
-    # let(:organization) { Factory_bot.build_stubbed(:organization) }
 
 
 end
