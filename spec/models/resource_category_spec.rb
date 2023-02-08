@@ -3,36 +3,38 @@
 require 'rails_helper'
 
 RSpec.describe ResourceCategory, type: :model do
-  let(:resource_category) { ResourceCategory.new }
+  # let(:resource_category) { ResourceCategory.new }
+  describe 'Test attributes using factory' do
+    let(:resource_category) { FactoryBot.build_stubbed(:resource_category) }
+    # Attributes.
+    it 'has an organizations attribute' do
+      expect(resource_category).to respond_to(:organizations)
+    end
 
-  # Attributes.
-  it 'has an organizations attribute' do
-    expect(resource_category).to respond_to(:organizations)
-  end
+    it 'has a tickets attribute' do
+      expect(resource_category).to respond_to(:tickets)
+    end
 
-  it 'has a tickets attribute' do
-    expect(resource_category).to respond_to(:tickets)
-  end
+    it 'has a name attribute' do
+      expect(resource_category).to respond_to(:name)
+    end
 
-  it 'has a name attribute' do
-    expect(resource_category).to respond_to(:name)
-  end
+    it 'has a validates_presence_of attribute' do
+      expect(resource_category).to respond_to(:validates_presence_of)
+    end
 
-  it 'has a validates_presence_of attribute' do
-    expect(resource_category).to respond_to(:validates_presence_of)
-  end
+    it 'has a validates_length_of attribute' do
+      expect(resource_category).to respond_to(:validates_length_of)
+    end
 
-  it 'has a validates_length_of attribute' do
-    expect(resource_category).to respond_to(:validates_length_of)
-  end
+    it 'has an active attribute' do
+      expect(resource_category).to respond_to(:active)
+    end
 
-  it 'has an active attribute' do
-    expect(resource_category).to respond_to(:active)
-  end
-
-  describe 'relations' do
-    it { should have_and_belong_to_many(:organizations) }
-    it { should have_many(:tickets) }
+    describe 'relations' do
+      it { should have_and_belong_to_many(:organizations) }
+      it { should have_many(:tickets) }
+    end
   end
 
   # 3.1 Validations
@@ -48,22 +50,25 @@ RSpec.describe ResourceCategory, type: :model do
     it { should validate_uniqueness_of(:name).case_insensitive }
   end
 
-  # 3.2 Member Functions
-  it 'can activate' do
-    resource_category.activate
-    expect(resource_category.active).to be true
-  end
+  describe 'Test methods using factory' do
+    let(:resource_category) { FactoryBot.build_stubbed(:resource_category) }  
+    # 3.2 Member Functions
+    it 'can activate' do
+      resource_category.activate
+      expect(resource_category.active).to be true
+    end
 
-  it 'can deactivate' do
-    resource_category.deactivate
-    expect(resource_category.active).to be false
-  end
+    it 'can deactivate' do
+      resource_category.deactivate
+      expect(resource_category.active).to be false
+    end
 
-  it 'can check active status' do
-    resource_category.activate
-    expect(resource_category.inactive?).to be false
-    resource_category.deactivate
-    expect(resource_category.inactive?).to be true
+    it 'can check active status' do
+      resource_category.activate
+      expect(resource_category.inactive?).to be false
+      resource_category.deactivate
+      expect(resource_category.inactive?).to be true
+    end
   end
 
   it 'has a to-string method' do
