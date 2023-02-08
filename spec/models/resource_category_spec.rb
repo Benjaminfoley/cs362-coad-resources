@@ -51,7 +51,7 @@ RSpec.describe ResourceCategory, type: :model do
   end
 
   describe 'Test methods using factory' do
-    let(:resource_category) { FactoryBot.build_stubbed(:resource_category) }  
+    let(:resource_category) { FactoryBot.build(:resource_category) }  # build works here but build_stubbed won't. Not exactly sure why
     # 3.2 Member Functions
     it 'can activate' do
       resource_category.activate
@@ -69,10 +69,10 @@ RSpec.describe ResourceCategory, type: :model do
       resource_category.deactivate
       expect(resource_category.inactive?).to be true
     end
-  end
-
-  it 'has a to-string method' do
-    expect(resource_category.to_s).to be resource_category.name
+  
+    it 'has a to-string method' do
+      expect(resource_category.to_s).to be resource_category.name
+    end
   end
 
   # 3.3 Static Functions
