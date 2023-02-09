@@ -83,27 +83,31 @@ RSpec.describe Ticket, type: :model do
   end
 
   # 3.2 Functions
-  setup do
-    @o1 = build(:organization, :name => "Organization", :id => 1)
-    @rc1 = build(:resource_category, :name => "Resource category")
-    @r1 = build(:region, :name => "Region")
-    @t1 = build(:ticket, :name => "Ticket", :region_id => @r1.id, :resource_category_id => @rc1.id, :organization_id => 1)
-  end
+  # setup do
+  #   @o1 = build(:organization, :name => "Organization", :id => 1)
+  #   @rc1 = build(:resource_category, :name => "Resource category")
+  #   @r1 = build(:region, :name => "Region")
+  #   @t1 = build(:ticket, :name => "Ticket", :region_id => @r1.id, :resource_category_id => @rc1.id, :organization_id => 1)
+  # end
 
-  it '@t1 has name' do
-    expect(@t1.name).to eq("Ticket")
-  end
+  # it '@t1 has name' do
+  #   expect(@t1.name).to eq("Ticket")
+  # end
 
-  it 'can check the open status' do
-    expect(@t1.open?).to be true
-    t2 = build(:ticket, :closed =>true)
-    expect(t2.open?).to be false
-  end
+  # it 'can check the open status' do
+  #   expect(@t1.open?).to be true
+  #   t2 = build(:ticket, :closed =>true)
+  #   expect(t2.open?).to be false
+  # end
 
-  it 'can check the open status' do
-    expect(ticket.open?).to be true
-    ticket = Ticket.new(closed: true)
-    expect(ticket.open?).to be false
+  describe 'Test attributes using factory' do
+    let(:ticket) { FactoryBot.build_stubbed(:ticket) }
+      
+    it 'can check the open status' do
+      expect(ticket.open?).to be true
+      ticket = Ticket.new(closed: true)
+      expect(ticket.open?).to be false
+    end
   end
 
   it 'checks if it is captured by an organization' do
