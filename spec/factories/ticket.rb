@@ -1,7 +1,9 @@
 FactoryBot.define do
   factory :ticket do
-    # name {'TicketName'}
-    # phone {'1-888-888-8888'}
+    name {'TicketName'}
+    phone {'1-888-888-8888'}
+    # region {'RegionName'}
+    # resource_category {'ResourceCategoryName'}
     # organization_id {nil}
     # created_at {Date.today}
     # updated_at {Date.today}

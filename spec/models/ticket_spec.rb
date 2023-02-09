@@ -83,32 +83,28 @@ RSpec.describe Ticket, type: :model do
   end
 
   # 3.2 Functions
-  # setup do
-  #   @o1 = build(:organization, :name => "Organization", :id => 1)
-  #   @rc1 = build(:resource_category, :name => "Resource category")
-  #   @r1 = build(:region, :name => "Region")
-  #   @t1 = build(:ticket, :name => "Ticket", :region_id => @r1.id, :resource_category_id => @rc1.id, :organization_id => 1)
-  # end
+  describe 'Test open status using factory' do
+    let(:open_ticket) { FactoryBot.build_stubbed(:ticket) }
+    let(:closed_ticket) { FactoryBot.build(:ticket, closed: true) }
 
-  # it '@t1 has name' do
-  #   expect(@t1.name).to eq("Ticket")
-  # end
+    it 'has a default status of open' do
+      expect(open_ticket.open?).to be true
+    end
 
-  # it 'can check the open status' do
-  #   expect(@t1.open?).to be true
-  #   t2 = build(:ticket, :closed =>true)
-  #   expect(t2.open?).to be false
-  # end
-
-  describe 'Test attributes using factory' do
-    let(:ticket) { FactoryBot.build_stubbed(:ticket) }
-      
-    it 'can check the open status' do
-      expect(ticket.open?).to be true
-      ticket = Ticket.new(closed: true)
-      expect(ticket.open?).to be false
+    it 'can have a status of closed' do
+      expect(closed_ticket.open?).to be false
     end
   end
+
+  # Save these lets for later
+    # let(:region) { FactoryBot.build_stubbed(:region) } 
+    # let(:resource_category) { FactoryBot.build_stubbed(:resource_category) } 
+    # let(:closed_ticket) { FactoryBot.build_stubbed(:ticket, 
+    #   closed: false, 
+    #   region: region, 
+    #   resource_category: resource_category
+    # ) }
+
 
   it 'checks if it is captured by an organization' do
     expect(ticket.captured?).to be false
