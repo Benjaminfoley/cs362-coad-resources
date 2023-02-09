@@ -84,8 +84,15 @@ RSpec.describe Ticket, type: :model do
 
   # 3.2 Functions
   describe 'Test open status using factory' do
-    let(:open_ticket) { FactoryBot.build_stubbed(:ticket) }
-    let(:closed_ticket) { FactoryBot.build(:ticket, closed: true) }
+    let(:organization) {FactoryBot.build_stubbed(:organization)}
+    let(:region) { FactoryBot.build_stubbed(:region) }
+    let(:resource_category) { FactoryBot.build_stubbed(:resource_category) }
+    let(:open_ticket) { FactoryBot.build_stubbed(:ticket,
+      organization: organization,
+      region: region,
+      resource_category: resource_category
+    ) }
+    let(:closed_ticket) { FactoryBot.build_stubbed(:ticket, closed: true) }
 
     it 'has a default status of open' do
       expect(open_ticket.open?).to be true
@@ -94,40 +101,13 @@ RSpec.describe Ticket, type: :model do
     it 'can have a status of closed' do
       expect(closed_ticket.open?).to be false
     end
+
+    it 'checks if it is captured by an organization' do
+      expect(closed_ticket.captured?).to be false
+      expect(open_ticket.captured?).to be true
+    end
   end
 
-  # Save these lets for later
-    # let(:region) { FactoryBot.build_stubbed(:region) } 
-    # let(:resource_category) { FactoryBot.build_stubbed(:resource_category) } 
-    # let(:closed_ticket) { FactoryBot.build_stubbed(:ticket, 
-    #   closed: false, 
-    #   region: region, 
-    #   resource_category: resource_category
-    # ) }
-
-
-  it 'checks if it is captured by an organization' do
-    expect(ticket.captured?).to be false
-    organization = Organization.create!(
-      name: 'Org',
-      id: 1,
-      primary_name: 'PrimaryName',
-      secondary_name: 'SecondaryName',
-      phone: '1-800-222-2222',
-      secondary_phone: '1-555-555-55555',
-      email: 'example@domain.com'
-    )
-    region = Region.create!(name: 'Region1')
-    resource_category = ResourceCategory.create!(name: 'RC1')
-    ticket = Ticket.create!(
-      name: 'TicketName',
-      phone: '1-888-888-8888',
-      organization_id: 1,
-      region: region,
-      resource_category: resource_category
-    )
-    expect(ticket.captured?).to be true
-  end
 
   it 'returns "Ticket #{id}" from to_s' do
     organization = Organization.create!(
