@@ -58,16 +58,13 @@ RSpec.describe User, type: :model do
     it 'can set a default role' do
       expect(user).to respond_to(:set_default_role)
     end
+
+    it 'to string returns an email' do
+      expect(user.to_s).to eq(user.email)
+    end
   end
 
-  # describe 'to_s returns user.name' do
-  #   it {
-  #     expect(user.to_s).to be user.name
-  #     user.name = 'name'
-  #     expect(user.to_s).to eq('name')
-  #     expect(user.to_s).to_not be_nil
-  #   }
-  # end
+
 
   # 3.3 Static Functions -- There are none
   it 'has no static functions' do
