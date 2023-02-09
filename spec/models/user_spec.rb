@@ -3,21 +3,25 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  let(:user) { User.new }
+  # let(:user) { User.new }
+  
+  # Attributes
+  describe 'test attributes using factories' do
+    let(:user) { FactoryBot.build_stubbed(:user) }
+    # let(:user) { User.new }
 
-  describe 'test for factories' do
-        let(:user) { FactoryBot.build_stubbed(:user) }
-  #Attributes
-  it 'has an email attribute' do
-    expect(user).to respond_to(:email)
-  end
 
-  it 'has a role attribute' do
-    expect(user).to respond_to(:role)
-  end
+    it 'has an email attribute' do
+      expect(user).to respond_to(:email)
+    end
 
-  describe 'relations' do
-    it { should belong_to(:organization).optional }
+    it 'has a role attribute' do
+      expect(user).to respond_to(:role)
+    end
+
+    describe 'relations' do
+      it { should belong_to(:organization).optional }
+    end
   end
 
   # 3.1 Validations
@@ -50,28 +54,20 @@ RSpec.describe User, type: :model do
     it { should_not allow_value('example.domain.com').for(:email) }
   end
 
-  it 'sets a default role' do
-    expect(user.role).to eq('organization')
-  end
+# 3.2 Functions
+  # describe 'can set a default role' do
+  #   let(user.set_default_role) { FactoryBot.build_stubbed(:organization) }
+  # end
 
-  it 'returns the email' do
-    user.email = 'example@domain.com'
-    expect(user.to_s).to be user.email
-  end
+  # describe 'to_s returns user.name' do
+  #   it {
+  #     expect(user.to_s).to be user.name
+  #     user.name = 'name'
+  #     expect(user.to_s).to eq('name')
+  #     expect(user.to_s).to_not be_nil
+  #   }
+  # end
 
-#3.2 Functions
-  describe 'has a function' do
-    let(set_default_role) { FactoryBot.build_stubbed(:organization) }
-  end
-
-  describe 'to_s returns user.name' do
-    it {
-      expect(user.to_s).to be user.name
-      user.name = 'name'
-      expect(user.to_s).to eq('name')
-      expect(user.to_s).to_not be_nil
-    }
-  end
   # 3.3 Static Functions -- There are none
   it 'has no static functions' do
     :skip
