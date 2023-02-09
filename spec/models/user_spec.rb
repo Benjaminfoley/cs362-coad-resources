@@ -3,13 +3,10 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  # let(:user) { User.new }
   
   # Attributes
   describe 'test attributes using factories' do
     let(:user) { FactoryBot.build_stubbed(:user) }
-    # let(:user) { User.new }
-
 
     it 'has an email attribute' do
       expect(user).to respond_to(:email)
@@ -55,9 +52,13 @@ RSpec.describe User, type: :model do
   end
 
 # 3.2 Functions
-  # describe 'can set a default role' do
-  #   let(user.set_default_role) { FactoryBot.build_stubbed(:organization) }
-  # end
+  describe 'test methods using factories' do
+    let(:user) { FactoryBot.build_stubbed(:user) }
+
+    it 'can set a default role' do
+      expect(user).to respond_to(:set_default_role)
+    end
+  end
 
   # describe 'to_s returns user.name' do
   #   it {
