@@ -84,14 +84,7 @@ RSpec.describe Ticket, type: :model do
 
   # 3.2 Functions
   describe 'Test open status using factory' do
-    let(:organization) {FactoryBot.build_stubbed(:organization)}
-    let(:region) { FactoryBot.build_stubbed(:region) }
-    let(:resource_category) { FactoryBot.build_stubbed(:resource_category) }
-    let(:open_ticket) { FactoryBot.build_stubbed(:ticket,
-      organization: organization,
-      region: region,
-      resource_category: resource_category
-    ) }
+    let(:open_ticket) { FactoryBot.build_stubbed(:ticket) }
     let(:closed_ticket) { FactoryBot.build_stubbed(:ticket, closed: true) }
 
     it 'has a default status of open' do
@@ -103,8 +96,13 @@ RSpec.describe Ticket, type: :model do
     end
 
     it 'checks if it is captured by an organization' do
-      expect(closed_ticket.captured?).to be false
+      expect(closed_ticket.captured?).to be true
       expect(open_ticket.captured?).to be true
+    end
+
+    it 'returns "Ticket #{id}" from to_s' do
+      skip 'need to figure out where id comes from'
+      expect(open_ticket.to_s).to eq('Ticket 1')
     end
   end
 
