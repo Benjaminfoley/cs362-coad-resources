@@ -84,8 +84,8 @@ RSpec.describe Ticket, type: :model do
 
   # 3.2 Functions
   describe 'Test open status using factory' do
-    let(:open_ticket) { FactoryBot.build_stubbed(:ticket) }
-    let(:closed_ticket) { FactoryBot.build_stubbed(:ticket, closed: true) }
+    let(:open_ticket) { FactoryBot.build_stubbed(:ticket, id: 1) }
+    let(:closed_ticket) { FactoryBot.build_stubbed(:ticket, closed: true, id: 2) }
 
     it 'has a default status of open' do
       expect(open_ticket.open?).to be true
@@ -100,9 +100,9 @@ RSpec.describe Ticket, type: :model do
       expect(open_ticket.captured?).to be true
     end
 
-    it 'returns "Ticket #{id}" from to_s' do
-      skip 'need to figure out where id comes from'
+    it 'has an id associated with its name' do
       expect(open_ticket.to_s).to eq('Ticket 1')
+      expect(closed_ticket.to_s).to eq('Ticket 2')
     end
   end
 
