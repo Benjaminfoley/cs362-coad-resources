@@ -172,19 +172,4 @@ RSpec.describe Organization, type: :model do
       :skip
     end
   end
-
-  # Goal 4 - factories
-  # describe 'test the existence of factories' do
-  #   let(:org) { FactoryBot.build_stubbed(:organization) }
-
-  #   it 'tests the existence of name' do
-  #     expect(org.name).to eq("TestOrganization")
-  #   end
-
-  #   it 'tests the existence of email' do
-  #     expect(org.email).to eq(nil)
-  #   end
-  # end
-
-
 end
