@@ -114,52 +114,15 @@ RSpec.describe Ticket, type: :model do
   # 3.4 Scope Methods
   describe 'Test scope methods using factory' do
     let(:open_ticket) { FactoryBot.create(:ticket, closed: false, organization_id: nil) }
-    let(:closed_ticket) { FactoryBot.build_stubbed(:ticket, closed: true, id: 2) }
+    let(:closed_ticket) { FactoryBot.create(:ticket, closed: true, id: 2) }
 
     it 'can query for open tickets' do
       expect(Ticket.open).to match([open_ticket])
     end
-  end
 
-
-  it 'can query for open tickets' do
-    region = Region.create!(name: 'Region1')
-    resource_category = ResourceCategory.create!(name: 'RC1')
-    ticket1 = Ticket.create!(
-      name: 'Ticket1',
-      closed: false,
-      region: region,
-      resource_category: resource_category,
-      phone: '1800-222-2222'
-    )
-    ticket2 = Ticket.create!(
-      name: 'Ticket2',
-      closed: false,
-      region: region,
-      resource_category: resource_category,
-      phone: '1800-222-2222'
-    )
-    expect(Ticket.open).to match([ticket1, ticket2])
-  end
-
-  it 'can query for closed tickets' do
-    region = Region.create!(name: 'Region1')
-    resource_category = ResourceCategory.create!(name: 'RC1')
-    ticket1 = Ticket.create!(
-      name: 'Ticket1',
-      closed: true,
-      region: region,
-      resource_category: resource_category,
-      phone: '1800-222-2222'
-    )
-    ticket2 = Ticket.create!(
-      name: 'Ticket2',
-      closed: true,
-      region: region,
-      resource_category: resource_category,
-      phone: '1800-222-2222'
-    )
-    expect(Ticket.closed).to match([ticket1, ticket2])
+    it 'can query for closed tickets' do
+      expect(Ticket.closed).to match([closed_ticket])
+    end
   end
 
   it 'can query for all organizations' do
