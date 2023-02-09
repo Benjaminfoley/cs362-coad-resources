@@ -28,3 +28,15 @@ class Users::UnlocksController < Devise::UnlocksController
   #   super(resource)
   # end
 end
+
+#notes on 2/9/23 for signing in a user.
+
+#RSpec.describe DashboardController, type: :controller do
+#let(:user) { create(:user) }
+#before(:each) { sign_in user }
+
+#describe 'GET #index' do
+  #it{ expect(get(:index)).to be_successful }
+#end
+#end
+
