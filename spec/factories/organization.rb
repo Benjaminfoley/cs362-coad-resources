@@ -1,10 +1,12 @@
 FactoryBot.define do
   factory :organization do
     name {"TestOrganization"}
-    # status {"submitted"}
-    # phone {"111-111-1111"}
-    # email {"default@domain.com"}
-    # description {"Description"}
     id {1}
+    # the following may or may not be necessary. 
+    primary_name {"PrimaryName"}
+    secondary_name {"SecondaryName"}
+    phone {"111-111-1111"}
+    secondary_phone {'1-222-222-22222'}
+    email {"default@domain.com"}
   end
 end

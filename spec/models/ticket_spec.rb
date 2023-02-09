@@ -112,6 +112,16 @@ RSpec.describe Ticket, type: :model do
   end
 
   # 3.4 Scope Methods
+  describe 'Test scope methods using factory' do
+    let(:open_ticket) { FactoryBot.create(:ticket, closed: false, organization_id: nil) }
+    let(:closed_ticket) { FactoryBot.build_stubbed(:ticket, closed: true, id: 2) }
+
+    it 'can query for open tickets' do
+      expect(Ticket.open).to match([open_ticket])
+    end
+  end
+
+
   it 'can query for open tickets' do
     region = Region.create!(name: 'Region1')
     resource_category = ResourceCategory.create!(name: 'RC1')

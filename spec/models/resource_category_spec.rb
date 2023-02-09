@@ -3,9 +3,9 @@
 require 'rails_helper'
 
 RSpec.describe ResourceCategory, type: :model do
+  # Attributes.
   describe 'Test attributes using factory' do
     let(:resource_category) { FactoryBot.build_stubbed(:resource_category) }
-    # Attributes.
     it 'has an organizations attribute' do
       expect(resource_category).to respond_to(:organizations)
     end
@@ -48,10 +48,10 @@ RSpec.describe ResourceCategory, type: :model do
   describe 'validates the uniqueness of name' do
     it { should validate_uniqueness_of(:name).case_insensitive }
   end
-
+  
+  # 3.2 Member Functions
   describe 'Test methods using factory' do
     let(:resource_category) { FactoryBot.build(:resource_category) }  # build works here but build_stubbed won't. Not exactly sure why
-    # 3.2 Member Functions
     it 'can activate' do
       resource_category.activate
       expect(resource_category.active).to be true
