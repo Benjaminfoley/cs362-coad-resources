@@ -145,26 +145,9 @@ RSpec.describe Ticket, type: :model do
     it 'can query for a region by id' do
       expect(Ticket.region(1)).to match([open_ticket])
     end
-  end
 
-
-  it 'can query for a resource category by id' do
-    region = Region.create!(name: 'Region1')
-    resource_category = ResourceCategory.create!(name: 'RC1', id: 1)
-    ticket1 = Ticket.create!(
-      name: 'Ticket1',
-      closed: true,
-      region: region,
-      resource_category: resource_category,
-      phone: '1800-222-2222'
-    )
-    ticket2 = Ticket.create!(
-      name: 'Ticket2',
-      closed: true,
-      region: region,
-      resource_category: resource_category,
-      phone: '1800-222-2222'
-    )
-    expect(Ticket.resource_category(1)).to match([ticket1, ticket2])
+    it 'can query for a resource category by id' do
+      expect(Ticket.resource_category(1)).to match([open_ticket])
+    end
   end
 end

@@ -1,5 +1,6 @@
 FactoryBot.define do
   factory :resource_category do
     name {'ResourceCategoryName'}
+    id {1}
   end
 end
