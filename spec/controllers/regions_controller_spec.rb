@@ -2,6 +2,13 @@ require 'rails_helper'
 
 RSpec.describe RegionsController, type: :controller do
 
+  describe 'signed in?' do
+    it 'signed in' do
+      user = build_stubbed(:user)
+      expect(sign_in(user))
+    end
+  end
+
   describe "GET #index" do
   let(:user) {build_stubbed(:user)}
     it {
