@@ -75,5 +75,12 @@ RSpec.describe RegionsController, type: :controller do
         expect(response).to redirect_to(user_session_path)
       end
     end
+
+    describe 'GET #new' do
+      it 'redirects to sign-in' do
+        get :new
+        expect(response).to redirect_to(user_session_path)
+      end
+    end
   end
 end
