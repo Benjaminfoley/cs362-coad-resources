@@ -6,12 +6,20 @@ RSpec.describe RegionsController, type: :controller do
   # admin = successful 
 
   context 'as admin user' do
-    let(:admin) {create :user, :admin}
+    let(:admin) { create :user, :admin }
+    let(:ticket) { create :ticket, id: 1 }
     before(:each) { sign_in admin }
     
     describe 'GET #index' do
       it 'is successful' do
         expect(get(:index)).to have_http_status(:ok)
+      end
+    end
+
+    describe 'GET #show' do
+      it 'is successful' do
+        get :show, params: { id: ticket.id }
+        expect(response).to have_http_status(:ok)
       end
     end
   end
@@ -36,23 +44,4 @@ RSpec.describe RegionsController, type: :controller do
       end
     end
   end
-
-  # describe "GET #index" do
-  #   let(:user) {create :user}
-  #   let(:organization) {create :user, :organization}
-
-  #   # it 'redirects a non-logged-in user to sign-in' do
-  #   #   expect(get(:index)).to redirect_to(sign_in_path) 
-  #   # end
-
-  #   it 'redirects an organization user to dashboard' do
-  #     sign_in(organization)
-  #     expect(get(:index)).to redirect_to dashboard_path
-  #   end
-
-  #   it 'is successful for admin user' do
-  #     sign_in(admin)
-  #     expect(get(:index)).to be success
-  #   end
-  # end
 end
