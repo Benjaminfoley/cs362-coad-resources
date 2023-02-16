@@ -27,6 +27,16 @@ RSpec.describe RegionsController, type: :controller do
     end
   end
 
+  context 'as a non-logged-in user' do
+    let(:user) {create :user}
+    
+    describe 'GET #index' do
+      it 'redirects to sign-in' do
+        expect(get(:index)).to redirect_to(user_session_path)
+      end
+    end
+  end
+
   # describe "GET #index" do
   #   let(:user) {create :user}
   #   let(:organization) {create :user, :organization}
