@@ -30,6 +30,22 @@ RSpec.describe RegionsController, type: :controller do
         expect(response).to have_http_status(:ok)
       end
     end
+
+    describe 'POST #create' do pending 
+      "Not yet implemented"
+    end
+
+    describe 'GET #edit' do pending 
+      "Not yet implemented"
+    end
+
+    describe 'PATCH #update' do pending 
+      "Not yet implemented"
+    end
+
+    describe 'DELETE #destroy' do pending 
+      "Not yet implemented"
+    end
   end
 
   context 'as organization' do
@@ -57,6 +73,22 @@ RSpec.describe RegionsController, type: :controller do
         expect(response).to redirect_to(dashboard_path)
       end
     end
+
+    describe 'POST #create' do pending 
+      "Not yet implemented"
+    end
+
+    describe 'GET #edit' do pending 
+      "Not yet implemented"
+    end
+
+    describe 'PATCH #update' do pending 
+      "Not yet implemented"
+    end
+
+    describe 'DELETE #destroy' do pending 
+      "Not yet implemented"
+    end
   end
 
   context 'as a non-logged-in user' do
@@ -81,6 +113,22 @@ RSpec.describe RegionsController, type: :controller do
         get :new
         expect(response).to redirect_to(user_session_path)
       end
+    end
+
+    describe 'POST #create' do pending 
+      "Not yet implemented"
+    end
+
+    describe 'GET #edit' do pending 
+      "Not yet implemented"
+    end
+
+    describe 'PATCH #update' do pending 
+      "Not yet implemented"
+    end
+
+    describe 'DELETE #destroy' do pending 
+      "Not yet implemented"
     end
   end
 end
