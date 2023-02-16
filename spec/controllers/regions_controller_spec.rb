@@ -23,6 +23,13 @@ RSpec.describe RegionsController, type: :controller do
         expect(response).to have_http_status(:ok)
       end
     end
+
+    describe 'GET #new' do
+      it 'is successful' do
+        get :new
+        expect(response).to have_http_status(:ok)
+      end
+    end
   end
 
   context 'as organization' do
