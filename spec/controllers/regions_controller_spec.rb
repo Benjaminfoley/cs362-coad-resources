@@ -7,7 +7,7 @@ RSpec.describe RegionsController, type: :controller do
 
   context 'as admin user' do
     let(:admin) { create :user, :admin }
-    let(:ticket) { create :ticket, id: 1 }
+    let(:ticket) { create :ticket }
     before(:each) { sign_in admin }
     
     describe 'GET #index' do

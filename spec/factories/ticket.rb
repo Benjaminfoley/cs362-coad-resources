@@ -5,5 +5,6 @@ FactoryBot.define do
     organization
     resource_category
     region 
+    sequence(:id) { |n| "#{n}" }
   end
 end
