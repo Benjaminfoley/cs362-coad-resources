@@ -1,18 +1,21 @@
 FactoryBot.define do
     factory :user do
       # name {"UserName"}
-      email {"email@email.com"}
+      # email
       password { 'password' }
       # password_confirmation { 'password' }
 
-      before(:build_stubbed) { |user| user.skip_confirmation! }
+      # this creates a unique email each time the factory is called
+      sequence(:email) { |n| "user_#{n}@email.com" }
+      # before(:build_stubbed) { |user| user.skip_confirmation! }
+      before(:create) { |user| user.skip_confirmation! }
     end
 
     trait :admin do 
       role { 'admin' }
     end
 
-    trait :guest do
-      role { ''}
+    trait :organization do 
+      role { 'organization' }
     end
   end
