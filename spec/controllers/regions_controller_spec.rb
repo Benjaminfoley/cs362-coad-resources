@@ -8,6 +8,7 @@ RSpec.describe RegionsController, type: :controller do
   context 'as admin user' do
     let(:admin) { create :user, :admin }
     let(:ticket) { create :ticket }
+
     before(:each) { sign_in admin }
     
     describe 'GET #index' do
@@ -26,11 +27,20 @@ RSpec.describe RegionsController, type: :controller do
 
   context 'as organization' do
     let(:organization) {create :user, :organization}
+    let(:ticket) { create :ticket }
+
     before(:each) { sign_in organization }
 
     describe 'GET #index' do
       it 'redirects to dashboard' do
         expect(get(:index)).to redirect_to dashboard_path
+      end
+    end
+
+    describe 'GET #show' do
+      it 'redirects to dashboard' do
+        get :show, params: { id: ticket.id }
+        expect(response).to redirect_to dashboard_path
       end
     end
   end
