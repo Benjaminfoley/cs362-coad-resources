@@ -2,11 +2,18 @@ require 'rails_helper'
 
 RSpec.describe DashboardController, type: :controller do
 
-    describe 'GET index' do pending
-        let(:user) { build_stubbed(:user) }
+    describe 'GET index' do
+        # let(:user) { FactoryBot.build_stubbed(:user, role: :admin) }
+        let(:user) { FactoryBot.create(:user, email: "admin_email@domain.com", password: "DefaultPassword1") }
+        let(:status_options) { ['Open', 'Captured', 'Closed'] }
+
         it 'assigns @status_options' do
+            sign_in user
+            # debugger
             get :index
-            expect(assigns(:status_options)).to eq('Open')
+            # expect(user.role).to eq("admin")
+            # expect(user.admin?).to be true
+            expect(assigns(:status_options)).to eq status_options
         end
     end
 
@@ -23,6 +30,7 @@ RSpec.describe DashboardController, type: :controller do
     end
         # test index
 
+        # NOTE: status_options and tickets are private methods and should not be tested. 
         # test status options
 
         # test tickets
