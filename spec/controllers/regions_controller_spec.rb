@@ -33,24 +33,32 @@ RSpec.describe RegionsController, type: :controller do
 
     describe 'GET #index' do
       it 'redirects to dashboard' do
-        expect(get(:index)).to redirect_to dashboard_path
+        expect(get(:index)).to redirect_to(dashboard_path)
       end
     end
 
     describe 'GET #show' do
       it 'redirects to dashboard' do
         get :show, params: { id: ticket.id }
-        expect(response).to redirect_to dashboard_path
+        expect(response).to redirect_to(dashboard_path)
       end
     end
   end
 
   context 'as a non-logged-in user' do
     let(:user) {create :user}
+    let(:ticket) { create :ticket }
     
     describe 'GET #index' do
       it 'redirects to sign-in' do
         expect(get(:index)).to redirect_to(user_session_path)
+      end
+    end
+
+    describe 'GET #show' do
+      it 'redirects to sign-in' do
+        get :show, params: { id: ticket.id }
+        expect(response).to redirect_to(user_session_path)
       end
     end
   end
