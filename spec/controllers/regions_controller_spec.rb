@@ -46,8 +46,11 @@ RSpec.describe RegionsController, type: :controller do
       end
     end
 
-    describe 'PATCH #update' do pending 
-      "Not yet implemented"
+    describe 'PATCH #update' do pending "Not working yet, redirects to different path"
+      it 'is successful' do
+        patch :update, params: { id: region.id, region: attributes_for(:region) }
+        expect(response).to redirect_to(regions_path)
+      end
     end
 
     describe 'DELETE #destroy' do pending 
