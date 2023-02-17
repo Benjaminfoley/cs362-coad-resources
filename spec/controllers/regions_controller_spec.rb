@@ -58,6 +58,7 @@ RSpec.describe RegionsController, type: :controller do
   context 'as organization' do
     let(:organization) {create :user, :organization}
     let(:ticket) { create :ticket }
+    let(:region) { create :region }
 
     before(:each) { sign_in organization }
 
@@ -88,8 +89,11 @@ RSpec.describe RegionsController, type: :controller do
       end
     end
 
-    describe 'GET #edit' do pending 
-      "Not yet implemented"
+    describe 'GET #edit' do
+      it 'redirects to dashboard' do
+        get :edit, params: { id: region.id }
+        expect(response).to redirect_to(dashboard_path)
+      end
     end
 
     describe 'PATCH #update' do pending 
