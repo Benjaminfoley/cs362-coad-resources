@@ -1,55 +1,37 @@
 require 'rails_helper'
 
 RSpec.describe DashboardController, type: :controller do
+  context 'as admin user' do
+    let(:admin) { create :user, :admin }
 
-    describe 'GET index' do 
-        # let(:user) { FactoryBot.build_stubbed(:user, role: :admin) }
-        let(:user) { FactoryBot.create(:user, email: "admin_email@domain.com", password: "DefaultPassword1") }
-        let(:status_options) { ['Open', 'Captured', 'Closed'] }
+    before(:each) { sign_in admin }
 
-        it 'assigns @status_options' do skip "Not working yet"
-            sign_in user
-            # debugger
-            get :index
-            # expect(user.role).to eq("admin")
-            # expect(user.admin?).to be true
-            expect(assigns(:status_options)).to eq status_options
-        end
+    describe 'GET #index' do
+      it 'is successful' do
+        expect(get(:index)).to have_http_status(:ok)
+      end
     end
+  end
 
-    # def index
-    #     @status_options = status_options
-    #     @pagy, @tickets = tickets
-    # end
+  context 'as organization' do
+    let(:organization) { create :user, :organization }
 
-    # Group 1: Admins
-    describe 'Admins' do
-      let(:signed_in_user) { build_stubbed(:user) }
-      before(:each) { sign_in signed_in_user }
-      
+    before(:each) { sign_in organization }
+
+    describe 'GET #index' do
+      it 'is successful' do
+        expect(get(:index)).to have_http_status(:ok)
+      end
     end
-        # test index
+  end
 
-        # NOTE: status_options and tickets are private methods and should not be tested. 
-        # test status options
+  context 'as a non-logged-in user' do
+    let(:user) { create :user }
 
-        # test tickets
-
-
-    # Group 2: Organization
-        # test index
-
-        # test status options
-
-        # test tickets
-
-
-    # Group 3: Normal User
-        # test index
-
-        # test status options
-
-        # test tickets
-        
-
+    describe 'GET #index' do
+      it 'redirects to sign-in' do
+        expect(get(:index)).to redirect_to(user_session_path)
+      end
+    end
+  end
 end
