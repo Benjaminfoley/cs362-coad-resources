@@ -109,8 +109,11 @@ RSpec.describe RegionsController, type: :controller do
       end
     end
 
-    describe 'DELETE #destroy' do pending 
-      "Not yet implemented"
+    describe 'DELETE #destroy' do
+      it 'redirects to dashboard' do
+        delete :destroy, params: { id: ticket.id }
+        expect(response).to redirect_to(dashboard_path)
+      end
     end
   end
 
