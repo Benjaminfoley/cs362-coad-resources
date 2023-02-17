@@ -2,6 +2,8 @@ FactoryBot.define do
   factory :organization do
     name {"TestOrganization"}
     id {1}
+    # sequence(:id) { |n| n }
+    # sequence(:id) { |n| "#{n}" }
     # the following may or may not be necessary. 
     primary_name {"PrimaryName"}
     secondary_name {"SecondaryName"}

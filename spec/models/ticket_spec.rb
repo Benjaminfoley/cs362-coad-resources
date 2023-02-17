@@ -126,8 +126,8 @@ RSpec.describe Ticket, type: :model do
   end
 
   describe 'Test scope methods using factory' do
-    # pending "This test isn't working correctly"
     let(:open_ticket) { FactoryBot.create(:ticket, organization_id: 1) }
+    # let(:open_ticket) { FactoryBot.create(:ticket) }
     let(:closed_ticket) { FactoryBot.create(:ticket, closed: true, id: 1) }
 
     it 'can query for all organizations' do
@@ -144,6 +144,7 @@ RSpec.describe Ticket, type: :model do
 
     it 'can query for a region by id' do
       expect(Ticket.region(1)).to match([open_ticket])
+      # expect(Ticket.region(region.id)).to match([open_ticket])
     end
 
     it 'can query for a resource category by id' do
