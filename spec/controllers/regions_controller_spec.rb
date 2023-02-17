@@ -121,8 +121,11 @@ RSpec.describe RegionsController, type: :controller do
       end
     end
 
-    describe 'POST #create' do pending 
-      "Not yet implemented"
+    describe 'POST #create' do 
+      it 'is redirects to sign-in'do
+        post :create, params: { region: attributes_for(:region) }
+        expect(response).to redirect_to(user_session_path)
+      end
     end
 
     describe 'GET #edit' do pending 
