@@ -8,7 +8,13 @@ RSpec.describe OrganizationsController, type: :controller do
   # admin = successful
   context 'as admin user' do
     describe 'GET #index' do
-      pending 'Not yet implemented'
+      let(:admin) { create :user, :admin }
+
+      before(:each) { sign_in admin }
+
+      it 'is successful' do
+        expect(get(:index)).to have_http_status(:ok)
+      end
     end
 
     describe 'GET #show' do
