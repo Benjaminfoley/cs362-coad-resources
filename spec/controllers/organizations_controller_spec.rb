@@ -87,7 +87,13 @@ RSpec.describe OrganizationsController, type: :controller do
 
   context 'as a non-logged-in user' do
     describe 'GET #index' do
-      pending 'Not yet implemented'
+      let(:user) { create :user }
+
+      describe 'GET #index' do
+        it 'redirects to sign-in' do
+          expect(get(:index)).to redirect_to(user_session_path)
+        end
+      end
     end
 
     describe 'GET #show' do
