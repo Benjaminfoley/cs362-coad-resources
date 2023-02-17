@@ -44,7 +44,20 @@ RSpec.describe OrganizationsController, type: :controller do
 
   context 'as organization' do
     describe 'GET #index' do
-      pending 'Not yet implemented'
+      let(:organization) { create :user, :organization }
+
+      before(:each) { sign_in organization }
+
+      describe 'GET #index' do
+        # these two tests do the same thing.
+        # We should decide which one is more appropriate.
+        it 'is successful' do
+          expect(get(:index)).to_not be_redirect
+        end
+        it 'is successful' do
+          expect(get(:index)).to have_http_status(:ok)
+        end
+      end
     end
 
     describe 'GET #show' do
