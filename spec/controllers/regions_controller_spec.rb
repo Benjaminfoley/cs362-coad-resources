@@ -108,6 +108,7 @@ RSpec.describe RegionsController, type: :controller do
   context 'as a non-logged-in user' do
     let(:user) {create :user}
     let(:ticket) { create :ticket }
+    let(:region) { create :region }
     
     describe 'GET #index' do
       it 'redirects to sign-in' do
@@ -130,14 +131,17 @@ RSpec.describe RegionsController, type: :controller do
     end
 
     describe 'POST #create' do 
-      it 'is redirects to sign-in'do
+      it 'redirects to sign-in'do
         post :create, params: { region: attributes_for(:region) }
         expect(response).to redirect_to(user_session_path)
       end
     end
 
-    describe 'GET #edit' do pending 
-      "Not yet implemented"
+    describe 'GET #edit' do
+      it 'redirects to sign-in' do
+        get :edit, params: { id: region.id }
+        expect(response).to redirect_to(user_session_path)
+      end
     end
 
     describe 'PATCH #update' do pending 
