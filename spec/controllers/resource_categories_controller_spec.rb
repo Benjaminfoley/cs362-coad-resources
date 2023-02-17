@@ -4,7 +4,6 @@ RSpec.describe ResourceCategoriesController, type: :controller do
   # REMEMBER TO ONLY TEST IF SUCCESSFUL OR IF REDIRECT
   # login = new_user_session_path (redirect if you're not logged in)
   # admin = successful
-
   context 'as admin user' do
 
     describe 'GET #index' do pending "Not yet implemented"
