@@ -3,15 +3,14 @@ require 'rails_helper'
 RSpec.describe RegionsController, type: :controller do
   # REMEMBER TO ONLY TEST IF SUCCESSFUL OR IF REDIRECT
   # login = new_user_session_path (redirect if you're not logged in)
-  # admin = successful 
-
+  # admin = successful
   context 'as admin user' do
     let(:admin) { create :user, :admin }
     let(:ticket) { create :ticket }
     let(:region) { create :region }
 
     before(:each) { sign_in admin }
-    
+
     describe 'GET #index' do
       it 'is successful' do
         expect(get(:index)).to have_http_status(:ok)
@@ -32,8 +31,8 @@ RSpec.describe RegionsController, type: :controller do
       end
     end
 
-    describe 'POST #create' do 
-      it 'is redirects to regions path'do
+    describe 'POST #create' do
+      it 'is redirects to regions path' do
         post :create, params: { region: attributes_for(:region) }
         expect(response).to redirect_to(regions_path)
       end
@@ -62,7 +61,7 @@ RSpec.describe RegionsController, type: :controller do
   end
 
   context 'as organization' do
-    let(:organization) {create :user, :organization}
+    let(:organization) { create :user, :organization }
     let(:ticket) { create :ticket }
     let(:region) { create :region }
 
@@ -88,8 +87,8 @@ RSpec.describe RegionsController, type: :controller do
       end
     end
 
-    describe 'POST #create' do 
-      it 'is redirects to dashboard'do
+    describe 'POST #create' do
+      it 'is redirects to dashboard' do
         post :create, params: { region: attributes_for(:region) }
         expect(response).to redirect_to(dashboard_path)
       end
@@ -118,10 +117,10 @@ RSpec.describe RegionsController, type: :controller do
   end
 
   context 'as a non-logged-in user' do
-    let(:user) {create :user}
+    let(:user) { create :user }
     let(:ticket) { create :ticket }
     let(:region) { create :region }
-    
+
     describe 'GET #index' do
       it 'redirects to sign-in' do
         expect(get(:index)).to redirect_to(user_session_path)
@@ -142,8 +141,8 @@ RSpec.describe RegionsController, type: :controller do
       end
     end
 
-    describe 'POST #create' do 
-      it 'redirects to sign-in'do
+    describe 'POST #create' do
+      it 'redirects to sign-in' do
         post :create, params: { region: attributes_for(:region) }
         expect(response).to redirect_to(user_session_path)
       end
