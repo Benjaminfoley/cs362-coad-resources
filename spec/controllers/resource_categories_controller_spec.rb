@@ -52,7 +52,10 @@ RSpec.describe ResourceCategoriesController, type: :controller do
     end
 
     describe 'PATCH #activate' do
-      pending 'Not yet implemented'
+      it 'is successful' do
+        patch :activate, params: {id: resource_category.id, resource_category: attributes_for(:resource_category) }
+        expect(flash[:notice]).to eq('Category activated.') #trying to test the notice
+      end
     end
 
     describe 'PATCH #deactivate' do
