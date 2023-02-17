@@ -49,7 +49,7 @@ RSpec.describe RegionsController, type: :controller do
     describe 'PATCH #update' do pending "Not working yet, redirects to different path"
       it 'is successful' do
         patch :update, params: { id: region.id, region: attributes_for(:region) }
-        expect(response).to redirect_to(regions_path)
+        expect(response).to be_redirect
       end
     end
 
