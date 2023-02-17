@@ -19,6 +19,11 @@ RSpec.describe DashboardController, type: :controller do
     before(:each) { sign_in organization }
 
     describe 'GET #index' do
+        # these two tests do the same thing.
+        # We should decide which one is more appropriate.
+      it 'is successful' do
+        expect(get(:index)).to_not be_redirect
+      end
       it 'is successful' do
         expect(get(:index)).to have_http_status(:ok)
       end
