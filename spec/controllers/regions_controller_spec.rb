@@ -46,10 +46,10 @@ RSpec.describe RegionsController, type: :controller do
       end
     end
 
-    describe 'PATCH #update' do pending "Not working yet, redirects to different path"
-      it 'is successful' do
+    describe 'PATCH #update' do
+      it 'redirects' do
         patch :update, params: { id: region.id, region: attributes_for(:region) }
-        expect(response).to be_redirect
+        expect(response).to be_redirect # redirects to "http://test.host/regions/1"
       end
     end
 
@@ -99,8 +99,11 @@ RSpec.describe RegionsController, type: :controller do
       end
     end
 
-    describe 'PATCH #update' do pending 
-      "Not yet implemented"
+    describe 'PATCH #update' do
+      it 'redirects to dashboard' do
+        patch :update, params: { id: region.id, region: attributes_for(:region) }
+        expect(response).to redirect_to(dashboard_path)
+      end
     end
 
     describe 'DELETE #destroy' do pending 
