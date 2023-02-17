@@ -8,6 +8,7 @@ RSpec.describe RegionsController, type: :controller do
   context 'as admin user' do
     let(:admin) { create :user, :admin }
     let(:ticket) { create :ticket }
+    let(:region) { create :region }
 
     before(:each) { sign_in admin }
     
@@ -38,8 +39,11 @@ RSpec.describe RegionsController, type: :controller do
       end
     end
 
-    describe 'GET #edit' do pending 
-      "Not yet implemented"
+    describe 'GET #edit' do
+      it 'is successful' do
+        get :edit, params: { id: region.id }
+        expect(response).to have_http_status(:ok)
+      end
     end
 
     describe 'PATCH #update' do pending 
