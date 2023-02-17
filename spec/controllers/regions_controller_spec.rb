@@ -163,8 +163,11 @@ RSpec.describe RegionsController, type: :controller do
       end
     end
 
-    describe 'DELETE #destroy' do pending 
-      "Not yet implemented"
+    describe 'DELETE #destroy' do
+      it 'redirects to sign-in' do
+        delete :destroy, params: { id: ticket.id }
+        expect(response).to redirect_to(user_session_path)
+      end
     end
   end
 end
