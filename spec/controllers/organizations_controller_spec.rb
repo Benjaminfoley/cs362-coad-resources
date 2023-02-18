@@ -42,7 +42,9 @@ RSpec.describe OrganizationsController, type: :controller do
     end
 
     describe 'POST #approve' do
-      pending 'Not yet implemented'
+      it 'redirects to page id' do
+        expect(post(:approve, params: { id: 1 })).to redirect_to(user_session_path)
+      end
     end
 
     describe 'POST #reject' do
