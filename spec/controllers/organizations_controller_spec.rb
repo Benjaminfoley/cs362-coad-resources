@@ -97,7 +97,9 @@ RSpec.describe OrganizationsController, type: :controller do
     end
 
     describe 'GET #show' do
-      pending 'Not yet implemented'
+      it 'redirects to sign-in' do
+        expect(get(:show, params: { id: 1 })).to redirect_to(user_session_path)
+      end
     end
 
     describe 'POST #create' do
