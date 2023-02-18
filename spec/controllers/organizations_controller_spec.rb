@@ -18,11 +18,15 @@ RSpec.describe OrganizationsController, type: :controller do
     end
 
     describe 'GET #show' do
-      pending 'Not yet implemented'
+      it 'redirects to page id' do
+        expect(get(:show, params: { id: 1 })).to redirect_to(user_session_path)
+      end
     end
 
     describe 'POST #create' do
-      pending 'Not yet implemented'
+      it 'is successful' do
+        expect(post(:create)).to redirect_to(user_session_path)
+      end
     end
 
     describe 'GET #edit' do
@@ -61,7 +65,10 @@ RSpec.describe OrganizationsController, type: :controller do
     end
 
     describe 'GET #show' do
-      pending 'Not yet implemented'
+      #302 Error
+      # it 'is successful' do
+      #   expect(get(:show, params: { id: 1 })).to have_http_status(302)
+      # end
     end
 
     describe 'POST #create' do
