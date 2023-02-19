@@ -109,7 +109,9 @@ RSpec.describe ResourceCategoriesController, type: :controller do
     end
 
     describe 'GET #show' do
-      pending 'Not yet implemented'
+      it 'redirects to page id' do
+        expect(get(:show, params: { id: 1 })).to redirect_to(new_user_session_path)
+      end
     end
 
     describe 'POST #create' do
