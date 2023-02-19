@@ -145,7 +145,9 @@ RSpec.describe ResourceCategoriesController, type: :controller do
     end
 
     describe 'DELETE #destroy' do
-      pending 'Not yet implemented'
+      it 'redirects to page id' do
+        expect(delete(:destroy, params: { id: 1 })).to redirect_to(new_user_session_path)
+      end
     end
   end
 end
