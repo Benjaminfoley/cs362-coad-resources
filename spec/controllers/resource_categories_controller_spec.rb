@@ -127,7 +127,9 @@ RSpec.describe ResourceCategoriesController, type: :controller do
     end
 
     describe 'PATCH #update' do
-      pending 'Not yet implemented'
+      it 'redirects to page id' do
+        expect(patch(:update, params: { id: 1 })).to redirect_to(new_user_session_path)
+      end
     end
 
     describe 'PATCH #activate' do
