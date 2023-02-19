@@ -69,7 +69,13 @@ RSpec.describe ResourceCategoriesController, type: :controller do
 
   context 'as organization' do
     describe 'GET #index' do
-      pending 'Not yet implemented'
+      let(:organization) { create :user, :organization }
+
+      before(:each) { sign_in organization }
+
+      it 'is successful' do
+        expect(get(:index)).to redirect_to(dashboard_path)
+      end
     end
 
     describe 'GET #show' do
