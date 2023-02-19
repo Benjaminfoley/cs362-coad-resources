@@ -103,7 +103,9 @@ RSpec.describe ResourceCategoriesController, type: :controller do
 
   context 'as a non-logged-in user' do
     describe 'GET #index' do
-      pending 'Not yet implemented'
+      it 'redirects to page id' do
+        expect(get(:index, params: { id: 1 })).to redirect_to(new_user_session_path)
+      end
     end
 
     describe 'GET #show' do
