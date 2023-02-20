@@ -96,11 +96,16 @@ RSpec.describe TicketsController, type: :controller do
     end
 
     describe 'PATCH #close' do
-      pending 'Not yet implemented'
+      # it 'redirects to dashboard' do
+      #   expect(patch(:close, params: { id: 'FAKE' })).to redirect_to(dashboard_path)
+      # end
+      #Getting error: unless current_user&.organization&.approved? || current_user.admin?
     end
 
     describe 'DELETE #destroy' do
-      pending 'Not yet implemented'
+      it 'redirects to dashboard' do
+        expect(delete(:destroy, params: { id: 1 })).to redirect_to(dashboard_path)
+      end
     end
   end
 end
