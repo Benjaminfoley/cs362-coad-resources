@@ -84,7 +84,9 @@ RSpec.describe TicketsController, type: :controller do
     end
 
     describe 'POST #capture' do
-      pending 'Not yet implemented'
+      it 'redirects to dashboard' do
+        expect(post(:capture, params: { id: 1 })).to redirect_to(dashboard_path)
+      end
     end
 
     describe 'POST #release' do
