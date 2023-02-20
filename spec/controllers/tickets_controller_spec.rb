@@ -70,7 +70,9 @@ RSpec.describe TicketsController, type: :controller do
 
   context 'as a non-logged-in user' do
     describe 'GET #new' do
-      pending 'Not yet implemented'
+      it 'redirects to login page' do
+        expect(get(:new)).to have_http_status(:ok)
+      end
     end
 
     describe 'POST #create' do
