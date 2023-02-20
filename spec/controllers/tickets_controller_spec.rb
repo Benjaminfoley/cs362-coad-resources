@@ -34,7 +34,9 @@ RSpec.describe TicketsController, type: :controller do
     end
 
     describe 'DELETE #destroy' do
-      pending 'Not yet implemented'
+      it 'redirects to dashboard' do
+        expect(delete(:destroy, params: { id: 1 })).to redirect_to(dashboard_path)
+      end
     end
   end
 
