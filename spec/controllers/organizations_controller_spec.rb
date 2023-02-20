@@ -86,7 +86,9 @@ RSpec.describe OrganizationsController, type: :controller do
     end
 
     describe 'GET #edit' do
-      pending 'Not yet implemented'
+      it 'redirects to sign-in' do
+        expect(get(:edit, params: { id: 1 })).to redirect_to(user_session_path)
+      end
     end
 
     describe 'PATCH #update' do
