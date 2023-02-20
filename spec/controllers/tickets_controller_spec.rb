@@ -8,7 +8,9 @@ RSpec.describe TicketsController, type: :controller do
   # admin = successful
   context 'as admin user' do
     describe 'GET #new' do
-      pending 'Not yet implemented'
+      it 'successful' do
+        expect(get(:new)).to have_http_status(:ok)
+      end
     end
 
     describe 'POST #create' do
