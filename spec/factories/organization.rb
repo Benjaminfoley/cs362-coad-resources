@@ -11,4 +11,8 @@ FactoryBot.define do
     secondary_phone {'1-222-222-22222'}
     email {"default@domain.com"}
   end
+
+  trait :approved do 
+    status { "approved" }
+  end
 end
