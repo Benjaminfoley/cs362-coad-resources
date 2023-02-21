@@ -43,7 +43,9 @@ RSpec.describe TicketsController, type: :controller do
     end
 
     describe 'PATCH #close' do
-      pending 'Not yet implemented'
+      it 'redirects to dashboard' do
+        expect(patch(:close, params: { id: ticket.id })).to redirect_to(dashboard_path << '#tickets:open')
+      end
     end
 
     describe 'DELETE #destroy' do
