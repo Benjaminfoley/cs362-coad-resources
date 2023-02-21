@@ -59,7 +59,10 @@ RSpec.describe ResourceCategoriesController, type: :controller do
     end
 
     describe 'PATCH #deactivate' do
-      pending 'Not yet implemented'
+      it 'is successful' do
+        patch :deactivate, params: {id: resource_category.id, resource_category: attributes_for(:resource_category) }
+        expect(flash[:notice]).to eq('Category deactivated.') 
+      end
     end
 
     describe 'DELETE #destroy' do
