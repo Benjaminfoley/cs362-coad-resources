@@ -7,6 +7,10 @@ RSpec.describe TicketsController, type: :controller do
   # login = new_user_session_path (redirect if you're not logged in)
   # admin = successful
   context 'as admin user' do
+    let(:admin) { create :user, :admin }
+    let(:ticket) { create :ticket }
+    before(:each) { sign_in admin }
+
     describe 'GET #new' do
       it 'is successful' do
         expect(get(:new)).to have_http_status(:ok)
@@ -14,14 +18,16 @@ RSpec.describe TicketsController, type: :controller do
     end
 
     describe 'POST #create' do
-      it 'is redirects to dashboard path' do
+      it 'successful' do
         post :create, params: { ticket: attributes_for(:ticket) }
         expect(response).to have_http_status(:ok)
       end
     end
 
     describe 'GET #show' do
-      pending 'Not yet implemented'
+      it 'successful' do
+        expect(get(:show, params: { id: ticket.id })).to have_http_status(:ok)
+      end
     end
 
     describe 'POST #capture' do
@@ -37,7 +43,7 @@ RSpec.describe TicketsController, type: :controller do
     end
 
     describe 'DELETE #destroy' do
-      it 'redirects to dashboard' do
+      it 'redirects to dashboard' do pending
         expect(delete(:destroy, params: { id: 1 })).to redirect_to(dashboard_path)
       end
     end
