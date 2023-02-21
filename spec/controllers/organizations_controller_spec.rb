@@ -73,7 +73,7 @@ RSpec.describe OrganizationsController, type: :controller do
     end
 
     describe 'GET #show' do
-      it 'is successful' do
+      it 'redirects somewhere' do
         expect(get(:show, params: { id: 1 })).to have_http_status(:redirect)
       end
     end
