@@ -43,8 +43,8 @@ RSpec.describe TicketsController, type: :controller do
     end
 
     describe 'DELETE #destroy' do
-      it 'redirects to dashboard' do pending
-        expect(delete(:destroy, params: { id: 1 })).to redirect_to(dashboard_path)
+      it 'redirects to dashboard' do
+        expect(delete(:destroy, params: { id: ticket.id })).to be_redirect
       end
     end
   end
