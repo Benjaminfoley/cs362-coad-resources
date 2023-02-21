@@ -66,7 +66,10 @@ RSpec.describe ResourceCategoriesController, type: :controller do
     end
 
     describe 'DELETE #destroy' do
-      pending 'Not yet implemented'
+      it 'redirects to resource_categories path' do
+        delete :destroy, params: { id: resource_category.id }
+        expect(response).to redirect_to(resource_categories_path)
+      end
     end
   end
 
