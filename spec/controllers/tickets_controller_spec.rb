@@ -43,7 +43,7 @@ RSpec.describe TicketsController, type: :controller do
     end
 
     describe 'PATCH #close' do
-      it 'redirects to dashboard' do
+      it 'redirects to dashboard tickets open' do
         expect(patch(:close, params: { id: ticket.id })).to redirect_to(dashboard_path << '#tickets:open')
       end
     end
@@ -70,11 +70,15 @@ RSpec.describe TicketsController, type: :controller do
     end
 
     describe 'GET #show' do
-      pending 'Not yet implemented'
+      it 'successful' do pending
+        expect(get(:show, params: { id: 1 })).to have_http_status(:ok)
+      end
     end
 
     describe 'POST #capture' do
-      pending 'Not yet implemented'
+      it 'redirects to dashboard' do
+        expect(post(:capture, params: { id: 1 })).to redirect_to(dashboard_path)
+      end
     end
 
     describe 'POST #release' do
