@@ -57,7 +57,10 @@ RSpec.describe TicketsController, type: :controller do
     end
 
     describe 'POST #create' do
-      pending 'Not yet implemented'
+      it 'successful' do
+        post :create, params: { ticket: attributes_for(:ticket) }
+        expect(response).to have_http_status(:ok)
+      end
     end
 
     describe 'GET #show' do
