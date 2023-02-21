@@ -108,7 +108,9 @@ RSpec.describe TicketsController, type: :controller do
     end
 
     describe 'POST #create' do
-      pending 'Not yet implemented'
+      it 'redirects to login page' do
+        expect(post(:create, params: { ticket: attributes_for(:ticket) })).to have_http_status(:ok)
+      end
     end
 
     describe 'GET #show' do
