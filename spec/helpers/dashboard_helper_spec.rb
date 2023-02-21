@@ -25,7 +25,7 @@ RSpec.describe DashboardHelper, type: :helper do
   end
 
   context 'as org submitted' do
-    let(:organization) { build_stubbed(:organization) }
+    let(:organization) { build_stubbed(:organization, :submitted) }
     let(:user) { build_stubbed(:user, organization: organization) }
 
     #before(:each) { sign_in admin }
