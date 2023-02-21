@@ -37,7 +37,9 @@ RSpec.describe TicketsController, type: :controller do
     end
 
     describe 'POST #release' do
-      pending 'Not yet implemented'
+      it 'redirects to dashboard' do
+        expect(post(:release, params: { id: ticket.id })).to redirect_to(dashboard_path)
+      end
     end
 
     describe 'PATCH #close' do
