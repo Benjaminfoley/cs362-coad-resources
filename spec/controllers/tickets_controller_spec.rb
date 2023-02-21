@@ -114,7 +114,7 @@ RSpec.describe TicketsController, type: :controller do
     end
 
     describe 'GET #show' do
-      pending 'Not yet implemented'
+      pending
     end
 
     describe 'POST #capture' do
@@ -130,10 +130,7 @@ RSpec.describe TicketsController, type: :controller do
     end
 
     describe 'PATCH #close' do
-      # it 'redirects to dashboard' do
-      #   expect(patch(:close, params: { id: 'FAKE' })).to redirect_to(dashboard_path)
-      # end
-      #Getting error: unless current_user&.organization&.approved? || current_user.admin?
+      pending
     end
 
     describe 'DELETE #destroy' do
