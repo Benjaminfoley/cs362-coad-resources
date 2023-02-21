@@ -73,10 +73,9 @@ RSpec.describe OrganizationsController, type: :controller do
     end
 
     describe 'GET #show' do
-      #302 Error
-      # it 'is successful' do
-      #   expect(get(:show, params: { id: 1 })).to have_http_status(302)      #I think excpect(...).to have_http_status(:redirect) works
-      # end
+      it 'is successful' do
+        expect(get(:show, params: { id: 1 })).to have_http_status(:redirect)
+      end
     end
 
     describe 'POST #create' do
