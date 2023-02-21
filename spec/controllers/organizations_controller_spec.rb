@@ -103,7 +103,9 @@ RSpec.describe OrganizationsController, type: :controller do
     end
 
     describe 'POST #reject' do
-      pending 'Not yet implemented'
+      it 'redirects to sign-in' do
+        expect(post(:reject, params: { id: 1 })).to redirect_to(user_session_path)
+      end
     end
   end
 
