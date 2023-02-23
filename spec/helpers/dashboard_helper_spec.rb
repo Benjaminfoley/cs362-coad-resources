@@ -13,6 +13,7 @@ require 'rails_helper'
 RSpec.describe DashboardHelper, type: :helper do
   context 'as admin user' do
     let(:admin) { build_stubbed(:user, :admin) }
+    # let(:admin) { instance_double('User', admin?: true) }
 
     #before(:each) { sign_in admin }
 
@@ -40,6 +41,7 @@ RSpec.describe DashboardHelper, type: :helper do
   context 'as org approved' do
     let(:organization) { build_stubbed(:organization, :approved) }
     let(:user) { build_stubbed(:user, organization: organization) }
+    # let(:mockUser) { instance_double('User', admin?: false, organization: Organization.....)}
 
     #before(:each) { sign_in admin }
 

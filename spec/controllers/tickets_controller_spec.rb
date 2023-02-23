@@ -56,6 +56,10 @@ RSpec.describe TicketsController, type: :controller do
   end
 
   context 'as organization' do
+    let(:organization) { create :user, :organization }
+
+    before(:each) { sign_in organization }
+
     describe 'GET #new' do
       it 'successful' do
         expect(get(:new)).to have_http_status(:ok)
@@ -88,8 +92,8 @@ RSpec.describe TicketsController, type: :controller do
     end
 
     describe 'PATCH #close' do
-      it 'redirects to dashboard' do pending
-        expect(patch(:close, params: { id: 1 })).to redirect_to(dashboard_path << '#tickets:organization')
+      it 'redirects to dashboard' do
+        expect(patch(:close, params: { id: 1 })).to redirect_to(dashboard_path)
       end
     end
 
