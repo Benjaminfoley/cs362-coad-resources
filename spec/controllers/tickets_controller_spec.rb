@@ -22,6 +22,12 @@ RSpec.describe TicketsController, type: :controller do
         post :create, params: { ticket: attributes_for(:ticket) }
         expect(response).to have_http_status(:ok)
       end
+
+      it 'not successful' do
+        expect_any_instance_of(Ticket).to receive(:save).and_return(false)
+        post :create, params: { ticket: attributes_for(:ticket) }
+        expect(response).to render_template(:new)
+      end
     end
 
     describe 'GET #show' do
@@ -34,6 +40,7 @@ RSpec.describe TicketsController, type: :controller do
       it 'redirects to dashboard' do
         expect(post(:capture, params: { id: ticket.id })).to redirect_to(dashboard_path)
       end
+
     end
 
     describe 'POST #release' do
@@ -57,8 +64,8 @@ RSpec.describe TicketsController, type: :controller do
 
   context 'as organization' do
     let(:organization) { build_stubbed :organization, :approved }
-    let(:user) { create :user, organization: organization }
-    let(:ticket) {create :ticket}
+    let(:user) { create :user, organization_id: organization.id}
+    let(:ticket) {create :ticket, organization_id: organization.id}
 
     before(:each) { sign_in user }
 
@@ -76,15 +83,31 @@ RSpec.describe TicketsController, type: :controller do
     end
 
     describe 'GET #show' do
-      it 'successful' do
+      it 'successful' do 
         allow(controller).to receive(:current_user).and_return(user)
-        expect(get(:show, params: { id: ticket.id })).to have_http_status(:ok)
+        allow(user).to receive_message_chain(:organization, :approved?).and_return(true)
+        get(:show, params: {id: ticket.id})
+        expect(response).to have_http_status(:ok)
       end
     end
 
     describe 'POST #capture' do
       it 'redirects to dashboard' do
         expect(post(:capture, params: { id: 1 })).to redirect_to(dashboard_path)
+      end
+
+      it 'captured ticket' do
+        allow(controller).to receive(:current_user).and_return(user)
+        allow(user).to receive_message_chain(:organization, :approved?).and_return(true)
+        allow(TicketService).to receive(:capture_ticket).with("1", user).and_return(:ok)
+        post(:capture, params: { id: ticket.id } )
+        expect(response).to redirect_to(dashboard_path << '#tickets:open')
+      end
+
+      it 'not successful' do
+        allow(controller).to receive(:current_user).and_return(user)
+        allow(user).to receive_message_chain(:organization, :approved?).and_return(true)
+        expect(post :capture, params: { id: ticket.id}).to render_template(:show)
       end
     end
 
