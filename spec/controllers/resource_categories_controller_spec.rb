@@ -32,6 +32,7 @@ RSpec.describe ResourceCategoriesController, type: :controller do
       end
 
       it 'renders :new when .save fails' do
+        # expect_any_instance_of(Resource_Category).to receive(save).and_return(false)
         post :create, params: { resource_category: { name: '' } }
         expect(response).to render_template(:new)
       end
