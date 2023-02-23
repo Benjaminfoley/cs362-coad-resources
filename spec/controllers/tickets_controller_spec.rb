@@ -134,7 +134,9 @@ RSpec.describe TicketsController, type: :controller do
     end
 
     describe 'PATCH #close' do
-      pending
+      it 'redirects to dashboard' do
+        expect(post(:release, params: { id: 1 })).to redirect_to(dashboard_path)
+      end
     end
 
     describe 'DELETE #destroy' do
