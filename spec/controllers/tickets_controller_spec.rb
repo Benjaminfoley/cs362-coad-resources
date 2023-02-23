@@ -56,9 +56,11 @@ RSpec.describe TicketsController, type: :controller do
   end
 
   context 'as organization' do
-    let(:organization) { create :user, :organization }
+    let(:organization) { build_stubbed :organization, :approved }
+    let(:user) { create :user, organization: organization }
+    let(:ticket) {create :ticket}
 
-    before(:each) { sign_in organization }
+    before(:each) { sign_in user }
 
     describe 'GET #new' do
       it 'successful' do
@@ -74,8 +76,9 @@ RSpec.describe TicketsController, type: :controller do
     end
 
     describe 'GET #show' do
-      it 'successful' do pending
-        expect(get(:show, params: { id: 1 })).to have_http_status(:ok)
+      it 'successful' do
+        allow(controller).to receive(:current_user).and_return(user)
+        expect(get(:show, params: { id: ticket.id })).to have_http_status(:ok)
       end
     end
 
@@ -105,6 +108,8 @@ RSpec.describe TicketsController, type: :controller do
   end
 
   context 'as a non-logged-in user' do
+    let(:user) {create :user}
+
     describe 'GET #new' do
       it 'redirects to login page' do
         expect(get(:new)).to have_http_status(:ok)
@@ -118,7 +123,10 @@ RSpec.describe TicketsController, type: :controller do
     end
 
     describe 'GET #show' do
-      pending
+      it 'successful' do
+        allow(controller).to receive(:current_user).and_return(user)
+        expect(get(:show, params: { id: 1 })).to redirect_to(dashboard_path)
+      end
     end
 
     describe 'POST #capture' do
