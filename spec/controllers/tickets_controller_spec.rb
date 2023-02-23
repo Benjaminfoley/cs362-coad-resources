@@ -47,11 +47,26 @@ RSpec.describe TicketsController, type: :controller do
       it 'redirects to dashboard' do
         expect(post(:release, params: { id: ticket.id })).to redirect_to(dashboard_path)
       end
+
+      it ' admin path tickets:captured' do
+        allow(controller).to receive(:current_user).and_return(admin)
+        allow(admin).to receive_message_chain(:organization, :approved?).and_return(true)
+        expect(post(:release, params: { id: ticket.id })).to redirect_to(dashboard_path << '#tickets:captured')
+        
+      end
     end
 
     describe 'PATCH #close' do
       it 'redirects to dashboard tickets open' do
         expect(patch(:close, params: { id: ticket.id })).to redirect_to(dashboard_path << '#tickets:open')
+      end
+
+      it ' admin path tickets:captured' do
+        allow(controller).to receive(:current_user).and_return(admin)
+        allow(admin).to receive_message_chain(:organization, :approved?).and_return(true)
+        allow(TicketService).to receive(:close_ticket).with("1", admin).and_return(:ok)
+        expect(patch(:close, params: { id: ticket.id })).to redirect_to(dashboard_path << '#tickets:open')
+        
       end
     end
 
@@ -115,11 +130,44 @@ RSpec.describe TicketsController, type: :controller do
       it 'redirects to dashboard' do
         expect(post(:release, params: { id: 1 })).to redirect_to(dashboard_path)
       end
+
+      it ' org path tickets:organization' do
+        allow(controller).to receive(:current_user).and_return(user)
+        allow(user).to receive_message_chain(:organization, :approved?).and_return(true)
+        expect(post(:release, params: { id: ticket.id })).to redirect_to(dashboard_path << '#tickets:organization')
+        
+      end
+
+      it ' release fail' do
+        allow(controller).to receive(:current_user).and_return(user)
+        allow(user).to receive_message_chain(:organization, :approved?).and_return(true)
+        allow(TicketService).to receive(:release_ticket).with("1", user).and_return(:error)
+        post(:release, params: { id: ticket.id })
+        expect(response).to render_template(:show)
+        
+      end
     end
 
     describe 'PATCH #close' do
       it 'redirects to dashboard' do
         expect(patch(:close, params: { id: 1 })).to redirect_to(dashboard_path)
+      end
+
+      it ' org path tickets:organization' do
+        allow(controller).to receive(:current_user).and_return(user)
+        allow(user).to receive_message_chain(:organization, :approved?).and_return(true)
+        allow(TicketService).to receive(:close_ticket).with("1", user).and_return(:ok)
+        expect(patch(:close, params: { id: ticket.id })).to redirect_to(dashboard_path << '#tickets:organization')
+        
+      end
+
+      it ' release fail' do
+        allow(controller).to receive(:current_user).and_return(user)
+        allow(user).to receive_message_chain(:organization, :approved?).and_return(true)
+        allow(TicketService).to receive(:close_ticket).with("1", user).and_return(:error)
+        patch(:close, params: { id: ticket.id })
+        expect(response).to render_template(:show)
+        
       end
     end
 
@@ -142,6 +190,12 @@ RSpec.describe TicketsController, type: :controller do
     describe 'POST #create' do
       it 'redirects to login page' do
         expect(post(:create, params: { ticket: attributes_for(:ticket) })).to have_http_status(:ok)
+      end
+
+      it 'save fail' do
+        expect_any_instance_of(Ticket).to receive(:save).and_return(false)
+        post(:create, params: { ticket: attributes_for(:ticket) })
+        expect(response).to render_template(:new)
       end
     end
 
