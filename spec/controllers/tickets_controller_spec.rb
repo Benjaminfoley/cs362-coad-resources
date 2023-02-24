@@ -6,6 +6,7 @@ RSpec.describe TicketsController, type: :controller do
   # REMEMBER TO ONLY TEST IF SUCCESSFUL OR IF REDIRECT
   # login = new_user_session_path (redirect if you're not logged in)
   # admin = successful
+  
   context 'as admin user' do
     let(:admin) { create :user, :admin }
     let(:ticket) { create :ticket }
@@ -19,8 +20,10 @@ RSpec.describe TicketsController, type: :controller do
 
     describe 'POST #create' do
       it 'successful' do
+        expect_any_instance_of(Ticket).to receive(:save).and_return(true)
         post :create, params: { ticket: attributes_for(:ticket) }
-        expect(response).to have_http_status(:ok)
+        
+        expect(response).to redirect_to(ticket_submitted_path)
       end
 
       it 'not successful' do
