@@ -29,6 +29,12 @@ RSpec.describe DashboardController, type: :controller do
       it 'is successful' do
         expect(get(:index)).to have_http_status(:ok)
       end
+
+      it 'is successful when organization is approved ' do
+        allow(controller).to receive(:current_user).and_return(organization)
+        allow(organization).to receive_message_chain(:organization, :approved?).and_return(true)
+        expect(get :index).to have_http_status(:ok)
+      end
     end
   end
 
