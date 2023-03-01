@@ -84,6 +84,13 @@ RSpec.describe ResourceCategoriesController, type: :controller do
         patch :deactivate, params: {id: resource_category.id, resource_category: attributes_for(:resource_category) }
         expect(flash[:notice]).to eq('Category deactivated.') 
       end
+
+      it 'is not successful' do
+        expect_any_instance_of(ResourceCategory).to receive(:save).and_return(false)
+        patch :deactivate, params: {id: resource_category.id, resource_category: attributes_for(:resource_category) }
+        expect(flash[:alert]).to eq('There was a problem deactivating the category.')
+        expect(response).to redirect_to(resource_category_path)
+      end
     end
 
     describe 'DELETE #destroy' do
