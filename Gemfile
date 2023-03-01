@@ -44,7 +44,7 @@ group :test do
   gem 'database_cleaner'
   gem 'selenium-webdriver'
   gem 'shoulda-matchers', '~> 5.0'
-  gem 'simplecov', require: false
+  gem 'simplecov', require: false, group: :test
   gem 'webdrivers', '~> 3.0'
   gem 'rails-controller-testing'
 end
