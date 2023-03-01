@@ -38,6 +38,12 @@ RSpec.describe RegionsController, type: :controller do
         post :create, params: { region: attributes_for(:region) }
         expect(response).to redirect_to(regions_path)
       end
+
+      it 'renders edit when unsuccessful' do
+        expect_any_instance_of(Region).to receive(:save).and_return(false)
+        post :create, params: { region: attributes_for(:region) }
+        expect(response).to render_template(:new)
+      end
     end
 
     describe 'GET #edit' do
