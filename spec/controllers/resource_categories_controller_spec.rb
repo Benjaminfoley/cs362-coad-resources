@@ -25,6 +25,13 @@ RSpec.describe ResourceCategoriesController, type: :controller do
       end
     end
 
+    describe 'GET #new' do
+      it 'is successful' do
+        get :new
+        expect(response).to have_http_status(:ok)
+      end
+    end
+
     describe 'POST #create' do
       it 'is redirects to resource_catagories_path path' do
         post :create, params: { resource_category: attributes_for(:resource_category) }
