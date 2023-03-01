@@ -101,7 +101,7 @@ RSpec.describe ResourceCategoriesController, type: :controller do
     describe 'GET #new' do
       it 'is successful' do
         get :new
-        expect(response).to have_http_status(:redirect)
+        expect(response).to redirect_to(new_user_session_path)
       end
     end
 
@@ -155,6 +155,13 @@ RSpec.describe ResourceCategoriesController, type: :controller do
       end
     end
 
+    describe 'GET #new' do
+      it 'is successful' do
+        get :new
+        expect(response).to redirect_to(new_user_session_path)
+      end
+    end
+    
     describe 'POST #create' do
       it 'redirects to page id' do
         expect(post(:create, params: { id: 1 })).to redirect_to(new_user_session_path)
