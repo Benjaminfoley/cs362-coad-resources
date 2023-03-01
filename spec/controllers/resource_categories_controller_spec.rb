@@ -57,12 +57,25 @@ RSpec.describe ResourceCategoriesController, type: :controller do
         patch :update, params: {id: resource_category.id, resource_category: attributes_for(:resource_category) }
         expect(response).to have_http_status(:redirect)
       end
+
+      it 'renders edit when not successful' do
+        skip "This test does not work yet"
+        # patch :update, params: {id: resource_category.id, resource_category: attributes_for(:resource_category) }
+        # expect(response).to eq('edit')
+      end
     end
 
     describe 'PATCH #activate' do
       it 'is successful' do
         patch :activate, params: {id: resource_category.id, resource_category: attributes_for(:resource_category) }
         expect(flash[:notice]).to eq('Category activated.') #trying to test the notice
+      end
+
+      it 'is not successful' do
+        expect_any_instance_of(ResourceCategory).to receive(:save).and_return(false)
+        patch :activate, params: {id: resource_category.id, resource_category: attributes_for(:resource_category) }
+        expect(flash[:alert]).to eq('There was a problem activating the category.')
+        expect(response).to redirect_to(resource_category_path)
       end
     end
 
@@ -161,7 +174,7 @@ RSpec.describe ResourceCategoriesController, type: :controller do
         expect(response).to redirect_to(new_user_session_path)
       end
     end
-    
+
     describe 'POST #create' do
       it 'redirects to page id' do
         expect(post(:create, params: { id: 1 })).to redirect_to(new_user_session_path)
