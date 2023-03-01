@@ -59,9 +59,9 @@ RSpec.describe ResourceCategoriesController, type: :controller do
       end
 
       it 'renders edit when not successful' do
-        skip "This test does not work yet"
-        # patch :update, params: {id: resource_category.id, resource_category: attributes_for(:resource_category) }
-        # expect(response).to eq('edit')
+        expect_any_instance_of(ResourceCategory).to receive(:save).and_return(false)
+        patch :update, params: {id: resource_category.id, resource_category: attributes_for(:resource_category) }
+        expect(response).to render_template(:edit)
       end
     end
 
