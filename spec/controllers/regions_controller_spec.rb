@@ -39,7 +39,7 @@ RSpec.describe RegionsController, type: :controller do
         expect(response).to redirect_to(regions_path)
       end
 
-      it 'renders edit when unsuccessful' do
+      it 'renders new when unsuccessful' do
         expect_any_instance_of(Region).to receive(:save).and_return(false)
         post :create, params: { region: attributes_for(:region) }
         expect(response).to render_template(:new)
@@ -57,6 +57,12 @@ RSpec.describe RegionsController, type: :controller do
       it 'redirects' do
         patch :update, params: { id: region.id, region: attributes_for(:region) }
         expect(response).to be_redirect # redirects to "http://test.host/regions/1"
+      end
+
+      it 'renders edit when unsuccessful' do
+        expect_any_instance_of(Region).to receive(:save).and_return(false)
+        patch :update, params: { id: region.id, region: attributes_for(:region) }
+        expect(response).to render_template(:edit)
       end
     end
 
