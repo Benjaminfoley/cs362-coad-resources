@@ -40,8 +40,12 @@ RSpec.describe DashboardController, type: :controller do
         expect(get(:index, params: { status: "Open" })).to be_successful
       end
 
-      it 'pagy an closed ticket'do
+      it 'pagy a closed ticket'do
         expect(get(:index, params: { status: "Closed" })).to be_successful
+      end
+
+      it 'pagy a captured ticket'do
+        expect(get(:index, params: { status: "Captured" })).to be_successful
       end
     end
   end
