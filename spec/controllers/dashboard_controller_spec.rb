@@ -35,6 +35,10 @@ RSpec.describe DashboardController, type: :controller do
         allow(organization).to receive_message_chain(:organization, :approved?).and_return(true)
         expect(get :index).to have_http_status(:ok)
       end
+
+      it 'pagy an open ticket'do
+        expect(get(:index, params: { status: "Open" })).to be_successful
+      end
     end
   end
 
