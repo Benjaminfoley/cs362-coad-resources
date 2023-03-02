@@ -12,6 +12,32 @@ RSpec.describe DashboardController, type: :controller do
       it 'is successful' do
         expect(get(:index)).to have_http_status(:ok)
       end
+
+      it 'is successful when organization is approved ' do
+        allow(controller).to receive(:current_user).and_return(admin)
+        allow(admin).to receive_message_chain(:organization, :approved?).and_return(true)
+        expect(get :index).to have_http_status(:ok)
+      end
+
+      it 'pagy an open ticket'do
+        expect(get(:index, params: { status: "Open" })).to be_successful
+      end
+
+      it 'pagy a closed ticket'do
+        expect(get(:index, params: { status: "Closed" })).to be_successful
+      end
+
+      it 'pagy a captured ticket'do
+        expect(get(:index, params: { status: "Captured" })).to be_successful
+      end
+
+      it 'pagy a My Captured ticket'do
+        expect(get(:index, params: { status: "My Captured" })).to be_successful
+      end
+
+      it 'pagy a My Closed ticket'do
+        expect(get(:index, params: { status: "My Closed" })).to be_successful
+      end
     end
   end
 
