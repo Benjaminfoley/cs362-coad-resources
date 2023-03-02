@@ -17,6 +17,14 @@ RSpec.describe OrganizationsController, type: :controller do
       end
     end
 
+    describe 'GET new' do
+      it 'is successful' do
+        expect(get(:new)).to redirect_to(user_session_path)
+      end
+    end
+
+
+
     describe 'GET #show' do
       it 'redirects to page id' do
         expect(get(:show, params: { id: 1 })).to redirect_to(user_session_path)
