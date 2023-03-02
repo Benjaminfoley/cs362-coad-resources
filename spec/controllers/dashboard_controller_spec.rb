@@ -47,6 +47,10 @@ RSpec.describe DashboardController, type: :controller do
       it 'pagy a captured ticket'do
         expect(get(:index, params: { status: "Captured" })).to be_successful
       end
+
+      it 'pagy a My Captured ticket'do
+        expect(get(:index, params: { status: "My Captured" })).to be_successful
+      end
     end
   end
 
