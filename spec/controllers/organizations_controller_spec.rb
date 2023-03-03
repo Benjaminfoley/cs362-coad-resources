@@ -95,17 +95,13 @@ RSpec.describe OrganizationsController, type: :controller do
 
     describe 'POST #create' do
       let(:user) { create(:user, :organization_unapproved ) }
-      let(:admin) { create(:user, :admin) }
       let(:organization) { create(:organization)}
-      # let(:organization)
       before(:each) { sign_in user }
 
-      it 'is successful' do pending 'SMTP error'
-        # expect(UserMailer).to receive(:with).and_return('example@example.com')
+      it 'is redirects to organization application submitted' do
+        admin = create(:user, :admin)
         post :create, params: {organization: attributes_for(:organization)}
         expect(response).to redirect_to(organization_application_submitted_path)
-        # expect(post(:create)).to have_http_status(:ok)
-        # expect(post(:create)).to have_http_status(:ok)
       end
 
       it 'renders new if not saved' do
@@ -113,7 +109,6 @@ RSpec.describe OrganizationsController, type: :controller do
         post :create, params: {organization: attributes_for(:organization)}
         expect(response).to render_template(:new)
       end
-
     end
 
     describe 'GET #edit' do
@@ -123,7 +118,11 @@ RSpec.describe OrganizationsController, type: :controller do
     end
 
     describe 'PATCH #update' do
-      it 'redirects to sign-in' do
+      let(:user) { create(:user, :organization_unapproved ) }
+      let(:admin) { create(:user, :admin) }
+      let(:organization) { create(:organization)}
+
+      it 'is successful' do
         expect(patch(:update, params: { id: 1 })).to redirect_to(user_session_path)
       end
     end
