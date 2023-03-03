@@ -118,12 +118,21 @@ RSpec.describe OrganizationsController, type: :controller do
     end
 
     describe 'PATCH #update' do
-      let(:user) { create(:user, :organization_unapproved ) }
+      let(:user) { create(:user, :organization_approved ) }
       let(:admin) { create(:user, :admin) }
-      let(:organization) { create(:organization)}
+      # let(:organization) { create(:organization)}
+      before(:each) { sign_in user }
 
-      it 'is successful' do
-        expect(patch(:update, params: { id: 1 })).to redirect_to(user_session_path)
+      it 'redirects to organization path' do
+        patch :update, params: { id: user.organization.id, organization: attributes_for(:organization)}
+        expect(response).to redirect_to(organization_path)
+        # expect(patch(:update, params: { id: 1 })).to redirect_to(user_session_path)
+      end
+
+      it 'renders edit when when unsuccesfully updated' do
+        expect_any_instance_of(Organization).to receive(:update).and_return(false)
+        patch :update, params: { id: user.organization.id, organization: attributes_for(:organization)}
+        expect(response).to render_template(:edit)
       end
     end
 
