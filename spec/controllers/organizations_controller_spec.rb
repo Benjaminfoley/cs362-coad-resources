@@ -98,7 +98,7 @@ RSpec.describe OrganizationsController, type: :controller do
       let(:organization) { create(:organization)}
       before(:each) { sign_in user }
 
-      it 'is redirects to organization application submitted' do
+      it 'redirects to organization application submitted' do
         admin = create(:user, :admin)
         post :create, params: {organization: attributes_for(:organization)}
         expect(response).to redirect_to(organization_application_submitted_path)
