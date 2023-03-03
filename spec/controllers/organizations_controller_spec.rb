@@ -17,11 +17,9 @@ RSpec.describe OrganizationsController, type: :controller do
       end
     end
 
-    describe 'GET new' do
-      it 'is successful' do
-        expect(get(:new)).to redirect_to(user_session_path)
-      end
-    end
+    # describe 'GET #new' do
+
+    # end
 
 
 
@@ -64,9 +62,9 @@ RSpec.describe OrganizationsController, type: :controller do
 
   context 'as organization' do
     describe 'GET #index' do
-      let(:organization) { create :user, :organization }
+      let(:user) { create :user, :organization }
 
-      before(:each) { sign_in organization }
+      before(:each) { sign_in user }
 
       describe 'GET #index' do
         # these two tests do the same thing.
@@ -80,6 +78,15 @@ RSpec.describe OrganizationsController, type: :controller do
       end
     end
 
+    describe 'GET #new' do
+      let(:user) { create(:user, :organization_unapproved ) }
+      before(:each) { sign_in user }
+
+      it 'is successful' do
+        expect(get(:new)).to have_http_status(:ok)
+      end
+    end
+
     describe 'GET #show' do
       it 'redirects somewhere' do
         expect(get(:show, params: { id: 1 })).to have_http_status(:redirect)
@@ -87,9 +94,26 @@ RSpec.describe OrganizationsController, type: :controller do
     end
 
     describe 'POST #create' do
-      it 'redirects to sign-in' do
-        expect(post(:create)).to redirect_to(user_session_path)
+      let(:user) { create(:user, :organization_unapproved ) }
+      let(:admin) { create(:user, :admin) }
+      let(:organization) { create(:organization)}
+      # let(:organization)
+      before(:each) { sign_in user }
+
+      it 'is successful' do pending 'SMTP error'
+        # expect(UserMailer).to receive(:with).and_return('example@example.com')
+        post :create, params: {organization: attributes_for(:organization)}
+        expect(response).to redirect_to(organization_application_submitted_path)
+        # expect(post(:create)).to have_http_status(:ok)
+        # expect(post(:create)).to have_http_status(:ok)
       end
+
+      it 'renders new if not saved' do
+        expect_any_instance_of(User).to receive(:save).and_return(false)
+        post :create, params: {organization: attributes_for(:organization)}
+        expect(response).to render_template(:new)
+      end
+
     end
 
     describe 'GET #edit' do

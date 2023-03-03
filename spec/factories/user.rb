@@ -15,4 +15,13 @@ FactoryBot.define do
       role { 'organization' }
     end
 
+    trait :organization_unapproved do
+      role { :organization }
+    end
+
+    trait :organization_approved do
+      role { :organization }
+      organization_id { create(:organization, :organization_approved).id }
+    end
+
   end
