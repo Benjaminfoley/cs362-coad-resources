@@ -17,12 +17,6 @@ RSpec.describe OrganizationsController, type: :controller do
       end
     end
 
-    # describe 'GET #new' do
-
-    # end
-
-
-
     describe 'GET #show' do
       it 'redirects to page id' do
         expect(get(:show, params: { id: 1 })).to redirect_to(user_session_path)
@@ -48,8 +42,13 @@ RSpec.describe OrganizationsController, type: :controller do
     end
 
     describe 'POST #approve' do
+      let(:admin) { create :user, :admin }
+      let(:organization) { create(:organization)}
+
+      before(:each) { sign_in admin }
+
       it 'redirects to page approval' do
-        expect(post(:approve, params: { id: 1 })).to redirect_to(user_session_path)
+        expect(post(:approve, params: { id: organization.id })).to redirect_to(organizations_path)
       end
     end
 
@@ -119,14 +118,11 @@ RSpec.describe OrganizationsController, type: :controller do
 
     describe 'PATCH #update' do
       let(:user) { create(:user, :organization_approved ) }
-      let(:admin) { create(:user, :admin) }
-      # let(:organization) { create(:organization)}
       before(:each) { sign_in user }
 
       it 'redirects to organization path' do
         patch :update, params: { id: user.organization.id, organization: attributes_for(:organization)}
         expect(response).to redirect_to(organization_path)
-        # expect(patch(:update, params: { id: 1 })).to redirect_to(user_session_path)
       end
 
       it 'renders edit when when unsuccesfully updated' do
@@ -137,8 +133,8 @@ RSpec.describe OrganizationsController, type: :controller do
     end
 
     describe 'POST #approve' do
-      it 'redirects to sign-in' do
-        expect(post(:approve, params: { id: 1 })).to redirect_to(user_session_path)
+      it 'redirects to organization path' do
+        expect(post(:reject, params: { id: 1 })).to redirect_to(user_session_path)
       end
     end
 
