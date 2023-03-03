@@ -84,8 +84,10 @@ RSpec.describe Ticket, type: :model do
 
   # 3.2 Functions
   describe 'Test methods using factory' do
-    let(:open_ticket) { FactoryBot.build_stubbed(:ticket, id: 1) }
-    let(:closed_ticket) { FactoryBot.build_stubbed(:ticket, closed: true, id: 2) }
+    let(:organization_1) { FactoryBot.build_stubbed(:organization, id: 1) }
+    let(:organization_2) { FactoryBot.build_stubbed(:organization, id: 2) }
+    let(:open_ticket) { FactoryBot.build_stubbed(:ticket, id: 1, organization: organization_1) }
+    let(:closed_ticket) { FactoryBot.build_stubbed(:ticket, closed: true, id: 2, organization: organization_2) }
 
     it 'has a default status of open' do
       expect(open_ticket.open?).to be true
@@ -95,7 +97,7 @@ RSpec.describe Ticket, type: :model do
       expect(closed_ticket.open?).to be false
     end
 
-    it 'checks if it is captured by an organization' do pending "Remove ID from org factory broke this"
+    it 'checks if it is captured by an organization' do # pending "Remove ID from org factory broke this"
       expect(closed_ticket.captured?).to be true
       expect(open_ticket.captured?).to be true
     end
