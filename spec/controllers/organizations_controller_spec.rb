@@ -53,8 +53,15 @@ RSpec.describe OrganizationsController, type: :controller do
     end
 
     describe 'POST #reject' do
+      let(:admin) { create :user, :admin }
+      let(:organization) { create(:organization) }
+
+      before(:each) { sign_in admin }
+
       it 'redirects to page rejection' do
-        expect(post(:reject, params: { id: 1 })).to redirect_to(user_session_path)
+        expect_any_instance_of(Organization).to receive(:save).and_return(true)
+        post :reject, params: { id: organization.id, organization: attributes_for(:organization)}
+        expect(response).to redirect_to(organizations_path)
       end
     end
   end
