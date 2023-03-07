@@ -1,17 +1,17 @@
 require 'rails_helper'
 
 RSpec.describe 'Deleting a Resource Category', type: :feature do
-    # let!(:resource_category) { create(:resource_category) }
-    # let(:admin) { create(:user, :admin) }
+    #Struggling to get on the correct path to delete a resource category
+
     
-    # before do
-    #     log_in_as(admin)
-    #     admin.confirm
-    #     visit resource_categories_path
-    # end
+    # let(:admin) { create :user, :admin }
+    # let(:resource_category) { create :resource_category }
     
-    # it 'deletes a resource category' do
-    #     click_link 'Delete'
-    #     expect(page).to have_content('Resource category was successfully destroyed.')
+    # before(:each) { log_in_as admin }
+    
+    # it 'is successful' do
+    #     visit resource_categories_path(resource_category)
+    #     click_button 'Delete'
+    #     expect(page).to have_content("Category #{resource_category} was deleted. Associated tickets now belong to the 'Unspecified' category.")
     # end
 end
