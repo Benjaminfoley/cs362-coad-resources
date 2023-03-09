@@ -3,7 +3,6 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  
   # Attributes
   describe 'test attributes using factories' do
     let(:user) { FactoryBot.build_stubbed(:user) }
@@ -51,7 +50,7 @@ RSpec.describe User, type: :model do
     it { should_not allow_value('example.domain.com').for(:email) }
   end
 
-# 3.2 Functions
+  # 3.2 Functions
   describe 'test methods using factories' do
     let(:user) { FactoryBot.build_stubbed(:user) }
 
@@ -63,8 +62,6 @@ RSpec.describe User, type: :model do
       expect(user.to_s).to eq(user.email)
     end
   end
-
-
 
   # 3.3 Static Functions -- There are none
   it 'has no static functions' do

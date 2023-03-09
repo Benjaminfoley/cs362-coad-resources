@@ -6,7 +6,7 @@ RSpec.describe TicketsController, type: :controller do
   # REMEMBER TO ONLY TEST IF SUCCESSFUL OR IF REDIRECT
   # login = new_user_session_path (redirect if you're not logged in)
   # admin = successful
-  
+
   context 'as admin user' do
     let(:admin) { create :user, :admin }
     let(:ticket) { create :ticket }
@@ -22,7 +22,7 @@ RSpec.describe TicketsController, type: :controller do
       it 'successful' do
         expect_any_instance_of(Ticket).to receive(:save).and_return(true)
         post :create, params: { ticket: attributes_for(:ticket) }
-        
+
         expect(response).to redirect_to(ticket_submitted_path)
       end
 
@@ -43,7 +43,6 @@ RSpec.describe TicketsController, type: :controller do
       it 'redirects to dashboard' do
         expect(post(:capture, params: { id: ticket.id })).to redirect_to(dashboard_path)
       end
-
     end
 
     describe 'POST #release' do
@@ -55,7 +54,6 @@ RSpec.describe TicketsController, type: :controller do
         allow(controller).to receive(:current_user).and_return(admin)
         allow(admin).to receive_message_chain(:organization, :approved?).and_return(true)
         expect(post(:release, params: { id: ticket.id })).to redirect_to(dashboard_path << '#tickets:captured')
-        
       end
     end
 
@@ -67,9 +65,8 @@ RSpec.describe TicketsController, type: :controller do
       it ' admin path tickets:captured' do
         allow(controller).to receive(:current_user).and_return(admin)
         allow(admin).to receive_message_chain(:organization, :approved?).and_return(true)
-        allow(TicketService).to receive(:close_ticket).with("1", admin).and_return(:ok)
+        allow(TicketService).to receive(:close_ticket).with('1', admin).and_return(:ok)
         expect(patch(:close, params: { id: ticket.id })).to redirect_to(dashboard_path << '#tickets:open')
-        
       end
     end
 
@@ -82,8 +79,8 @@ RSpec.describe TicketsController, type: :controller do
 
   context 'as organization' do
     let(:organization) { build_stubbed :organization, :approved }
-    let(:user) { create :user, organization_id: organization.id}
-    let(:ticket) {create :ticket, organization_id: organization.id}
+    let(:user) { create :user, organization_id: organization.id }
+    let(:ticket) { create :ticket, organization_id: organization.id }
 
     before(:each) { sign_in user }
 
@@ -101,10 +98,10 @@ RSpec.describe TicketsController, type: :controller do
     end
 
     describe 'GET #show' do
-      it 'successful' do 
+      it 'successful' do
         allow(controller).to receive(:current_user).and_return(user)
         allow(user).to receive_message_chain(:organization, :approved?).and_return(true)
-        get(:show, params: {id: ticket.id})
+        get(:show, params: { id: ticket.id })
         expect(response).to have_http_status(:ok)
       end
     end
@@ -117,15 +114,15 @@ RSpec.describe TicketsController, type: :controller do
       it 'captured ticket' do
         allow(controller).to receive(:current_user).and_return(user)
         allow(user).to receive_message_chain(:organization, :approved?).and_return(true)
-        allow(TicketService).to receive(:capture_ticket).with("1", user).and_return(:ok)
-        post(:capture, params: { id: ticket.id } )
+        allow(TicketService).to receive(:capture_ticket).with('1', user).and_return(:ok)
+        post(:capture, params: { id: ticket.id })
         expect(response).to redirect_to(dashboard_path << '#tickets:open')
       end
 
       it 'not successful' do
         allow(controller).to receive(:current_user).and_return(user)
         allow(user).to receive_message_chain(:organization, :approved?).and_return(true)
-        expect(post :capture, params: { id: ticket.id}).to render_template(:show)
+        expect(post(:capture, params: { id: ticket.id })).to render_template(:show)
       end
     end
 
@@ -138,16 +135,14 @@ RSpec.describe TicketsController, type: :controller do
         allow(controller).to receive(:current_user).and_return(user)
         allow(user).to receive_message_chain(:organization, :approved?).and_return(true)
         expect(post(:release, params: { id: ticket.id })).to redirect_to(dashboard_path << '#tickets:organization')
-        
       end
 
       it ' release fail' do
         allow(controller).to receive(:current_user).and_return(user)
         allow(user).to receive_message_chain(:organization, :approved?).and_return(true)
-        allow(TicketService).to receive(:release_ticket).with("1", user).and_return(:error)
+        allow(TicketService).to receive(:release_ticket).with('1', user).and_return(:error)
         post(:release, params: { id: ticket.id })
         expect(response).to render_template(:show)
-        
       end
     end
 
@@ -159,18 +154,16 @@ RSpec.describe TicketsController, type: :controller do
       it ' org path tickets:organization' do
         allow(controller).to receive(:current_user).and_return(user)
         allow(user).to receive_message_chain(:organization, :approved?).and_return(true)
-        allow(TicketService).to receive(:close_ticket).with("1", user).and_return(:ok)
+        allow(TicketService).to receive(:close_ticket).with('1', user).and_return(:ok)
         expect(patch(:close, params: { id: ticket.id })).to redirect_to(dashboard_path << '#tickets:organization')
-        
       end
 
       it ' release fail' do
         allow(controller).to receive(:current_user).and_return(user)
         allow(user).to receive_message_chain(:organization, :approved?).and_return(true)
-        allow(TicketService).to receive(:close_ticket).with("1", user).and_return(:error)
+        allow(TicketService).to receive(:close_ticket).with('1', user).and_return(:error)
         patch(:close, params: { id: ticket.id })
         expect(response).to render_template(:show)
-        
       end
     end
 
@@ -182,7 +175,7 @@ RSpec.describe TicketsController, type: :controller do
   end
 
   context 'as a non-logged-in user' do
-    let(:user) {create :user}
+    let(:user) { create :user }
 
     describe 'GET #new' do
       it 'redirects to login page' do

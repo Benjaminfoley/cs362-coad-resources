@@ -48,10 +48,13 @@ RSpec.describe ResourceCategory, type: :model do
   describe 'validates the uniqueness of name' do
     it { should validate_uniqueness_of(:name).case_insensitive }
   end
-  
+
   # 3.2 Member Functions
   describe 'Test methods using factory' do
-    let(:resource_category) { FactoryBot.build(:resource_category) }  # build works here but build_stubbed won't. Not exactly sure why
+    # build works here but build_stubbed won't. Not exactly sure why
+    let(:resource_category) do
+      FactoryBot.build(:resource_category)
+    end
     it 'can activate' do
       resource_category.activate
       expect(resource_category.active).to be true
@@ -68,7 +71,7 @@ RSpec.describe ResourceCategory, type: :model do
       resource_category.deactivate
       expect(resource_category.inactive?).to be true
     end
-  
+
     it 'has a to-string method' do
       expect(resource_category.to_s).to be resource_category.name
     end

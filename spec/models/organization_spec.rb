@@ -6,7 +6,7 @@ require 'rails_helper'
 RSpec.describe Organization, type: :model do
   # Attributes
   describe 'test the existence of factories' do # this description should be changed when we actually know what is going on
-    let(:organization) { FactoryBot.build_stubbed(:organization) }  
+    let(:organization) { FactoryBot.build_stubbed(:organization) }
     it 'has a name' do
       expect(organization).to respond_to(:name)
     end
@@ -55,8 +55,8 @@ RSpec.describe Organization, type: :model do
       expect(organization).to respond_to(:set_default_status)
     end
 
-  # Double check that attributes below this line are actually attributes.
-  # Double check that they should be tested in this way.
+    # Double check that attributes below this line are actually attributes.
+    # Double check that they should be tested in this way.
     it 'has a users attribute' do
       expect(organization).to respond_to(:users)
     end

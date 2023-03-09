@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 # Specs in this file have access to a helper object that includes
@@ -15,7 +17,7 @@ RSpec.describe DashboardHelper, type: :helper do
     let(:admin) { build_stubbed(:user, :admin) }
     # let(:admin) { instance_double('User', admin?: true) }
 
-    #before(:each) { sign_in admin }
+    # before(:each) { sign_in admin }
 
     describe 'dashboard_for' do
       it 'admin_dashboard' do
@@ -29,7 +31,7 @@ RSpec.describe DashboardHelper, type: :helper do
     let(:organization) { build_stubbed(:organization, :submitted) }
     let(:user) { build_stubbed(:user, organization: organization) }
 
-    #before(:each) { sign_in admin }
+    # before(:each) { sign_in admin }
 
     describe 'dashboard_for' do
       it 'organization_submitted_dashboard' do
@@ -43,7 +45,7 @@ RSpec.describe DashboardHelper, type: :helper do
     let(:user) { build_stubbed(:user, organization: organization) }
     # let(:mockUser) { instance_double('User', admin?: false, organization: Organization.....)}
 
-    #before(:each) { sign_in admin }
+    # before(:each) { sign_in admin }
 
     describe 'dashboard_for' do
       it 'organization_submitted_dashboard' do
@@ -52,12 +54,11 @@ RSpec.describe DashboardHelper, type: :helper do
     end
   end
 
-
   context 'create dashboard' do
     let(:organization) { build_stubbed(:organization) }
     let(:user) { build_stubbed(:user, :organization) }
 
-    #before(:each) { sign_in admin }
+    # before(:each) { sign_in admin }
 
     describe 'dashboard_for' do
       it 'create_application_dashboard' do
@@ -65,6 +66,4 @@ RSpec.describe DashboardHelper, type: :helper do
       end
     end
   end
-      
-
 end

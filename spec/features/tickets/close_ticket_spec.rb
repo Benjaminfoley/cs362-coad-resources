@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe 'Closing a ticket', type: :feature do
@@ -8,12 +10,12 @@ RSpec.describe 'Closing a ticket', type: :feature do
     click_on 'Get Help'
     fill_in 'Full Name', with: 'test'
     fill_in 'Phone Number', with: '541-123-4565'
-    select("#{region.name}", from:"Region")
+    select(region.name.to_s, from: 'Region')
 
-    select("#{rc.name}",from:'Resource Category')
+    select(rc.name.to_s, from: 'Resource Category')
     fill_in 'Description', with: 'test'
     click_on 'Send this help request'
-    expect(page).to have_content("Ticket Submitted")
+    expect(page).to have_content('Ticket Submitted')
     user = create(:user, :organization_approved)
     visit '/'
     log_in_as user
@@ -21,10 +23,6 @@ RSpec.describe 'Closing a ticket', type: :feature do
     click_on 'Capture'
     visit '/tickets/1'
     click_on 'Close'
-    expect(page).to have_current_path("/dashboard")
-
-
-
-end
-
+    expect(page).to have_current_path('/dashboard')
+  end
 end

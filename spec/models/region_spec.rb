@@ -4,7 +4,7 @@ require 'rails_helper'
 
 RSpec.describe Region, type: :model do
   describe 'test attributes using factories' do
-    let(:region) { FactoryBot.build_stubbed(:region) }  
+    let(:region) { FactoryBot.build_stubbed(:region) }
 
     # Attributes
     it 'has a tickets attribute' do
@@ -29,7 +29,7 @@ RSpec.describe Region, type: :model do
       expect(region).to respond_to(:validates_length_of)
     end
   end
-  
+
   # 3.1 Validations
   describe 'validates the presence of a name' do
     it { should validate_presence_of(:name) }
@@ -44,7 +44,7 @@ RSpec.describe Region, type: :model do
   end
 
   describe 'Test methods using factories' do
-    let(:region) { FactoryBot.build_stubbed(:region) }  
+    let(:region) { FactoryBot.build_stubbed(:region) }
     # 3.2 Member Functions
     describe 'to_s returns region.name' do
       it {

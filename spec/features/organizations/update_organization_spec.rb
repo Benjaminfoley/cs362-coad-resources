@@ -1,7 +1,8 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe 'Updating an Organization', type: :feature do
-
   it 'updates an organization' do
     user = create(:user, :admin)
     log_in_as(user)
@@ -12,7 +13,5 @@ RSpec.describe 'Updating an Organization', type: :feature do
     fill_in 'Rejection Reason', with: 'No'
     click_on 'Reject'
     expect(page).to have_content('rejected')
-    
   end
-
 end

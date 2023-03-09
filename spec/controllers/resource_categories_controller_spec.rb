@@ -20,7 +20,7 @@ RSpec.describe ResourceCategoriesController, type: :controller do
 
     describe 'GET #show' do
       it 'is successful' do
-        #get :show, params: { resource_category: nil } show method has no code
+        # get :show, params: { resource_category: nil } show method has no code
         expect(response).to have_http_status(:ok)
       end
     end
@@ -54,26 +54,26 @@ RSpec.describe ResourceCategoriesController, type: :controller do
 
     describe 'PATCH #update' do
       it 'is successful' do
-        patch :update, params: {id: resource_category.id, resource_category: attributes_for(:resource_category) }
+        patch :update, params: { id: resource_category.id, resource_category: attributes_for(:resource_category) }
         expect(response).to have_http_status(:redirect)
       end
 
       it 'renders edit when not successful' do
         expect_any_instance_of(ResourceCategory).to receive(:save).and_return(false)
-        patch :update, params: {id: resource_category.id, resource_category: attributes_for(:resource_category) }
+        patch :update, params: { id: resource_category.id, resource_category: attributes_for(:resource_category) }
         expect(response).to render_template(:edit)
       end
     end
 
     describe 'PATCH #activate' do
       it 'is successful' do
-        patch :activate, params: {id: resource_category.id, resource_category: attributes_for(:resource_category) }
-        expect(flash[:notice]).to eq('Category activated.') #trying to test the notice
+        patch :activate, params: { id: resource_category.id, resource_category: attributes_for(:resource_category) }
+        expect(flash[:notice]).to eq('Category activated.') # trying to test the notice
       end
 
       it 'is not successful' do
         expect_any_instance_of(ResourceCategory).to receive(:save).and_return(false)
-        patch :activate, params: {id: resource_category.id, resource_category: attributes_for(:resource_category) }
+        patch :activate, params: { id: resource_category.id, resource_category: attributes_for(:resource_category) }
         expect(flash[:alert]).to eq('There was a problem activating the category.')
         expect(response).to redirect_to(resource_category_path)
       end
@@ -81,13 +81,13 @@ RSpec.describe ResourceCategoriesController, type: :controller do
 
     describe 'PATCH #deactivate' do
       it 'is successful' do
-        patch :deactivate, params: {id: resource_category.id, resource_category: attributes_for(:resource_category) }
-        expect(flash[:notice]).to eq('Category deactivated.') 
+        patch :deactivate, params: { id: resource_category.id, resource_category: attributes_for(:resource_category) }
+        expect(flash[:notice]).to eq('Category deactivated.')
       end
 
       it 'is not successful' do
         expect_any_instance_of(ResourceCategory).to receive(:save).and_return(false)
-        patch :deactivate, params: {id: resource_category.id, resource_category: attributes_for(:resource_category) }
+        patch :deactivate, params: { id: resource_category.id, resource_category: attributes_for(:resource_category) }
         expect(flash[:alert]).to eq('There was a problem deactivating the category.')
         expect(response).to redirect_to(resource_category_path)
       end

@@ -43,7 +43,7 @@ RSpec.describe OrganizationsController, type: :controller do
 
     describe 'POST #approve' do
       let(:admin) { create :user, :admin }
-      let(:organization) { create(:organization)}
+      let(:organization) { create(:organization) }
 
       before(:each) { sign_in admin }
 
@@ -60,7 +60,7 @@ RSpec.describe OrganizationsController, type: :controller do
 
       it 'redirects to page rejection' do
         expect_any_instance_of(Organization).to receive(:save).and_return(true)
-        post :reject, params: { id: organization.id, organization: attributes_for(:organization)}
+        post :reject, params: { id: organization.id, organization: attributes_for(:organization) }
         expect(response).to redirect_to(organizations_path)
       end
     end
@@ -85,7 +85,7 @@ RSpec.describe OrganizationsController, type: :controller do
     end
 
     describe 'GET #new' do
-      let(:user) { create(:user, :organization_unapproved ) }
+      let(:user) { create(:user, :organization_unapproved) }
       before(:each) { sign_in user }
 
       it 'is successful' do
@@ -100,19 +100,19 @@ RSpec.describe OrganizationsController, type: :controller do
     end
 
     describe 'POST #create' do
-      let(:user) { create(:user, :organization_unapproved ) }
-      let(:organization) { create(:organization)}
+      let(:user) { create(:user, :organization_unapproved) }
+      let(:organization) { create(:organization) }
       before(:each) { sign_in user }
 
       it 'redirects to organization application submitted' do
         admin = create(:user, :admin)
-        post :create, params: {organization: attributes_for(:organization)}
+        post :create, params: { organization: attributes_for(:organization) }
         expect(response).to redirect_to(organization_application_submitted_path)
       end
 
       it 'renders new if not saved' do
         expect_any_instance_of(User).to receive(:save).and_return(false)
-        post :create, params: {organization: attributes_for(:organization)}
+        post :create, params: { organization: attributes_for(:organization) }
         expect(response).to render_template(:new)
       end
     end
@@ -124,17 +124,17 @@ RSpec.describe OrganizationsController, type: :controller do
     end
 
     describe 'PATCH #update' do
-      let(:user) { create(:user, :organization_approved ) }
+      let(:user) { create(:user, :organization_approved) }
       before(:each) { sign_in user }
 
       it 'redirects to organization path' do
-        patch :update, params: { id: user.organization.id, organization: attributes_for(:organization)}
+        patch :update, params: { id: user.organization.id, organization: attributes_for(:organization) }
         expect(response).to redirect_to(organization_path)
       end
 
       it 'renders edit when when unsuccesfully updated' do
         expect_any_instance_of(Organization).to receive(:update).and_return(false)
-        patch :update, params: { id: user.organization.id, organization: attributes_for(:organization)}
+        patch :update, params: { id: user.organization.id, organization: attributes_for(:organization) }
         expect(response).to render_template(:edit)
       end
     end
