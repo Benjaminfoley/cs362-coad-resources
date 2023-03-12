@@ -10,9 +10,12 @@ RSpec.describe 'Deleting a Resource Category', type: :feature do
 
   # before(:each) { log_in_as admin }
 
-  # it 'is successful' do
-  #     visit resource_categories_path(resource_category)
-  #     click_button 'Delete'
-  #     expect(page).to have_content("Category #{resource_category} was deleted. Associated tickets now belong to the 'Unspecified' category.")
-  # end
+  it 'is successful' do
+    admin = create(:user, :admin)
+    log_in_as  admin
+    resource_category = create(:resource_category)
+    visit resource_category_path(resource_category)
+    click_link 'Delete'
+    expect(page).to have_content("Category #{resource_category} was deleted. Associated tickets now belong to the 'Unspecified' category.")
+  end
 end
