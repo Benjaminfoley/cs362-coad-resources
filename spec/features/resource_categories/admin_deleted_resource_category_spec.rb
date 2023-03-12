@@ -3,13 +3,6 @@
 require 'rails_helper'
 
 RSpec.describe 'Deleting a Resource Category', type: :feature do
-  # Struggling to get on the correct path to delete a resource category
-
-  # let(:admin) { create :user, :admin }
-  # let(:resource_category) { create :resource_category }
-
-  # before(:each) { log_in_as admin }
-
   it 'is successful' do
     admin = create(:user, :admin)
     log_in_as  admin
