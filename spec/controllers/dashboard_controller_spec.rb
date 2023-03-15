@@ -4,7 +4,7 @@ require 'rails_helper'
 
 RSpec.describe DashboardController, type: :controller do
   context 'as admin user' do
-    let(:admin) { create :user, :admin } 
+    let(:admin) { create :user, :admin }
 
     before(:each) { sign_in admin }
 
